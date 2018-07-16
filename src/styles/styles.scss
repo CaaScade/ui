@@ -1,0 +1,289 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "./variables";
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+pre code {
+  font-size: 16px;
+}
+
+.koki-component-header-container {
+  margin-bottom: 20px;
+}
+
+// file upload button cursor issue for webkit based browser
+::-webkit-file-upload-button {
+  cursor:pointer;
+}
+
+.mat-dialog-container{
+  border-radius: 10px !important;
+}
+.categoryPill{
+  background-color: #efefef;
+  color: black;
+  text-transform: capitalize;
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 10px;
+  margin-right: 15px;
+  font-family: RobotoRegular, sans-serif;
+  max-width: 100%;
+}
+
+.categoryPill.pillPadding {
+  padding: 2px 20px;
+}
+
+.datePill {
+  color: $koki-color-text-bold-dark;
+
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 10px;
+  font-family: RobotoRegular, sans-serif;
+
+}
+
+.datePill.redPill {
+  color: #fff;
+
+  background-color: $koki-color-primary-dark;
+}
+
+.datePill.greenPill {
+  color: #fff;
+
+  background-color: $koki-color-accent-dark;
+}
+
+.pills {
+  font-family: RobotoRegular, sans-serif;
+  color: black;
+  background-color: #efefef;
+  text-transform: capitalize;
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 10px;
+  margin-right: 15px;
+}
+
+
+.flexLayoutFix:last-child {
+  margin-right: 20px;
+}
+
+.flexLayoutMargin {
+  margin-bottom: 20px;
+}
+
+
+.documentWidthFix {
+  max-width: calc(33% - 20px);
+}
+
+.koki-portfolio-summary-header{
+  position: fixed;
+  width: 100%;
+  background-color: white;
+  z-index: 1;
+}
+
+#dicd-add-project .md2-autocomplete-trigger{
+  border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+}
+
+body{-ms-overflow-style: scrollbar !important;}
+
+// spinner styles
+.loader-background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1200;
+
+  .loader-position {
+    position: relative;
+    left: calc(50% - 50px);
+    top: calc(50% - 50px);
+  }
+}
+
+
+
+// mapping styles
+#KOKIDataWrapper {
+  background-color: $koki-grey-background-color;
+
+  .koki-data-header {
+    height: 60px;
+    background-color: #fff;
+    padding: 0 12px;
+
+    position: fixed;
+    width: calc(100% - 70px);
+    top: 54px;
+    z-index: 50;
+
+    .koki-new-portfolio-header-text {
+      line-height: 60px;
+    }
+  }
+
+  .koki-data-body {
+    height: calc(100vh - 115px);
+    //padding: 40px;
+    margin-top: 60px;
+
+    .koki-side-section-layout {
+      height: 100%;
+    }
+
+    .wrapper {
+      height: 100%;
+    }
+    .data-list-container {
+      height: 100%;
+      background: white;
+      position: relative;
+
+      .list-wrapper{
+        height: calc(100% - 88px);
+        overflow: auto;
+      }
+
+      .list-container {
+        height: 130px;
+        padding:0 20px;
+
+        &.active {
+          cursor: default;
+          background-color: #efefef;
+          border-left: 10px solid #c0c0c0
+        }
+      }
+
+      .bottomFixedButton{
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        padding: 20px;
+        border-top: 1px solid #e5e5e5
+      }
+    }
+
+    .data-details-container {
+      height: calc(100% - 60px);
+      background-color: white;
+      margin: 30px;
+      border-radius: 10px;
+      overflow: auto;
+
+
+      .listHeader{
+        font-family: RobotoBold, sans-serif;
+        font-size: 25px;
+        border-bottom: 1px solid #e5e5e5;
+        padding: 10px 20px;
+      }
+
+      .details-container{
+        height: 130px;
+        padding:0 20px;
+      }
+    }
+
+    .servicesRow:nth-child(2n+1) {
+      background-color: #F9F9F9;
+    }
+
+    .headerPadding {
+      padding: 20px 40px;
+    }
+
+    .koki-new-portfolio-section {
+      background-color: #fff;
+      border-radius: 15px;
+      //margin-bottom: 40px;
+
+      &.paddingSection {
+        padding: 40px;
+      }
+
+    }
+  }
+
+}
+
+.height150 {
+  height: 150px;
+}
+
+// UaaS custom styles
+//Custom Multiselect styles in Courses add page.
+.custom-course-multiselect{
+  mat-form-field{
+    margin-top: 25px;
+    .mat-input-wrapper{ width: 88%;}
+  }
+}
+//Custom text-area styles.
+.custom-textarea{
+    padding: 10px 15px;
+    outline: 0;
+    max-width: 100%;
+    border-width: 1.5px;
+    border-radius: 10px;
+}
+.cursor-pointer{
+  cursor: pointer;
+}
+.eventNull{
+  pointer-events: none;
+}
+// To disble the hover color for the custom mat-tab
+.custom-request-tab, .custom-action-tab{
+  .mat-button-focus-overlay{ background-color: transparent;}
+}
+
+
+
+// added by rhythm 31 May 1437 inflight dicd
+
+.inputPageNumberContainer{
+    // border: 1px solid lightgray;
+    border-radius: 4px;
+    height: 34px;
+
+
+.wrongInput{
+margin-left: 10px;
+    width: 28px;
+    height: 30px;
+    border-radius: 6px;
+    border: 1px solid $koki-color-red-dark;
+    background: $koki-table-header-color;
+    color: $koki-color-text-bold-light
+}
+
+.rightInput{
+    margin-left: 10px;
+    width: 28px;
+    height: 30px;
+    border-radius: 6px;
+    border: 1px solid $koki-color-text-normal-light;
+    background: $koki-table-header-color;
+    color: $koki-color-text-bold-light
+}
+
+    }

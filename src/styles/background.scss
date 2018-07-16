@@ -1,0 +1,18 @@
+// koki-background assets styles
+
+// --- basic styles --- //
+.generalBG {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+}
+
+.coverBackground {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.logo{
+  background-image: url("../assets/images/logo.png");
+}

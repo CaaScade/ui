@@ -1,0 +1,638 @@
+/* You can add global custom themes to this file, and also import other style files */
+// ********** CUSTOM THEME START ***********//
+@import '~@angular/material/theming';
+@include mat-core();
+// include all the app related scss variables
+@import './variables';
+// color palette
+$koki-primary : ( 50: $koki-color-primary-dark, 100: $koki-color-primary-dark, 200: $koki-color-primary-dark, 300: $koki-color-primary-dark, 400: $koki-color-primary-dark, 500: $koki-color-primary-dark, 600: $koki-color-primary-dark, 700: $koki-color-primary-dark, 800: $koki-color-primary-dark, 900: $koki-color-primary-dark, A100: $koki-color-primary-light, A200: $koki-color-primary-light, A400: $koki-color-primary-light, A700: $koki-color-primary-light, contrast: ( 50: $koki-color-primary-dark, 100: $koki-color-primary-dark, 200: $koki-color-primary-dark, 300: $koki-color-primary-dark, 400: $koki-color-primary-dark, 500: $koki-color-primary-dark, 600: $koki-color-primary-dark, 700: $koki-color-primary-dark, 800: $koki-color-primary-dark, 900: $koki-color-primary-dark, A100: $koki-color-primary-light, A200: $koki-color-primary-light, A400: $koki-color-primary-light, A700: $koki-color-primary-light, ));
+$koki-accent: ( 50: $koki-color-accent-dark, 100: $koki-color-accent-dark, 200: $koki-color-accent-dark, 300: $koki-color-accent-dark, 400: $koki-color-accent-dark, 500: $koki-color-accent-dark, 600: $koki-color-accent-dark, 700: $koki-color-accent-dark, 800: $koki-color-accent-dark, 900: $koki-color-accent-dark, A100: $koki-color-accent-light, A200: $koki-color-accent-light, A400: $koki-color-accent-light, A700: $koki-color-accent-light, contrast: ( 50: $koki-color-accent-dark, 100: $koki-color-accent-dark, 200: $koki-color-accent-dark, 300: $koki-color-accent-dark, 400: $koki-color-accent-dark, 500: $koki-color-accent-dark, 600: $koki-color-accent-dark, 700: $koki-color-accent-dark, 800: $koki-color-accent-dark, 900: $koki-color-accent-dark, A100: $koki-color-accent-light, A200: $koki-color-accent-light, A400: $koki-color-accent-light, A700: $koki-color-accent-light, ));
+$koki-warn: ( 50: $koki-color-primary-dark, 100: $koki-color-primary-dark, 200: $koki-color-primary-dark, 300: $koki-color-primary-dark, 400: $koki-color-primary-dark, 500: $koki-color-primary-dark, 600: $koki-color-primary-dark, 700: $koki-color-primary-dark, 800: $koki-color-primary-dark, 900: $koki-color-primary-dark, A100: $koki-color-primary-light, A200: $koki-color-primary-light, A400: $koki-color-primary-light, A700: $koki-color-primary-light, contrast: ( 50: $koki-color-primary-dark, 100: $koki-color-primary-dark, 200: $koki-color-primary-dark, 300: $koki-color-primary-dark, 400: $koki-color-primary-dark, 500: $koki-color-primary-dark, 600: $koki-color-primary-dark, 700: $koki-color-primary-dark, 800: $koki-color-primary-dark, 900: $koki-color-primary-dark, A100: $koki-color-primary-light, A200: $koki-color-primary-light, A400: $koki-color-primary-light, A700: $koki-color-primary-light, ));
+// creating palette for application color grid
+$koki-app-primary: mat-palette($koki-primary);
+$koki-app-accent : mat-palette($koki-accent);
+// The warn palette is optional (defaults to red).
+$koki-app-warn : mat-palette($koki-warn);
+// Create the theme object (a Sass map containing all of the palettes).
+$koki-app-theme: mat-light-theme($koki-app-primary, $koki-app-accent, $koki-app-warn);
+// setting application theme
+@include angular-material-theme($koki-app-theme);
+$primary: map-get($koki-app-theme, primary);
+//@include mat-core-theme($primary);
+
+// font theme
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../assets/fonts/MaterialIcons-Regular.eot);
+  /* For IE6-8 */
+  src: local('Material Icons'), local('MaterialIcons-Regular'), url(../assets/fonts/MaterialIcons-Regular.woff2) format('woff2'), url(../assets/fonts/MaterialIcons-Regular.woff) format('woff'), url(../assets/fonts/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: RobotoThin;
+  font-style: normal;
+  font-weight: 400;
+  src: url(../assets/fonts/Roboto-Thin.ttf);
+}
+
+@font-face {
+  font-family: RobotoLight;
+  font-weight: 300;
+  src: url(../assets/fonts/Roboto-Light.ttf);
+}
+
+@font-face {
+  font-family: RobotoRegular;
+  font-style: normal;
+  font-weight: 400;
+  src: url(../assets/fonts/Roboto-Regular.ttf);
+}
+
+@font-face {
+  font-family: RobotoMedium;
+  font-style: normal;
+  font-weight: 400;
+  src: url(../assets/fonts/Roboto-Medium.ttf);
+}
+
+@font-face {
+  font-family: RobotoBold;
+  font-style: normal;
+  font-weight: 400;
+  src: url(../assets/fonts/Roboto-Bold.ttf);
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  /* for vertical scrollbars */
+  height: 2px;
+  /* for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $koki-color-primary-dark;
+}
+
+body {
+  font-family: RobotoLight, sans-serif;
+  font-size: 18px;
+  color: $koki-color-text-bold-dark;
+  line-height: 1.5;
+  font-weight: normal;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap; // direction: ltr;
+  // margin:0 20px 0 0;
+  vertical-align: middle;
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+// ********** CUSTOM THEME END ***********//
+// ********** CUSTOM THEME STYLES START ***********//
+// font styles
+.text12 {
+  font-size: 12px;
+}
+
+.text13 {
+  font-size: 13px;
+}
+
+.text14 {
+  font-size: 14px;
+}
+
+.text15 {
+  font-size: 15px;
+}
+
+.text16 {
+  font-size: 16px;
+}
+
+.text17 {
+  font-size: 17px;
+}
+
+.text18 {
+  font-size: 18px;
+}
+
+.text19 {
+  font-size: 19px;
+}
+
+.text20 {
+  font-size: 20px;
+}
+
+.text22 {
+  font-size: 22px;
+}
+
+.text23 {
+  font-size: 23px;
+}
+
+.text24 {
+  font-size: 24px;
+}
+
+.text25 {
+  font-size: 25px;
+}
+
+.text26 {
+  font-size: 26px;
+}
+
+.text30 {
+  font-size: 30px;
+}
+
+.text35 {
+  font-size: 35px;
+}
+
+.text48 {
+  font-size: 48px;
+}
+
+.text50 {
+  font-size: 50px;
+}
+
+.text62 {
+  font-size: 62px;
+}
+
+.text55 {
+  font-size: 55px;
+}
+
+.colorAnalytic1 {
+  color: #50B08D;
+}
+
+.colorAnalytic2 {
+  color: #F8941D;
+}
+
+.colorAnalytic3 {
+  color: #509EDD;
+}
+
+.colorAnalytic4 {
+  color: #4C4C4C;
+}
+
+.colorAnalytic5 {
+  color: #B3689E;
+}
+
+
+
+.truncateText {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pointer {
+  cursor: pointer
+}
+
+.primaryColorRed {
+  color: $koki-color-primary-dark
+}
+
+.primaryColorGreen {
+  color: $koki-color-accent-dark
+}
+
+.secondaryColorBlackDark {
+  color: $koki-color-text-bold-dark;
+}
+
+.secondaryColorBlackLight {
+  color: $koki-color-text-bold-light;
+}
+
+.secondaryNormalColorGreydark {
+  color: $koki-color-text-normal-dark;
+}
+
+.secondaryNormalColorGreyLight {
+  color: $koki-color-text-normal-light;
+}
+
+.primaryColorBlackDark {
+  color: $koki-color-text-bold-dark;
+}
+
+.primaryColorBlackLight {
+  color: $koki-color-text-bold-light;
+}
+
+.margin20 {
+  margin: 20px 0;
+}
+
+.bgPrimary {
+  background-color: $koki-color-primary-dark;
+}
+
+.bgAccent {
+  background-color: $koki-color-accent-dark;
+}
+
+.bgLightGrey {
+  background-color: $koki-grey-background-color;
+}
+
+.padding10 {
+  padding: 10px;
+}
+
+.font12 {
+  font-size: 12px;
+}
+
+.font14 {
+  font-size: 14px;
+}
+
+.font16 {
+  font-size: 16px;
+}
+
+.font18 {
+  font-size: 18px;
+}
+
+.font20 {
+  font-size: 20px;
+}
+
+.font22 {
+  font-size: 22px;
+}
+
+.font24 {
+  font-size: 24px;
+}
+
+.textEllipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.thinFont {
+  font-family: RobotoThin, sans-serif;
+  font-weight: 300
+}
+
+.lightFont {
+  font-family: RobotoLight, sans-serif;
+  font-weight: 300
+}
+
+.normalFont {
+  font-family: RobotoRegular, sans-serif;
+  font-weight: 400
+}
+
+.thickFont {
+  font-family: RobotoBold, sans-serif;
+  font-weight: 600
+}
+
+.boldFont {
+  font-family: RobotoBold, sans-serif;
+  font-weight: 700
+}
+
+.align-center {
+  text-align: center;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+//font size
+// text colors
+.colorLightGrey {
+  color: $koki-color-text-normal-dark;
+}
+
+.colorGrey {
+  color: $koki-color-text-bold-light;
+}
+
+.colorDarkGrey {
+  color: $koki-color-text-bold-dark;
+}
+
+.colorPrimary {
+  color: $koki-color-primary-dark;
+}
+
+.colorLightRed {
+  color: #ff6363;
+}
+
+// layout styles
+.width100 {
+  width: 100%;
+}
+
+.height100 {
+  height: 100%;
+}
+
+// padding styles
+.paddingZero {
+  padding: 0;
+}
+
+.padding25 {
+  padding: 25px;
+}
+
+// margin styles
+.marginZero {
+  margin: 0;
+}
+
+.marginRight30 {
+  margin-right: 30px;
+}
+
+.marginTop30 {
+  margin-top: 30px;
+}
+
+.marginTop20 {
+  margin-top: 20px;
+}
+
+.marginbottom20 {
+  margin-bottom: 20px;
+}
+
+.marginBottom50 {
+  margin-bottom: 50px;
+}
+
+// display styles
+.inlineBlock {
+  display: inline-block;
+}
+
+.block {
+  display: block !important;
+}
+
+.alignVerticalMiddle {
+  vertical-align: middle;
+}
+
+.alignVerticalTop {
+  vertical-align: top;
+}
+
+// accessibility styles
+.pointerIcon {
+  cursor: pointer;
+}
+
+// positional styles
+.positionRelative {
+  position: relative;
+}
+
+.positionCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.whiteLink {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+    color: $koki-color-primary-dark;
+  }
+
+  &:active {
+    text-decoration: none;
+    color: $koki-color-primary-dark;
+  }
+}
+
+// ********** CUSTOM THEME STYLES END ***********//
+// ********* NAD Standard classes **********//
+.NADHeader {
+  font-size: 22px;
+  line-height: 22px;
+  text-transform: uppercase;
+  font-family: RobotoBold, sans-serif;
+  color: $koki-color-text-bold-dark;
+}
+
+.NADSubHeader {
+  font-size: 20px;
+  line-height: 20px;
+  font-family: RobotoBold, sans-serif;
+  color: $koki-color-text-bold-dark;
+}
+
+.NADDescription {
+  font-size: 16px;
+  font-family: RobotoLight, sans-serif;
+  color: $koki-color-text-bold-light;
+}
+
+.NADCategoryPill {
+  background-color: $koki-grey-background-color;
+  color: $koki-color-text-bold-light;
+  // changed by vedant
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 10px;
+  margin-right: 15px;
+  font-family: RobotoRegular, sans-serif;
+  font-size: 14px;
+}
+
+.NADDatePill  {
+  color: $koki-color-text-bold-dark;
+  text-transform: capitalize;
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-family: RobotoRegular, sans-serif;
+  &.redPill {
+    color: #fff;
+    background-color: $koki-color-primary-dark;
+  }
+  &.greenPill {
+    color: #fff;
+    background-color: $koki-color-accent-dark;
+  }
+}
+
+.NADLabelHeader {
+  font-size: 16px;
+  font-family: RobotoLight, sans-serif;
+  color: $koki-color-text-normal-dark;
+}
+
+.NADLabelText {
+  font-size: 20px;
+  text-transform: capitalize;
+  line-height: 20px;
+  font-family: RobotoLight, sans-serif;
+  color: $koki-color-text-bold-light;
+}
+
+.NADReferenceTitle {
+  font-size: 20px;
+  font-family: RobotoRegular, sans-serif;
+  color: $koki-color-text-bold-dark;
+}
+
+.NADSmallText {
+  font-size: 13px;
+  font-family: RobotoRegular, sans-serif;
+  color: $koki-color-text-normal-dark;
+}
+
+.NADTechPill {
+  height: 25px;
+  display: inline-block;
+  line-height: 25px;
+  background-color: $koki-grey-background-color;
+  color: $koki-color-text-bold-light;
+  text-transform: capitalize;
+  padding: 0 10px 0 30px;
+  border-radius: 10px;
+  margin-right: 15px;
+  font-family: RobotoRegular, sans-serif;
+  font-size: 14px;
+}
+
+// ********* NAD Standard classes **********//
+// ********* NAD Layout Standard classes **********//
+.dataCardWrapper {
+  position: relative;
+  width: 100%;
+  background-color: $koki-grey-background-color;
+  padding: 35px;
+  .dataCardContainer {
+    background-color: white;
+    border-radius: 10px;
+
+    .dataCardHeader {
+      @extend .NADHeader;
+      padding: 0 25px;
+      height: 60px;
+      line-height: 60px;
+      margin-bottom: 0;
+      border-bottom: 1px solid $koki-border-color-light;
+    }
+    .sectionCardHeader {
+      @extend .dataCardHeader;
+      height: 100px;
+      width: 100%;
+      line-height: 28px;
+      padding: 25px;
+      text-transform: capitalize;
+    }
+    .dataCard {
+      padding: 25px;
+    }
+  }
+}
+
+.cardSpacing {
+  padding: 35px;
+}
+
+.inputSpacing {
+  margin-bottom: 35px;
+}
+
+.kokiRoundedCorner {
+  border-radius: 8px;
+}
+
+.dataRowHeight {
+  height: 100px;
+}
+
+.dataRowHeaderHeight {
+  height: 40px;
+}
+
+.cardHeaderHeight {
+  // added by vedant
+  line-height: 60px;
+  height: 60px;
+  padding: 0 15px;
+}
+
+.dataHeader {
+  color: #9faecb;
+  background-color: #e8eaf0;
+  font-family: RobotoBold, sans-serif;
+  font-size: 15px;
+}
+
+.tableDataText {
+  color: $koki-color-text-bold-dark;
+  font-family: RobotoRegular, sans-serif;
+}
+
+.dataRow:nth-child(even) {
+  background-color: $koki-table-cell-color;
+}
+
+.tableRow:nth-child(odd) {
+  background-color: $koki-table-cell-color;
+}
+
+// ********* NAD Layout Standard classes **********//
