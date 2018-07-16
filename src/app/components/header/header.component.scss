@@ -1,0 +1,26 @@
+@import "../../../styles/variables";
+header{
+  height: 80px;
+  background-color: $koki-color-primary-dark;
+
+  .material-icons{
+    margin-right: 10px;
+  }
+
+  nav{
+    color: white;
+    height: 40px;
+
+
+    p.menuItem {
+      line-height: 40px;
+      cursor: pointer;
+      padding: 0 20px;
+      margin: 0;
+
+      &:hover{
+        background-color: $koki-color-primary-light;
+      }
+    }
+  }
+}

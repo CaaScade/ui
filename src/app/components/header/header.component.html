@@ -1,0 +1,8 @@
+<header>
+  <section fxLayout="row" fxLayoutAlign="space-between center">
+    <nav fxLayout="row" fxFlexAlign="center center">
+      <p class="menuItem"><img src="./assets/images/logo.png" alt="Koki Logo" height="40"/></p>
+      <p *ngFor="let menuItem of menuItems" class="capitalize menuItem"><i class="material-icons">{{menuItem.icon}}</i>{{menuItem.name}}</p>
+    </nav>
+  </section>
+</header>
