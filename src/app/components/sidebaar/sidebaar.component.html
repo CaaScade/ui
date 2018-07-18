@@ -6,8 +6,8 @@
       </mat-form-field>
       <section>
         Applications
-        <mat-nav-list>
-          <a mat-list-item href="#"> Redis </a>
+        <mat-nav-list *ngFor="let application of applications">
+          <a mat-list-item routerLink="{{'application/'+application.metadata.name}}" class="capitalize"> {{ application.metadata.name }} </a>
         </mat-nav-list>
       </section>
     </form>

@@ -9,21 +9,26 @@ export class HeaderComponent implements OnInit {
 
   menuItems = [{
     id: 1,
-    name: 'home',
-    icon: 'home'
+    name: 'Home',
+    icon: 'home',
+    link: 'home'
   }, {
-    id: 1,
-    name: 'incidents',
-    icon: 'error'
-  },{
-    id: 1,
-    name: 'cluster',
-    icon: 'dns'
-  },{
-    id: 1,
-    name: 'setting',
-    icon: 'settings'
-  },];
+    id: 2,
+    name: 'Incidents',
+    icon: 'error',
+    link: 'incidents'
+
+  }, {
+    id: 3,
+    name: 'Cluster',
+    icon: 'dns',
+    link: 'cluster'
+  }, {
+    id: 4,
+    name: 'Setting',
+    icon: 'settings',
+    link: 'setting'
+  }];
 
   constructor() { }
 

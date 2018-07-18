@@ -17,10 +17,15 @@ header{
       cursor: pointer;
       padding: 0 20px;
       margin: 0;
+      outline: 0;
 
       &:hover{
         background-color: $koki-color-primary-light;
       }
     }
   }
+}
+
+.active {
+  background-color: $koki-color-primary-light;
 }

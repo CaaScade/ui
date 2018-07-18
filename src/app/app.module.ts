@@ -13,6 +13,11 @@ import { SidebaarComponent } from './components/sidebaar/sidebaar.component';
 
 import { AppRoutingModule } from './modules/app-routing.module';
 import { AppMaterialModule } from './modules/material.module';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { SettingComponent } from './components/setting/setting.component';
+import { ClusterComponent } from './components/cluster/cluster.component';
+import { IncidentsComponent } from './components/incidents/incidents.component';
+import { ApplicationSummaryComponent } from './components/application-summary/application-summary.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +25,12 @@ import { AppMaterialModule } from './modules/material.module';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    SidebaarComponent
+    SidebaarComponent,
+    DashboardComponent,
+    SettingComponent,
+    ClusterComponent,
+    IncidentsComponent,
+    ApplicationSummaryComponent
   ],
   imports: [
     BrowserModule,
