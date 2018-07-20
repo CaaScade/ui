@@ -1,5 +1,5 @@
 <section>
-  <section fxLayout="column" fxFlexFill fxLayoutGap="16px">
+  <section fxLayout="column" fxLayoutGap="16px">
     <div fxFlex="50">
       <div fxLayout="row" fxLayoutGap="10px">
         <div fxFlex="60">
@@ -8,11 +8,67 @@
               <mat-card-title><i class="material-icons">favorite</i>Health</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-              <div style="width: 200px">
-                <app-health-guage [healthPer]="45"></app-health-guage>
-              </div>
+              <section fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+                <div  fxFlex="25" *ngIf="healthDashboardData" style="height: 100px;">
+                  <app-health-guage [healthPer]="healthDashboardData?.spec?.overallHealthPercentage"></app-health-guage>
+                </div>
+                <div fxFlex="25" *ngIf="healthDashboardData">
+                  <app-pie-chart [chartDetails] = "healthDashboardData?.spec?.changeFailureTable"></app-pie-chart>
+                </div>
+                <div fxFlex="17" *ngIf="mttrChartData">
+                  <app-multi-line-chart [chartDetails] = "mttrChartData"></app-multi-line-chart>
+                </div>
+                <div fxFlex="17" *ngIf="mttdChartData">
+                  <app-multi-line-chart [chartDetails] = "mttdChartData"></app-multi-line-chart>
+                </div>
+                <div fxFlex="16" *ngIf="mttrChartData">
+                  <app-multi-line-chart [chartDetails] = "mttrChartData"></app-multi-line-chart>
+                </div>
+              </section>
             </mat-card-content>
           </mat-card>
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+          <div fxFlex="50">
+            <mat-card>
+              <mat-card-header>
+                <mat-card-title><i class="material-icons">settings_system_daydream</i>System Stats</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <section fxLayout="row" fxLayoutAlign="space-between center">
+                  <div fxFlex="33" *ngIf="mttrChartData">
+                    <app-multi-line-chart [chartDetails] = "mttrChartData"></app-multi-line-chart>
+                  </div>
+                  <div fxFlex="33" *ngIf="mttrChartData">
+                    <app-multi-line-chart [chartDetails] = "mttrChartData"></app-multi-line-chart>
+                  </div>
+                  <div fxFlex="33" *ngIf="mttrChartData">
+                    <app-multi-line-chart [chartDetails] = "mttrChartData"></app-multi-line-chart>
+                  </div>
+                </section>
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <div fxFlex="50">
+            <mat-card>
+              <mat-card-header>
+                <mat-card-title><i class="material-icons">insert_chart</i>Custom Stats</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <section fxLayout="row" fxLayoutAlign="space-between center">
+                  <div fxFlex="33" *ngIf="mttrChartData">
+                    <app-multi-line-chart [chartDetails] = "mttrChartData"></app-multi-line-chart>
+                  </div>
+                  <div fxFlex="33" *ngIf="mttrChartData">
+                    <app-multi-line-chart [chartDetails] = "mttrChartData"></app-multi-line-chart>
+                  </div>
+                  <div fxFlex="33" *ngIf="mttrChartData">
+                    <app-multi-line-chart [chartDetails] = "mttrChartData"></app-multi-line-chart>
+                  </div>
+                </section>
+              </mat-card-content>
+            </mat-card>
+          </div>
+          </div>
         </div>
         <div fxFlex="40">
           <mat-card>
@@ -23,48 +79,52 @@
               <form>
                 <p>Name <mat-checkbox [checked]="activeApplicationData?.metadata.name" color="primary"></mat-checkbox></p>
                 <p>Auto Recovery: <mat-checkbox [checked]="activeApplicationData?.spec.autoRecovery" color="primary"></mat-checkbox></p>
-                <p>scale: <mat-form-field floatLabel='never' class="example-full-width">
-                  <input matInput placeholder="replicas" type="number" name="scale" [value]="activeApplicationData?.spec.replicas" />
-                </mat-form-field></p>
               </form>
             </mat-card-content>
           </mat-card>
+          <div>
+            <mat-card>
+              <mat-card-header>
+                <mat-card-title><i class="material-icons">group</i>team</mat-card-title>
+              </mat-card-header>
+              <mat-card-content></mat-card-content>
+            </mat-card>
+          </div>
         </div>
       </div>
 
-      <div fxLayout="row" fxLayoutGap="10px">
-        <div fxFlex="30">
-          <mat-card>
-            <mat-card-header>
-              <mat-card-title><i class="material-icons">settings_system_daydream</i>System Stats</mat-card-title>
-            </mat-card-header>
-            <mat-card-content></mat-card-content>
-          </mat-card>
-        </div>
-        <div fxFlex="30">
-          <mat-card>
-            <mat-card-header>
-              <mat-card-title><i class="material-icons">insert_chart</i>Custom Stats</mat-card-title>
-            </mat-card-header>
-            <mat-card-content></mat-card-content>
-          </mat-card>
-        </div>
-        <div fxFlex="40">
-          <mat-card>
-            <mat-card-header>
-              <mat-card-title><i class="material-icons">group</i>team</mat-card-title>
-            </mat-card-header>
-            <mat-card-content></mat-card-content>
-          </mat-card>
-        </div>
-      </div>
     </div>
     <div fxFlex="50">
       <mat-card>
         <mat-card-header>
           <mat-card-title><i class="material-icons">event_note</i>Events</mat-card-title>
         </mat-card-header>
-        <mat-card-content></mat-card-content>
+        <mat-card-content>
+          <section class="tableWrapper">
+            <div class="tableContainer header" fxLayout="row" fxLayoutAlign="space-between center">
+              <p class="tableContent" fxFlex="15">Name</p>
+              <p class="tableContent" fxFlex="15">Type</p>
+              <p class="tableContent" fxFlex="15">TimeStamp</p>
+              <p class="tableContent" fxFlex="15">Origin</p>
+              <p class="tableContent" fxFlex="15">UUID</p>
+              <p class="tableContent" fxFlex="20">Message</p>
+            </div>
+            <div class="tableBodyWrapper">
+              <div class="tableContainer body">
+                <ng-container *ngFor="let application of activeApplicationData?.status.events">
+                  <div  fxLayout="row" fxLayoutAlign="space-between" class="tableRow">
+                    <p class="tableContent capitalize" fxFlex="15">{{application.name}}</p>
+                    <p class="tableContent" fxFlex="15">{{application.type}}</p>
+                    <p class="tableContent" fxFlex="15">{{application.timestamp | date: 'EEE, dd MMM yyyy hh:mm a'}}</p>
+                    <p class="tableContent" fxFlex="15">{{application.origin }}</p>
+                    <p class="tableContent" fxFlex="15">{{application.uuid}}</p>
+                    <p class="tableContent" fxFlex="20">{{application.message}}</p>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </section>
+        </mat-card-content>
       </mat-card>
     </div>
   </section>

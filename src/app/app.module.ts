@@ -22,6 +22,8 @@ import { ApplicationSummaryComponent } from './components/application-summary/ap
 import { AreaChartComponent } from './components/area-chart/area-chart.component';
 import { HealthGuageComponent } from './components/health-guage/health-guage.component';
 import { TextSearchPipe } from './text-search.pipe';
+import { PieChartComponent } from './components/pie-chart/pie-chart.component';
+import { MultiLineChartComponent } from './components/multi-line-chart/multi-line-chart.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { TextSearchPipe } from './text-search.pipe';
     ApplicationSummaryComponent,
     AreaChartComponent,
     HealthGuageComponent,
-    TextSearchPipe
+    TextSearchPipe,
+    PieChartComponent,
+    MultiLineChartComponent
   ],
   imports: [
     BrowserModule,

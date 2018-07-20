@@ -23,12 +23,13 @@ export class DashboardComponent implements OnInit {
       this.applications = data;
     });
 
-    this.callAPI.callGetAPI(Urls.BASE_URL + '/' + Urls.STATUS_BASE).subscribe(data => {
-      this.dashboard_overview = data;
-    });
+    const socket = new WebSocket(`ws://localhost:8080/stats`);
+
+    socket.onmessage = (res) => {
+      this.dashboard_overview = JSON.parse(res.data);
+    };
+
   }
-
-
 
 
 }

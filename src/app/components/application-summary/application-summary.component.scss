@@ -1,0 +1,26 @@
+.tableContainer {
+  height: 60px;
+  font-size: 14px;
+
+  &.header{
+    font-weight: bold;
+    background-color: #f5f5f5;
+    padding: 0 10px;
+  }
+
+
+
+  .tableRow{
+    padding: 0 10px;
+    background-color: white;
+    &:nth-child(even){
+      background-color: #efefef;
+    }
+  }
+
+}
+
+.tableBodyWrapper {
+  height: 195px;
+  overflow: auto;
+}
