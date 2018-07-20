@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
@@ -18,6 +19,9 @@ import { SettingComponent } from './components/setting/setting.component';
 import { ClusterComponent } from './components/cluster/cluster.component';
 import { IncidentsComponent } from './components/incidents/incidents.component';
 import { ApplicationSummaryComponent } from './components/application-summary/application-summary.component';
+import { AreaChartComponent } from './components/area-chart/area-chart.component';
+import { HealthGuageComponent } from './components/health-guage/health-guage.component';
+import { TextSearchPipe } from './text-search.pipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,10 @@ import { ApplicationSummaryComponent } from './components/application-summary/ap
     SettingComponent,
     ClusterComponent,
     IncidentsComponent,
-    ApplicationSummaryComponent
+    ApplicationSummaryComponent,
+    AreaChartComponent,
+    HealthGuageComponent,
+    TextSearchPipe
   ],
   imports: [
     BrowserModule,
@@ -38,7 +45,8 @@ import { ApplicationSummaryComponent } from './components/application-summary/ap
     AppRoutingModule,
     FlexLayoutModule,
     AppMaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

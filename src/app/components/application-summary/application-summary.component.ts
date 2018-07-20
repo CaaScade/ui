@@ -27,7 +27,7 @@ export class ApplicationSummaryComponent implements OnInit {
 
   get_application_data(application_name) {
     this.callAPI.callGetAPI(Urls.BASE_URL + '/' + Urls.APPLICATION_BASE + `/${application_name.toLowerCase()}`).subscribe(data => {
-      this.activeApplicationData = JSON.stringify(data);
+      this.activeApplicationData = data;
     });
   }
 

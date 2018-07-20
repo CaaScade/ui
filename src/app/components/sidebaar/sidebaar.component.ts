@@ -10,8 +10,21 @@ import {ApiCallService} from '../../utils/http.service';
 
 })
 export class SidebaarComponent implements OnInit {
-
+  search = '';
   applications: any;
+  dashboardMenu: any = [
+    {id: 1,
+      name: 'Cluster Overview',
+    }, {id: 2,
+      name: 'Change Failure Rate',
+    }, {id: 3,
+      name: 'Deployment Frequency',
+    },{id: 4,
+      name: 'Mean Time to Detection',
+    },{id: 5,
+      name: 'Mean Time to Recovery',
+    },
+  ];
 
   constructor(private callAPI: ApiCallService) { }
 

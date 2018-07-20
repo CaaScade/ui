@@ -31,29 +31,6 @@
 }
 }
 
-.gauge-container {
-  width: 70%;
-  height: 150px;
-  display: block;
-  padding: 10px;
-  margin: 0 auto;
-}
-.gauge-container > .gauge > .dial {
-  stroke: #eee;
-  stroke-width: 2;
-  fill: rgba(0,0,0,0);
-}
-.gauge-container > .gauge > .value {
-  stroke: rgb(47, 227, 255);
-  stroke-width: 2;
-  fill: rgba(0,0,0,0);
-}
-.gauge-container > .gauge > .value-text {
-  fill: rgb(47, 227, 255);
-  font-family: sans-serif;
-  font-weight: bold;
-  font-size: 1em;
-}
 
 .tableContainer {
   height: 60px;

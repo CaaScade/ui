@@ -1,1 +1,71 @@
-{{activeApplicationData}}
+<section>
+  <section fxLayout="column" fxFlexFill fxLayoutGap="16px">
+    <div fxFlex="50">
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div fxFlex="60">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title><i class="material-icons">favorite</i>Health</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div style="width: 200px">
+                <app-health-guage [healthPer]="45"></app-health-guage>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div fxFlex="40">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title><i class="material-icons">info</i>info</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <form>
+                <p>Name <mat-checkbox [checked]="activeApplicationData?.metadata.name" color="primary"></mat-checkbox></p>
+                <p>Auto Recovery: <mat-checkbox [checked]="activeApplicationData?.spec.autoRecovery" color="primary"></mat-checkbox></p>
+                <p>scale: <mat-form-field floatLabel='never' class="example-full-width">
+                  <input matInput placeholder="replicas" type="number" name="scale" [value]="activeApplicationData?.spec.replicas" />
+                </mat-form-field></p>
+              </form>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div fxFlex="30">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title><i class="material-icons">settings_system_daydream</i>System Stats</mat-card-title>
+            </mat-card-header>
+            <mat-card-content></mat-card-content>
+          </mat-card>
+        </div>
+        <div fxFlex="30">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title><i class="material-icons">insert_chart</i>Custom Stats</mat-card-title>
+            </mat-card-header>
+            <mat-card-content></mat-card-content>
+          </mat-card>
+        </div>
+        <div fxFlex="40">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title><i class="material-icons">group</i>team</mat-card-title>
+            </mat-card-header>
+            <mat-card-content></mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+    <div fxFlex="50">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title><i class="material-icons">event_note</i>Events</mat-card-title>
+        </mat-card-header>
+        <mat-card-content></mat-card-content>
+      </mat-card>
+    </div>
+  </section>
+</section>

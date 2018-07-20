@@ -2,11 +2,15 @@
   <mat-card>
     <form class="example-form">
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Search Application" value="Redis">
+        <input matInput placeholder="Search Application" name="textSearch" value="Redis" [(ngModel)]="search" />
       </mat-form-field>
       <section>
+        Dashboard
+        <mat-nav-list *ngFor="let menuItem of dashboardMenu">
+          <a mat-list-item routerLink="{{'application/'+menuItem.name}}" class="capitalize"> {{ menuItem.name }} </a>
+        </mat-nav-list>
         Applications
-        <mat-nav-list *ngFor="let application of applications">
+        <mat-nav-list *ngFor="let application of applications | textSearch: 'name': search">
           <a mat-list-item routerLink="{{'application/'+application.metadata.name}}" class="capitalize"> {{ application.metadata.name }} </a>
         </mat-nav-list>
       </section>

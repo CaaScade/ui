@@ -2,32 +2,34 @@
   <section fxLayout="row" fxFlex="50" fxLayoutGap="10px">
     <mat-card fxFlex="60">
       <mat-card-header>
-        Cluster Overview
+        <mat-card-title>
+          Cluster Overview
+        </mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <section class="overviewWrapper">
           <div class="overviewContainer">
             <p class="kokiHeader">Total Apps</p>
-            <p class="content" [innerHTML]="dashboard_overview?.spec.totalApps"></p>
+            <p class="content" [innerHTML]="dashboard_overview?.spec?.totalApps"></p>
           </div>
           <div class="overviewContainer">
             <p class="kokiHeader">Total Incidents</p>
-            <p class="content"[innerHTML]="dashboard_overview?.spec.totalIncidents"></p>
+            <p class="content"[innerHTML]="dashboard_overview?.spec?.totalIncidents"></p>
           </div>
           <div class="overviewContainer">
             <p class="kokiHeader">Avg. Recovery Time(Min)</p>
             <p class="content">
               {{dashboard_overview?.spec.averageRecoveryTime}}
-              <i class="material-icons" *ngIf="dashboard_overview?.spec.averageRecoveryTimeDelta > 0">arrow_upward</i>
-              <i class="material-icons" *ngIf="dashboard_overview?.spec.averageRecoveryTimeDelta < 0">arrow_downward</i>
+              <i class="material-icons" *ngIf="dashboard_overview?.spec?.averageRecoveryTimeDelta > 0">arrow_upward</i>
+              <i class="material-icons" *ngIf="dashboard_overview?.spec?.averageRecoveryTimeDelta < 0">arrow_downward</i>
             </p>
           </div>
           <div class="overviewContainer">
             <p class="kokiHeader">Avg. Changes/Week</p>
             <p class="content">
               {{dashboard_overview?.spec.averageChangesPerWeek}}
-              <i class="material-icons" *ngIf="dashboard_overview?.spec.averageChangesPerWeekDelta > 0">arrow_upward</i>
-              <i class="material-icons" *ngIf="dashboard_overview?.spec.averageChangesPerWeekDelta < 0">arrow_downward</i>
+              <i class="material-icons" *ngIf="dashboard_overview?.spec?.averageChangesPerWeekDelta > 0">arrow_upward</i>
+              <i class="material-icons" *ngIf="dashboard_overview?.spec?.averageChangesPerWeekDelta < 0">arrow_downward</i>
             </p>
           </div>
         </section>
@@ -36,16 +38,20 @@
 
     <mat-card fxFlex="40">
       <mat-card-header>
+        <mat-card-title>
         Overall Cluster Health
+      </mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <div id="cpuSpeed" class="gauge-container"></div>
+        <app-health-guage [healthPer]="dashboard_overview?.spec.overallHealthPercentage"></app-health-guage>
       </mat-card-content>
     </mat-card>
   </section>
   <mat-card fxFlex="50">
     <mat-card-header>
+      <mat-card-title>
       My Application
+      </mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <section class="tableWrapper">
@@ -60,12 +66,12 @@
         <div class="tableBodyWrapper">
           <div class="tableContainer body">
             <ng-container *ngFor="let application of applications">
-              <div  fxLayout="row" fxLayoutAlign="space-between center" class="tableRow">
-                <p class="tableContent" fxFlex="15">{{application.metadata.labels.app}}</p>
+              <div  fxLayout="row" fxLayoutAlign="space-between" class="tableRow">
+                <p class="tableContent capitalize" fxFlex="15">{{application.metadata.name}}</p>
                 <p class="tableContent" fxFlex="15">{{application.metadata.namespace}}</p>
                 <p class="tableContent" fxFlex="20">{{application.status.lastUpdate | date: 'EEE, dd MMM yyyy hh:mm a'}}</p>
                 <p class="tableContent" fxFlex="20">{{application.status.lastIncident | date: 'EEE, dd MMM yyyy hh:mm a'}}</p>
-                <p class="tableContent" fxFlex="15">-</p>
+                <p class="tableContent" fxFlex="15"><app-area-chart [applicationname]= "application.metadata.name"></app-area-chart></p>
                 <p class="tableContent" fxFlex="10"><mat-checkbox color="primary" [checked]="application.spec.autoRecovery"></mat-checkbox></p>
               </div>
             </ng-container>
