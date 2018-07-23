@@ -14,10 +14,10 @@ export class ApplicationSummaryComponent implements OnInit {
 
   activeApplicationData: any;
   healthDashboardData: any;
+  systemStatsData: any = {
+  };
   mttrChartData: any;
-  mttdChartData: any;
   incidentChartData: any;
-  applications_event: any;
 
 
   constructor(public activeRouter: ActivatedRoute, private callAPI: ApiCallService, @Inject(LOCALE_ID) private locale: string) {
@@ -25,6 +25,7 @@ export class ApplicationSummaryComponent implements OnInit {
     this.activeRouter.params.subscribe(data => {
       this.get_application_data(data.application_name);
       this.get_health_dashboard_data(data.application_name);
+      this.get_system_stash_data(data.application_name);
 
     });
 
@@ -55,18 +56,55 @@ export class ApplicationSummaryComponent implements OnInit {
         data: []
       };
 
+      const incidentChartData = {
+        labels: new Array(this.healthDashboardData.spec.incidentTable.length),
+        data: []
+      };
+
       for ( let i = 0; i < mttrData.labels.length; i++) {
 
         mttrData.data.push(this.get_seconds(this.healthDashboardData.spec.mttr[mttrData.labels[i]]));
-
         mttdData.data.push(this.get_seconds(this.healthDashboardData.spec.mttd[mttdData.labels[i]]));
+
+        incidentChartData.data.push(new Date(mttdData.labels[i]).getTime());
+
+
         const formatedDate = formatDate(mttrData.labels[i], 'dd-MM-yy', this.locale);
         mttrData.labels[i] = mttdData.labels[i] = formatedDate;
 
       }
+      this.incidentChartData = incidentChartData;
+      // this.incidentChartData['data'] = [incidentChartData.data];
 
       this.mttrChartData = mttrData;
-      this.mttdChartData = mttdData;
+      this.mttrChartData['data'] = [mttrData.data, mttdData.data];
+
+
+    };
+  }
+
+  get_system_stash_data(application_name) {
+    const socket = new WebSocket(`ws://localhost:8080/stats/${application_name.toLowerCase()}/system-stats`);
+
+    socket.onmessage = (res) => {
+      const data = JSON.parse(res.data);
+      const objectKey = Object.keys(data.spec.cpu)[0];
+
+      this.systemStatsData.cpu = {
+        labels: objectKey,
+        data: [ data.spec.cpu[objectKey].split('%')[0] ]
+      };
+
+      this.systemStatsData.memory = {
+        labels: objectKey,
+        data: [ data.spec.mem[objectKey].split('M')[0].split('-')[1] ]
+      };
+
+      this.systemStatsData.storage = {
+        labels: objectKey,
+        data: [ data.spec.storage[objectKey].split('M')[0].split('-')[1] ]
+      };
+
 
     };
   }

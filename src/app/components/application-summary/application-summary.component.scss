@@ -1,5 +1,5 @@
 .tableContainer {
-  height: 60px;
+  height: 40px;
   font-size: 14px;
 
   &.header{
@@ -21,6 +21,20 @@
 }
 
 .tableBodyWrapper {
-  height: 195px;
+  height: 170px;
   overflow: auto;
+}
+
+.info{
+  p {
+    margin: 10px 0;
+  }
+}
+
+/deep/ .mat-card{
+  padding: 21px;
+}
+
+.material-icons {
+  margin-right: 10px;
 }
