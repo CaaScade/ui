@@ -131,8 +131,8 @@ export class MultiLineChartComponent implements OnInit {
             data: [Number(chartData.data[0])],
             lineTension: 0,
             fill: true,
-            backgroundColor: this.hexToRgbA(this.colorCodes[0]),
-            borderColor: this.colorCodes[0],
+            backgroundColor: 'rgba(28, 186, 188, 0.20)',
+            borderColor: 'green',
             radius: 0,
             borderWidth: 1,
           }]
@@ -178,8 +178,14 @@ export class MultiLineChartComponent implements OnInit {
       this.reputationChart = new Chart(ctx, config);
     } else {
       this.reputationChart.update();
+
+      if ( this.reputationChart.data.labels.length === 10) {
+        this.reputationChart.data.labels.shift();
+        this.reputationChart.data.datasets[0].data.shift();
+      }
       this.reputationChart.data.labels.push(chartData.labels);
       this.reputationChart.data.datasets[0].data.push(Number(chartData.data[0]));
+
       this.reputationChart.update();
     }
   }

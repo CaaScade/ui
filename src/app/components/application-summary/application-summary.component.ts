@@ -105,7 +105,6 @@ export class ApplicationSummaryComponent implements OnInit {
         data: [ data.spec.storage[objectKey].split('M')[0].split('-')[1] ]
       };
 
-
     };
   }
 

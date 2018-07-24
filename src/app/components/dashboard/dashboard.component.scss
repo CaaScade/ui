@@ -5,12 +5,12 @@
 
 .overviewContainer{
   display: inline-block;
-  width: calc(50% - 20px);
+  width: calc(50% - 22px);
   text-align: center;
-  background-color: whitesmoke;
   margin: 10px;
   height: 105px;
   box-shadow: 1px 1px 1px 1px #efefef;
+  border: 1px solid #d3f1f2;
 }
 .kokiHeader{
   width: 90%;
@@ -21,9 +21,10 @@
   text-align: left;
   font-size: 18px;
   margin: 10px;
-  color: $koki-color-primary-light;
+  color: #333;
 
 }
+
 .content{
   margin: 0;
   font-size: 30px;

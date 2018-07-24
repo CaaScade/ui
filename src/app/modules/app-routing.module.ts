@@ -15,7 +15,7 @@ const routes: Routes = [
       {path: 'home', component: DashboardComponent},
       {path: 'incidents', component: IncidentsComponent},
       {path: 'cluster', component: ClusterComponent},
-      {path: 'setting', component: SettingComponent},
+      {path: 'settings', component: SettingComponent},
       {path: 'application/:application_name', component: ApplicationSummaryComponent}
     ]
   }

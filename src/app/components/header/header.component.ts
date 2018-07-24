@@ -25,9 +25,9 @@ export class HeaderComponent implements OnInit {
     link: 'cluster'
   }, {
     id: 4,
-    name: 'Setting',
+    name: 'Settings',
     icon: 'settings',
-    link: 'setting'
+    link: 'settings'
   }];
 
   constructor() { }
