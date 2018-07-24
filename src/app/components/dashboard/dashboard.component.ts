@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ApiCallService} from '../../utils/http.service';
 import {Urls} from '../../utils/urls';
+import { environment } from '../../../environments/environment';
 
 
 
@@ -23,7 +24,7 @@ export class DashboardComponent implements OnInit {
       this.applications = data;
     });
 
-    const socket = new WebSocket(`ws://localhost:8080/stats`);
+    const socket = new WebSocket(`ws://${environment.host}/stats`);
 
     socket.onmessage = (res) => {
       this.dashboard_overview = JSON.parse(res.data);

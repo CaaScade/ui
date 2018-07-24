@@ -17,10 +17,10 @@
                   <app-pie-chart [chartDetails] = "healthDashboardData?.spec?.changeFailureTable"></app-pie-chart>
                 </div>
                 <div fxFlex="25" *ngIf="incidentChartData" fxFlexAlign="center">
-                  <app-multi-line-chart [chartDetails] = "incidentChartData"></app-multi-line-chart>
+                  <app-multi-line-chart [chartDetails] = "incidentChartData" label="Incidents,"></app-multi-line-chart>
                 </div>
                 <div fxFlex="25" *ngIf="mttrChartData" fxFlexAlign="center">
-                  <app-multi-line-chart [chartDetails] = "mttrChartData"></app-multi-line-chart>
+                  <app-multi-line-chart [chartDetails] = "mttrChartData" label="'MTTR', 'MTTD'"></app-multi-line-chart>
                 </div>
               </section>
             </mat-card-content>
@@ -75,27 +75,27 @@
         <div fxFlex="40" style="overflow: auto">
           <mat-card>
             <mat-card-header>
-              <mat-card-title><i class="material-icons">info</i>Info</mat-card-title>
+              <mat-card-title><i class="material-icons">info</i>Information</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-              <div>
+              <div class="applicationInformation">
                 <form class="info">
-                  <p>Name: {{activeApplicationData?.metadata.name}}</p>
-                  <p>Auto Recovery: <mat-checkbox [checked]="activeApplicationData?.spec.autoRecovery" color="primary"></mat-checkbox></p>
-                  <p>DNS Name: {{activeApplicationData?.status.dnsName}}</p>
-                  <p>Load Balancer: {{activeApplicationData?.status.loadBalance}}</p>
-                  <p>Version: {{activeApplicationData?.spec.version}}</p>
-                  <p>Name Space: {{activeApplicationData?.metadata.namespace}}</p>
+                  <p><span class="boldFont">Name:</span> <span>{{activeApplicationData?.metadata.name}}</span></p>
+                  <p><span class="boldFont">Auto Recovery:</span> <span> <mat-checkbox [checked]="activeApplicationData?.spec.autoRecovery" color="primary"></mat-checkbox></span></p>
+                  <p><span class="boldFont">DNS Name: </span> <span>{{activeApplicationData?.status.dnsName}}</span></p>
+                  <p><span class="boldFont">Load Balancer:</span> <span> {{activeApplicationData?.status.loadBalance}}</span></p>
+                  <p><span class="boldFont">Version: </span> <span>{{activeApplicationData?.spec.version}}</span></p>
+                  <p><span class="boldFont">Name Space: </span> <span>{{activeApplicationData?.metadata.namespace}}</span></p>
                 </form>
                 <hr style="width: 90%; margin: 20px auto; border-bottom-color: #efefef;"/>
                 <section>
                   <mat-card-title><i class="material-icons">group</i><span class="text14">Team</span></mat-card-title>
-                  <p>Team: {{activeApplicationData?.spec.team.teamName}}</p>
-                  <p>Role: {{activeApplicationData?.spec.team.role}}</p>
+                  <p><span class="boldFont">Team:</span><span> {{activeApplicationData?.spec.team.teamName}}</span></p>
+                  <p><span class="boldFont">Role:</span><span> {{activeApplicationData?.spec.team.role}}</span></p>
                   <div fxLayout="row" fxLayoutGap="20px">
-                    <p>Read: <mat-checkbox [checked]="activeApplicationData?.spec.team.readPermission" color="primary"></mat-checkbox></p>
-                    <p>Write: <mat-checkbox [checked]="activeApplicationData?.spec.team.writePermission" color="primary"></mat-checkbox></p>
-                    <p>Change Permission: <mat-checkbox [checked]="activeApplicationData?.spec.team.changePermission" color="primary"></mat-checkbox></p>
+                    <p class="marginZero"> Read: <mat-checkbox [checked]="activeApplicationData?.spec.team.readPermission" color="primary"></mat-checkbox></p>
+                    <p class="marginZero">Write: <mat-checkbox [checked]="activeApplicationData?.spec.team.writePermission" color="primary"></mat-checkbox></p>
+                    <p class="marginZero">Change Permission: <mat-checkbox [checked]="activeApplicationData?.spec.team.changePermission" color="primary"></mat-checkbox></p>
                   </div>
                 </section>
               </div>

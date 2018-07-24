@@ -10,6 +10,7 @@ import * as Chart from 'chart.js';
 })
 export class MultiLineChartComponent implements OnInit {
   @Input() isSystemStats: Boolean;
+  @Input() label: string;
 
   @Input()
   set chartDetails(data) {
@@ -47,9 +48,10 @@ export class MultiLineChartComponent implements OnInit {
   MyChart(chartData) {
     const ctx = this.canvas.nativeElement.getContext('2d');
     const chartPoints = [];
+    const chartLabel = this.label.split(',');
     for (let i = 0; i < chartData.data.length; i++) {
       const cd = {
-        label: '',
+        label: chartLabel[i],
         data: chartData.data[i],
         lineTension: 0,
         fill: true,
@@ -73,7 +75,6 @@ export class MultiLineChartComponent implements OnInit {
           legend: false,
           responsive: true,
           tooltips: {
-            enabled: false,
             mode: 'index',
             intersect: false,
           },
@@ -112,7 +113,9 @@ export class MultiLineChartComponent implements OnInit {
       this.reputationChart.update();
       this.reputationChart.data.labels = chartData.labels;
       this.reputationChart.data.datasets[0].data = chartData.data[0];
-      this.reputationChart.data.datasets[1].data = chartData.data[1];
+      if(chartData.data.length === 2) {
+        this.reputationChart.data.datasets[1].data = chartData.data[1];
+      }
       this.reputationChart.update();
     }
   }
@@ -141,7 +144,6 @@ export class MultiLineChartComponent implements OnInit {
           legend: false,
           responsive: true,
           tooltips: {
-            enabled: true,
             mode: 'index',
             intersect: true,
           },

@@ -3,6 +3,8 @@ import { formatDate } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import {Urls} from '../../utils/urls';
 import {ApiCallService} from '../../utils/http.service';
+import { environment } from '../../../environments/environment';
+
 
 @Component({
   selector: 'app-application-summary',
@@ -42,7 +44,7 @@ export class ApplicationSummaryComponent implements OnInit {
 
 
   get_health_dashboard_data(application_name) {
-    const socket = new WebSocket(`ws://localhost:8080/stats/${application_name.toLowerCase()}/health-dashboard`);
+    const socket = new WebSocket(`ws://${environment.host}/stats/${application_name.toLowerCase()}/health-dashboard`);
 
     socket.onmessage = (res) => {
       this.healthDashboardData = JSON.parse(res.data);
@@ -66,7 +68,7 @@ export class ApplicationSummaryComponent implements OnInit {
         mttrData.data.push(this.get_seconds(this.healthDashboardData.spec.mttr[mttrData.labels[i]]));
         mttdData.data.push(this.get_seconds(this.healthDashboardData.spec.mttd[mttdData.labels[i]]));
 
-        incidentChartData.data.push(new Date(mttdData.labels[i]).getTime());
+        incidentChartData.data.push(new Date(mttdData.labels[i]));
 
 
         const formatedDate = formatDate(mttrData.labels[i], 'dd-MM-yy', this.locale);
@@ -74,17 +76,20 @@ export class ApplicationSummaryComponent implements OnInit {
 
       }
       this.incidentChartData = incidentChartData;
-      // this.incidentChartData['data'] = [incidentChartData.data];
+      this.incidentChartData['data'] = [incidentChartData.data];
 
       this.mttrChartData = mttrData;
       this.mttrChartData['data'] = [mttrData.data, mttdData.data];
+
+      console.log(this.incidentChartData);
+      console.log('mttr', this.mttrChartData);
 
 
     };
   }
 
   get_system_stash_data(application_name) {
-    const socket = new WebSocket(`ws://localhost:8080/stats/${application_name.toLowerCase()}/system-stats`);
+    const socket = new WebSocket(`ws://${environment.host}/stats/${application_name.toLowerCase()}/system-stats`);
 
     socket.onmessage = (res) => {
       const data = JSON.parse(res.data);

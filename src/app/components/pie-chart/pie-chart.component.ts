@@ -14,7 +14,7 @@ export class PieChartComponent implements OnInit {
     datasets: [{
       label: '',
       data: [1, 2],
-      backgroundColor: ['#ff7043', '#5c6bc0']
+      backgroundColor: ['rgba(255, 112, 67,0.2)', 'rgba(0, 128, 0, 0.2)']
     }]
   };
 
