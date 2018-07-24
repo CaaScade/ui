@@ -16,8 +16,7 @@ export class ApplicationSummaryComponent implements OnInit {
 
   activeApplicationData: any;
   healthDashboardData: any;
-  systemStatsData: any = {
-  };
+  systemStatsData: any = {};
   mttrChartData: any;
   incidentChartData: any;
 
@@ -29,6 +28,10 @@ export class ApplicationSummaryComponent implements OnInit {
       this.get_health_dashboard_data(data.application_name);
       this.get_system_stash_data(data.application_name);
 
+      this.healthDashboardData = null;
+      this.systemStatsData = {};
+      this.mttrChartData = null;
+      this.incidentChartData = null;
     });
 
   }

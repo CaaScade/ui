@@ -75,10 +75,12 @@ export class MultiLineChartComponent implements OnInit {
           legend: false,
           responsive: true,
           tooltips: {
+            enabled: false,
             mode: 'index',
             intersect: false,
           },
           hover: {
+            enabled: false,
             mode: 'nearest',
             intersect: false
           },
@@ -144,6 +146,7 @@ export class MultiLineChartComponent implements OnInit {
           legend: false,
           responsive: true,
           tooltips: {
+            enabled: true,
             mode: 'index',
             intersect: true,
           },
