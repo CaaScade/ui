@@ -3,24 +3,31 @@
     <div fxFlex="60" fxFlexFill>
       <div fxLayout="row" fxLayoutGap="10px" fxFlexFill>
         <div fxFlex="60">
-          <div fxLayout="column" fxLayoutGap="10px">
+          <div fxLayout="column" fxLayoutGap="0px">
           <mat-card>
             <mat-card-header>
               <mat-card-title><i class="material-icons">favorite</i>Health</mat-card-title>
             </mat-card-header>
             <mat-card-content>
               <section fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
-                <div  fxFlex="25" *ngIf="healthDashboardData" style="height: 100px;" fxFlexAlign="center">
+                <div  fxFlex="25" *ngIf="healthDashboardData" fxFlexAlign="center" class="align-center">
                   <app-health-guage [healthPer]="healthDashboardData?.spec?.overallHealthPercentage"></app-health-guage>
+                  <span class="marginZero">Overall Health</span>
+
                 </div>
-                <div fxFlex="25" *ngIf="healthDashboardData" fxFlexAlign="center">
+                <div fxFlex="25" *ngIf="healthDashboardData" fxFlexAlign="center" class="align-center">
                   <app-pie-chart [chartDetails] = "healthDashboardData?.spec?.changeFailureTable"></app-pie-chart>
+                  <span class="marginZero">Change Failures</span>
+
                 </div>
                 <div fxFlex="25" *ngIf="incidentChartData" fxFlexAlign="center">
                   <app-multi-line-chart [chartDetails] = "incidentChartData" label="Incidents,"></app-multi-line-chart>
+                  <span class="marginZero">Incidents</span>
+
                 </div>
                 <div fxFlex="25" *ngIf="mttrChartData" fxFlexAlign="center">
                   <app-multi-line-chart [chartDetails] = "mttrChartData" label="'MTTR', 'MTTD'"></app-multi-line-chart>
+                  <span class="marginZero">MTTR and MTTD</span>
                 </div>
               </section>
             </mat-card-content>

@@ -1,8 +1,9 @@
 .gauge-container {
-  width: 100%;
+  width: 80%;
   display: block;
-  padding: 10px;
   margin: 0 auto;
+  height: 80px;
+
 }
 .gauge-container > .gauge > .dial {
   stroke: #eee;
