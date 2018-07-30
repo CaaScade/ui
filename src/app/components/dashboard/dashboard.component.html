@@ -55,8 +55,8 @@
       </div>
     </div>
     <div>
-      <div class="koki-data">
-      <mat-form-field class="width100" [class.app-input-no-underline]="!showUnderline">
+      <div class="koki-data" fxLayout="row" fxLayoutAlign="end center">
+      <mat-form-field [class.app-input-no-underline]="!showUnderline">
         <input matInput placeholder="Search Application" name="textSearch" [(ngModel)]="search" />
         <div class="searchIcon"><i class="material-icons">search</i></div>
       </mat-form-field>
