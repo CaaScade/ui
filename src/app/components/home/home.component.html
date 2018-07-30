@@ -1,12 +1,14 @@
-<section fxLayout="column" fxFlexFill>
-  <app-header fxFlex="40px"></app-header>
-  <section  fxFlex="1 1 calc(100% - 80px)" fxLayout="row" fxLayoutAlign="center center" fxFlexFill>
-    <section fxFlex="20" fxFlexFill>
+<section style="height: 100vh;">
+  <section fxLayout="row" fxLayoutAlign="center center" fxFlexFill>
+    <section id="sidebarWrapper" class="positionRelative" [fxFlex]="menuWidth" fxFlexFill>
+      <button mat-mini-fab color="primary" class="menuHamburger" (click)="toggleMenu()">
+        <i class="material-icons" style="color: white;margin:0">arrow_back</i>
+      </button>
       <app-sidebaar></app-sidebaar>
+
     </section>
-    <section fxFlex="80" fxFlexFill style="background-color: #efefef;padding: 10px">
+    <section fxFlex fxFlexFill style="padding: 10px;overflow: auto">
       <router-outlet></router-outlet>
     </section>
   </section>
-  <app-footer fxFlex="40px"></app-footer>
 </section>

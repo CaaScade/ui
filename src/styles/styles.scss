@@ -8,6 +8,7 @@ body, html {
   height: 100%;
   width: 100%;
   font-size: 14px;
+  background-color: #f8f9fd;
 }
 
 pre code {
@@ -379,6 +380,18 @@ body{-ms-overflow-style: scrollbar !important;}
   background: linear-gradient(to bottom,  #ef4db6 0%,#c643fc 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ef4db6', endColorstr='#c643fc',GradientType=0 ); /* IE6-9 */
 }
+
+.gradient-koki {
+  background: #2e30af; /* Old browsers */
+  background-image: linear-gradient(bgWhite);
+  background: -moz-linear-gradient(top,  #2e30af 0%, #8547ea 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#2e30af), color-stop(100%,#8547ea)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #2e30af 0%,#8547ea 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #2e30af 0%,#8547ea 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #2e30af 0%,#8547ea 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #2e30af 0%,#8547ea 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2e30af', endColorstr='#8547ea',GradientType=0 ); /* IE6-9 */
+}
 .gradient-black {
   background: #4a4a4a; /* Old browsers */
   background-image: linear-gradient(#4a4a4a, #2b2b2b);
@@ -415,3 +428,38 @@ body{-ms-overflow-style: scrollbar !important;}
 .swatch-gray { background-color: #c7c7cc; }
 
 .text-shadow{text-shadow: 0 2px 0px rgba(0, 0, 0, 0.05), 0 5px 9px rgba(0, 0, 0, 0.1), 0 9px 29px rgba(0, 0, 0, 0.1)}
+
+
+//koki base container
+
+.koki-data-wrapper {
+  background-color: white;
+  position: relative;
+  display: block;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+
+  .koki-data-header-container {
+    border-bottom: 1px solid #f0f2f4;
+    padding: 15px 20px;
+
+    .koki-data-header {
+      font-size: 22px;
+      color: #525176;
+      margin: 0;
+      font-family: RobotoNormal, sans-serif;
+
+      .material-icons{
+        font-size: 34px;
+        margin-right: 10px;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  .koki-data{
+    padding: 15px 20px;
+  }
+
+}

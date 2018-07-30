@@ -1,33 +1,32 @@
-import {Component, ElementRef, OnInit, ViewChild, Input} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {isNullOrUndefined} from "util";
+import {environment} from '../../../environments/environment';
 import * as Chart from 'chart.js';
-import {isNullOrUndefined} from 'util';
-import { environment } from '../../../environments/environment';
 
 @Component({
-  selector: 'app-area-chart',
-  templateUrl: './area-chart.component.html',
-  styleUrls: ['./area-chart.component.css']
+  selector: 'app-dashboard-chart',
+  templateUrl: './dashboard-chart.component.html',
+  styleUrls: ['./dashboard-chart.component.scss']
 })
-export class AreaChartComponent implements OnInit {
+export class DashboardChartComponent implements OnInit {
+
   @Input() applicationname: any;
   @ViewChild('chartCanvas') canvas: ElementRef;
 
   chartData = {
     labels: [],
     datasets: [{
-      label: '',
+      label: 'Overall Health',
       data: [],
       lineTension: 0,
-      fill: true,
-      backgroundColor: '',
-      borderColor: '#8547ea',
-      radius: 0,
+      fill: false,
+      borderColor: '#f99960',
+      radius: 6,
+      pointBackgroundColor : '#2e30af',
+      pointBorderColor : '#fcfdfe',
+      borderJoinStyle: 'bevel',
       borderWidth: 1,
-      strokeColor : '#2e30af',
-      pointColor : '#8547ea',
-      pointStrokeColor : '#2e30af',
-      pointHighlightFill: '#8547ea',
-      pointHighlightStroke: '#2e30af',
+      pointBorderWidth: 4
 
     }]
   };
@@ -45,12 +44,6 @@ export class AreaChartComponent implements OnInit {
   MyChart(chartData) {
     const ctx = this.canvas.nativeElement.getContext('2d');
     if (isNullOrUndefined(this.reputationChart)) {
-      const gradient = ctx.createLinearGradient(0, 0, 0, 50);
-      // gradient.addColorStop(0, '#2e30af');
-      // gradient.addColorStop(1, '#8547ea');
-      gradient.addColorStop(0, 'rgba(46,48,175,1)');
-      gradient.addColorStop(1, 'rgba(73,71,234,0)');
-      chartData.datasets[0].backgroundColor = gradient;
 
       const config = {
         type: 'line',
@@ -68,24 +61,29 @@ export class AreaChartComponent implements OnInit {
           },
           scales: {
             xAxes: [{
-              display: true,
-              gridLines: {
-                display: false
-              },
-              scaleLabel: {
-                display: true,
-                labelString: ''
-              }
-            }],
-            yAxes: [{
               display: false,
-              position: 'left',
+              drawTicks: false,
               gridLines: {
                 display: false
               },
               scaleLabel: {
                 display: false,
-                labelString: ''
+                labelString: 'Overall Health'
+              }
+            }],
+            yAxes: [{
+              display: true,
+              position: 'left',
+              gridLines: {
+                drawTicks: true,
+                display: true
+              },
+              ticks: {
+                maxTicksLimit: 5
+              },
+              scaleLabel: {
+                display: false,
+                labelString: 'Time'
               }
             }]
           }
@@ -101,13 +99,13 @@ export class AreaChartComponent implements OnInit {
   }
 
   initializeSocket() {
-    const socket = new WebSocket(`ws://${environment.host}/stats/${this.applicationname.toLowerCase()}`);
-    this.chartData.datasets[0].label = this.applicationname;
+    const socket = new WebSocket(`ws://${environment.host}/stats/redis`);
+    this.chartData.datasets[0].label = 'Overall Health';
 
     socket.onmessage = (res) => {
       const health = JSON.parse(res.data).spec.overallHealthPercentage;
 
-      if (this.chartData.datasets[0].data.length === 10) {
+      if (this.chartData.datasets[0].data.length === 40) {
         this.chartData.datasets[0].data.shift();
         this.chartData.labels.shift();
       }
@@ -119,6 +117,7 @@ export class AreaChartComponent implements OnInit {
       this.MyChart(this.chartData);
     };
   }
+
 
 
 }

@@ -1,7 +1,7 @@
 aside{
   height: 100%;
   box-sizing: border-box;
-
+  position: relative;
 
   &>mat-card{
     height: 100%;
@@ -9,9 +9,19 @@ aside{
 
 
   }
-  .searchIcon {
-    position: absolute;
-    right: -5px;
-    top: 7px;
+
+  .material-icons{
+    margin-right: 10px;
+  }
+
+
+}
+.mat-list-option:hover, .mat-list-option.mat-list-item-focus, .mat-nav-list .mat-list-item:hover, .mat-nav-list .mat-list-item.mat-list-item-focus, .active {
+  background: rgba(255, 255, 255, 0.25);
+  transition: all ease 0.5s;
+  border-radius: 4px;
+
+  /deep/ .mat-list-item-content {
+    font-family: RobotoNormal, sans-serif;
   }
 }

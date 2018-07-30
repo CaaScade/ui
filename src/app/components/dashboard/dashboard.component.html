@@ -1,61 +1,66 @@
-<div fxLayout="column" fxFlexFill fxLayoutGap="10px">
-  <section fxLayout="row" fxFlex="50" fxLayoutGap="10px">
-    <mat-card fxFlex="60">
-      <mat-card-header>
-        <mat-card-title>
-          <p class="text18 marginZero">Cluster Overview</p>
-        </mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <section class="overviewWrapper">
-          <div class="overviewContainer">
-            <p class="kokiHeader">Total Apps</p>
-            <p class="content" [innerHTML]="dashboard_overview?.spec?.totalApps"></p>
-          </div>
-          <div class="overviewContainer">
-            <p class="kokiHeader">Total Incidents</p>
-            <p class="content" [innerHTML]="dashboard_overview?.spec?.totalIncidents"></p>
-          </div>
-          <div class="overviewContainer">
-            <p class="kokiHeader">Avg. Recovery Time(Min)</p>
-            <p class="content">
-              {{dashboard_overview?.spec.averageRecoveryTime}}
-              <i class="material-icons" *ngIf="dashboard_overview?.spec?.averageRecoveryTimeDelta > 0">arrow_upward</i>
-              <i class="material-icons" *ngIf="dashboard_overview?.spec?.averageRecoveryTimeDelta < 0">arrow_downward</i>
-            </p>
-          </div>
-          <div class="overviewContainer">
-            <p class="kokiHeader">Avg. Changes/Week</p>
-            <p class="content">
-              {{dashboard_overview?.spec.averageChangesPerWeek}}
-              <i class="material-icons" *ngIf="dashboard_overview?.spec?.averageChangesPerWeekDelta > 0">arrow_upward</i>
-              <i class="material-icons" *ngIf="dashboard_overview?.spec?.averageChangesPerWeekDelta < 0">arrow_downward</i>
-            </p>
-          </div>
-        </section>
-      </mat-card-content>
-    </mat-card>
-
-    <mat-card fxFlex="40">
-      <mat-card-header>
-        <mat-card-title>
-          <p class="text18 marginZero">Overall Cluster Health</p>
-        </mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <div style="width: 70%;margin: 0 auto">
-          <app-health-guage [healthPer]="dashboard_overview?.spec.overallHealthPercentage"></app-health-guage>
+<section fxLayout="column" fxLayoutGap="10px">
+  <section class="koki-data-wrapper">
+    <div class="koki-data-container">
+      <div class="koki-data-header-container">
+        <p class="koki-data-header"><i class="material-icons">donut_large</i>Cluster Overview</p>
+      </div>
+      <section class="overviewWrapper">
+        <div class="overviewContainer">
+          <p class="kokiHeader">Total Incidents</p>
+          <p class="content" [innerHTML]="dashboard_overview?.spec?.totalIncidents"></p>
         </div>
-      </mat-card-content>
-    </mat-card>
+        <div class="overviewContainer">
+          <p class="kokiHeader">Avg. Recovery Time(Min)</p>
+          <p class="content">
+            {{dashboard_overview?.spec.averageRecoveryTime}}
+            <i class="material-icons primaryColorGreen" *ngIf="dashboard_overview?.spec?.averageRecoveryTimeDelta > 0">arrow_upward</i>
+            <i class="material-icons colorLightRed" *ngIf="dashboard_overview?.spec?.averageRecoveryTimeDelta < 0">arrow_downward</i>
+          </p>
+        </div>
+        <div class="overviewContainer">
+          <p class="kokiHeader">Avg. Changes/Week</p>
+          <p class="content">
+            {{dashboard_overview?.spec.averageChangesPerWeek}}
+            <i class="material-icons primaryColorGreen" *ngIf="dashboard_overview?.spec?.averageChangesPerWeekDelta > 0">arrow_upward</i>
+            <i class="material-icons colorLightRed" *ngIf="dashboard_overview?.spec?.averageChangesPerWeekDelta < 0">arrow_downward</i>
+          </p>
+        </div>
+      </section>
+
+    </div>
+    <div class="koki-data-container" style="background-color: #fcfdfe">
+      <div class="koki-data">
+        <app-dashboard-chart [applicationname]= "'redis'" style="height: 300px;"></app-dashboard-chart>
+      </div>
+    </div>
   </section>
-  <mat-card fxFlex="50">
-    <mat-card-header>
-      <mat-card-title>
-        <p class="text18 marginZero">My Application</p>
-      </mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
+
+
+  <!--<mat-card fxFlex="40">-->
+  <!--<mat-card-header>-->
+  <!--<mat-card-title>-->
+  <!--<p class="text18 marginZero">Overall Cluster Health</p>-->
+  <!--</mat-card-title>-->
+  <!--</mat-card-header>-->
+  <!--<mat-card-content>-->
+  <!--<div style="width: 70%;margin: 0 auto">-->
+  <!--<app-health-guage [healthPer]="dashboard_overview?.spec.overallHealthPercentage"></app-health-guage>-->
+  <!--</div>-->
+  <!--</mat-card-content>-->
+  <!--</mat-card>-->
+  <section class="koki-data-wrapper">
+    <div class="koki-data-container">
+      <div class="koki-data-header-container">
+          <p class="koki-data-header" ><i class="material-icons">dns</i>Application ({{applications.length || 0}})</p>
+      </div>
+    </div>
+    <div>
+      <div class="koki-data">
+      <mat-form-field class="width100" [class.app-input-no-underline]="!showUnderline">
+        <input matInput placeholder="Search Application" name="textSearch" [(ngModel)]="search" />
+        <div class="searchIcon"><i class="material-icons">search</i></div>
+      </mat-form-field>
+      </div>
       <section class="tableWrapper">
         <div class="tableContainer header" fxLayout="row" fxLayoutAlign="space-between center">
           <p class="tableContent" fxFlex="15">App</p>
@@ -67,8 +72,8 @@
         </div>
         <div class="tableBodyWrapper">
           <div class="tableContainer body">
-            <ng-container *ngFor="let application of applications">
-              <div  fxLayout="row" fxLayoutAlign="space-between" class="tableRow">
+            <ng-container *ngFor="let application of applications | textSearch: 'name': search">
+              <div  fxLayout="row" fxLayoutAlign="space-between" class="tableRow" routerLink="{{'../application/'+application.metadata.name}}">
                 <p class="tableContent capitalize" fxFlex="15">{{application.metadata.name}}</p>
                 <p class="tableContent" fxFlex="15">{{application.metadata.namespace}}</p>
                 <p class="tableContent" fxFlex="20">{{application.status.lastUpdate | date: 'EEE, dd MMM yyyy hh:mm a'}}</p>
@@ -80,6 +85,7 @@
           </div>
         </div>
       </section>
-    </mat-card-content>
-  </mat-card>
-</div>
+    </div>
+  </section>
+</section>
+

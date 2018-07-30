@@ -3,33 +3,39 @@
   display: block;
   overflow: hidden;
 
-.overviewContainer{
-  display: inline-block;
-  width: calc(50% - 22px);
-  text-align: center;
-  margin: 10px;
-  height: 105px;
-  box-shadow: 1px 1px 1px 1px #efefef;
-  border: 1px solid #d3f1f2;
-}
-.kokiHeader{
-  width: 90%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  .overviewContainer{
+    display: inline-block;
+    width: calc(33.33% - 2px);
+    border-right: 1px solid #f0f2f4;
+    border-bottom: 1px solid #f0f2f4;
+    border-top: 0;
+    padding: 20px;
+    box-sizing: border-box;
 
-  text-align: left;
-  font-size: 18px;
-  margin: 10px;
-  color: #333;
+    &:first-of-type{
+      border-left: 0;
+    }
+    &:last-of-type{
+      border-right: 0;
+    }
+  }
+  .kokiHeader{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
-}
+    text-align: left;
+    font-size: 18px;
+    margin: 0;
+    color: #C0BBB7;
 
-.content{
-  margin: 0;
-  font-size: 30px;
-  color: #333;
-}
+  }
+
+  .content{
+    margin: 0;
+    font-size: 35px;
+    color: #666;
+  }
 }
 
 
@@ -37,21 +43,22 @@
   height: 60px;
   font-size: 15px;
 
-&.header{
-   font-weight: bold;
-   background-color: #f5f5f5;
-   padding: 0 10px;
- }
+  &.header{
+    font-family: RobotoNormal, sans-serif;
+    background-color: #fcfdfe;
+    padding: 0 10px;
+  }
 
 
 
-.tableRow{
-  padding: 0 10px;
-  background-color: white;
-&:nth-child(even){
-   background-color: #efefef;
- }
-}
+  .tableRow{
+    padding: 0 10px;
+    background-color: white;
+    border-bottom: 1px solid #efefef;
+    &:nth-child(even){
+      //background-color: #efefef;
+    }
+  }
 
 
 }
@@ -59,4 +66,10 @@
 .tableBodyWrapper {
   height: 195px;
   overflow: auto;
+}
+
+.searchIcon {
+  position: absolute;
+  right: -5px;
+  top: 7px;
 }

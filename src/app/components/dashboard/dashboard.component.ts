@@ -13,10 +13,10 @@ import { environment } from '../../../environments/environment';
 
 })
 export class DashboardComponent implements OnInit {
-
+  search = '';
   applications: any = [];
   dashboard_overview: any = {};
-
+  showUnderline = false;
   constructor(private callAPI: ApiCallService) {}
 
   ngOnInit() {

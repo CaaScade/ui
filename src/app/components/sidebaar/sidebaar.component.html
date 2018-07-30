@@ -1,20 +1,13 @@
-<aside id="sideBarContainer">
-  <mat-card>
-    <form class="example-form">
+<aside class="gradient-koki" id="sideBarContainer" fxLayout="column">
+  <p style="color: white;" class="font20"><img src="./assets/images/koki.png" height="50" class="alignVerticalMiddle"/><span>koki</span></p>
+  <div  fxFlex>
+    <form class="padding10">
       <section>
-        <p class="marginZero marginTop30">Dashboard</p>
-        <mat-nav-list *ngFor="let menuItem of dashboardMenu">
-          <a mat-list-item routerLink="home" class="capitalize"> {{ menuItem.name }} </a>
-        </mat-nav-list>
-        <p class="marginZero marginTop30">Applications</p>
-        <mat-form-field class="width100">
-          <input matInput placeholder="Search Application" name="textSearch" value="Redis" [(ngModel)]="search" />
-          <div class="searchIcon"><i class="material-icons">search</i></div>
-        </mat-form-field>
-        <mat-nav-list *ngFor="let application of applications | textSearch: 'name': search">
-          <a mat-list-item routerLink="{{'application/'+application.metadata.name}}" class="capitalize"> {{ application.metadata.name }} </a>
+        <mat-nav-list *ngFor="let menuItem of menuItems">
+          <a [routerLink]="menuItem.link" routerLinkActive="active" mat-list-item routerLink="home" class="capitalize"><i class="material-icons">{{menuItem.icon}}</i> {{ menuItem.name }} </a>
         </mat-nav-list>
       </section>
     </form>
-  </mat-card>
+  </div>
+  <app-footer fxFlex="40px"></app-footer>
 </aside>

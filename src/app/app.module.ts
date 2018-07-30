@@ -24,6 +24,7 @@ import { HealthGuageComponent } from './components/health-guage/health-guage.com
 import { TextSearchPipe } from './text-search.pipe';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { MultiLineChartComponent } from './components/multi-line-chart/multi-line-chart.component';
+import { DashboardChartComponent } from './components/dashboard-chart/dashboard-chart.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { MultiLineChartComponent } from './components/multi-line-chart/multi-lin
     HealthGuageComponent,
     TextSearchPipe,
     PieChartComponent,
-    MultiLineChartComponent
+    MultiLineChartComponent,
+    DashboardChartComponent
   ],
   imports: [
     BrowserModule,

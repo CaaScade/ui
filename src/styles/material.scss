@@ -2,9 +2,15 @@
 @import "variables";
 
 .mat-list-item-content{
-  font-size: 14px;
+  font-size: 16px;
+  font-family: RobotoThin, sans-serif;
 }
 
 .mat-nav-list .mat-list-item{
-  height: 24px !important;
+  height: 50px !important;
+  color: white;
+}
+
+.mat-input-container.app-input-no-underline .mat-input-underline {
+  display: none;
 }
