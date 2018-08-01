@@ -14,12 +14,16 @@ import { environment } from '../../../environments/environment';
 })
 export class DashboardComponent implements OnInit {
   search = '';
+  isMobile = false;
   applications: any = [];
   dashboard_overview: any = {};
   showUnderline = false;
   constructor(private callAPI: ApiCallService) {}
 
   ngOnInit() {
+    if (window.outerWidth < 768) {
+      this.isMobile = true;
+    }
     this.callAPI.callGetAPI(Urls.BASE_URL + '/' + Urls.APPLICATION_BASE).subscribe(data => {
       this.applications = data;
     });

@@ -1,10 +1,12 @@
-<aside class="gradient-koki" id="sideBarContainer" fxLayout="column">
-  <p style="color: white;" class="font20"><img src="./assets/images/koki.png" height="50" class="alignVerticalMiddle"/><span>koki</span></p>
+<aside class="gradient-koki" id="sideBarContainer" fxLayout="column" [ngClass]="{'hideSideMenu': isHide,'mobileDevice': isMobile}">
+  <p style="color: white;" class="font20"><img src="./assets/images/koki.png" height="50" class="alignVerticalMiddle"/><span class="companyName">koki</span></p>
   <div  fxFlex>
     <form class="padding10">
       <section>
         <mat-nav-list *ngFor="let menuItem of menuItems">
-          <a [routerLink]="menuItem.link" routerLinkActive="active" mat-list-item routerLink="home" class="capitalize"><i class="material-icons">{{menuItem.icon}}</i> {{ menuItem.name }} </a>
+          <a [routerLink]="menuItem.link" routerLinkActive="active" mat-list-item routerLink="home" class="capitalize">
+            <i class="material-icons">{{menuItem.icon}}</i> <span>{{ menuItem.name }}</span>
+          </a>
         </mat-nav-list>
       </section>
     </form>

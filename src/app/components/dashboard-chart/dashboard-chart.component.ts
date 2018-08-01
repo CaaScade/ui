@@ -13,19 +13,21 @@ export class DashboardChartComponent implements OnInit {
   @Input() applicationname: any;
   @ViewChild('chartCanvas') canvas: ElementRef;
 
+  isMobile = false;
+
   chartData = {
     labels: [],
     datasets: [{
-      label: 'Overall Health',
+      label: 'Overall Cluster Score',
       data: [],
-      lineTension: 0,
+      lineTension: 0.4,
       fill: false,
       borderColor: '#f99960',
       radius: 6,
       pointBackgroundColor : '#2e30af',
       pointBorderColor : '#fcfdfe',
       borderJoinStyle: 'bevel',
-      borderWidth: 1,
+      borderWidth: 2,
       pointBorderWidth: 4
 
     }]
@@ -34,11 +36,13 @@ export class DashboardChartComponent implements OnInit {
   reputationChart: any;
 
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit() {
     this.initializeSocket();
+    if (window.outerWidth < 768) {
+      this.isMobile = true;
+    }
   }
 
   MyChart(chartData) {
@@ -58,6 +62,11 @@ export class DashboardChartComponent implements OnInit {
           hover: {
             mode: 'nearest',
             intersect: true
+          },
+          layout: {
+            padding: {
+              right: 10
+            }
           },
           scales: {
             xAxes: [{
@@ -104,8 +113,10 @@ export class DashboardChartComponent implements OnInit {
 
     socket.onmessage = (res) => {
       const health = JSON.parse(res.data).spec.overallHealthPercentage;
+      const limit = (this.isMobile) ? 15 : 40;
 
-      if (this.chartData.datasets[0].data.length === 40) {
+
+      if (this.chartData.datasets[0].data.length === limit) {
         this.chartData.datasets[0].data.shift();
         this.chartData.labels.shift();
       }

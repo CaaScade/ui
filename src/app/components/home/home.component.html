@@ -1,13 +1,14 @@
 <section style="height: 100vh;">
   <section fxLayout="row" fxLayoutAlign="center center" fxFlexFill>
     <section id="sidebarWrapper" class="positionRelative" [fxFlex]="menuWidth" fxFlexFill>
-      <button mat-mini-fab color="primary" class="menuHamburger" (click)="toggleMenu()">
-        <i class="material-icons" style="color: white;margin:0">arrow_back</i>
+      <button mat-mini-fab color="primary" class="menuHamburger" (click)="toggleMenu()" [ngClass]="{'hideSideMenu': isHide}">
+        <i class="material-icons" style="margin:0">arrow_back</i>
       </button>
-      <app-sidebaar></app-sidebaar>
+      <app-sidebaar [isMobile]="isMobile" [isHide]="isHide"></app-sidebaar>
 
     </section>
     <section fxFlex fxFlexFill style="padding: 10px;overflow: auto">
+      <p style="margin-left: 55px;" (click)="toggleMenu()" *ngIf="isMobile"><i class="material-icons">menu</i></p>
       <router-outlet></router-outlet>
     </section>
   </section>

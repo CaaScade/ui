@@ -73,3 +73,32 @@
   right: -5px;
   top: 7px;
 }
+
+.tokenContainer {
+  font-family: robotoLight;
+  font-size: 20px;
+  color: #666;
+  display: inline-block;
+  width: auto;
+  box-shadow: 2px 3px 10px 0px #b7b7b7;
+  margin: 0 15px;
+  padding: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .overviewWrapper{
+    display: block;
+    overflow: hidden;
+
+    .overviewContainer {
+      display: block;
+      width: 100%;
+      border-right: 1px solid #f0f2f4;
+      border-bottom: 1px solid #f0f2f4;
+      border-top: 0;
+      padding: 20px;
+      box-sizing: border-box;
+
+    }
+  }
+}

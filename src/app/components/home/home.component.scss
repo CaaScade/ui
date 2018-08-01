@@ -1,9 +1,28 @@
+@import "../../../styles/variables";
+
 .menuHamburger {
   position: absolute;
   right: -9px;
   top: 20px;
   z-index: 1;
+  transition: all 0.8s ease;
+
+
+  &.hideSideMenu{
+    transform: rotate(180deg);
+  }
 }
 #sidebarWrapper{
   transition: all 0.5s ease;
+}
+
+
+/deep/ .mat-mini-fab.mat-primary {
+  background-color: white;
+  color: $koki-color-primary-dark;
+
+
+  .material-icons{
+    color: $koki-color-primary-dark;
+  }
 }

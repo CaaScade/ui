@@ -14,7 +14,8 @@ export class PieChartComponent implements OnInit {
     datasets: [{
       label: '',
       data: [1, 2],
-      backgroundColor: ['rgba(255, 112, 67,0.2)', 'rgba(0, 128, 0, 0.2)']
+      // backgroundColor: ['rgba(255, 112, 67,0.2)', 'rgba(0, 128, 0, 0.2)']
+      backgroundColor: ['#ee6082', '#3aa2eb']
     }]
   };
 
@@ -42,7 +43,7 @@ export class PieChartComponent implements OnInit {
     if (isNullOrUndefined(this.reputationChart)) {
 
       const config = {
-        type: 'pie',
+        type: 'doughnut',
         data: chartData,
         options: {
           legend: false,

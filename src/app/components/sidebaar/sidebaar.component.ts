@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {Urls} from '../../utils/urls';
 import {ApiCallService} from '../../utils/http.service';
 
@@ -10,6 +10,9 @@ import {ApiCallService} from '../../utils/http.service';
 
 })
 export class SidebaarComponent implements OnInit {
+  @Input() isMobile: Boolean;
+  @Input() isHide: Boolean;
+
   applications: any;
 
   menuItems = [{

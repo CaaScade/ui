@@ -18,16 +18,25 @@ export class AreaChartComponent implements OnInit {
       label: '',
       data: [],
       lineTension: 0,
-      fill: true,
-      backgroundColor: '',
-      borderColor: '#8547ea',
-      radius: 0,
-      borderWidth: 1,
-      strokeColor : '#2e30af',
-      pointColor : '#8547ea',
-      pointStrokeColor : '#2e30af',
-      pointHighlightFill: '#8547ea',
-      pointHighlightStroke: '#2e30af',
+      // fill: true,
+      // backgroundColor: '',
+      // borderColor: '#8547ea',
+      // radius: 0,
+      // borderWidth: 1,
+      // strokeColor : '#2e30af',
+      // pointColor : '#8547ea',
+      // pointStrokeColor : '#2e30af',
+      // pointHighlightFill: '#8547ea',
+      // pointHighlightStroke: '#2e30af',
+      // lineTension: 0.4,
+      fill: false,
+      borderColor: '#f99960',
+      radius: 6,
+      pointBackgroundColor : '#2e30af',
+      pointBorderColor : '#fcfdfe',
+      borderJoinStyle: 'bevel',
+      borderWidth: 2,
+      pointBorderWidth: 4
 
     }]
   };
@@ -45,12 +54,12 @@ export class AreaChartComponent implements OnInit {
   MyChart(chartData) {
     const ctx = this.canvas.nativeElement.getContext('2d');
     if (isNullOrUndefined(this.reputationChart)) {
-      const gradient = ctx.createLinearGradient(0, 0, 0, 50);
-      // gradient.addColorStop(0, '#2e30af');
-      // gradient.addColorStop(1, '#8547ea');
-      gradient.addColorStop(0, 'rgba(46,48,175,1)');
-      gradient.addColorStop(1, 'rgba(73,71,234,0)');
-      chartData.datasets[0].backgroundColor = gradient;
+      // const gradient = ctx.createLinearGradient(0, 0, 0, 50);
+      // // gradient.addColorStop(0, '#2e30af');
+      // // gradient.addColorStop(1, '#8547ea');
+      // gradient.addColorStop(0, 'rgba(46,48,175,1)');
+      // gradient.addColorStop(1, 'rgba(73,71,234,0)');
+      // chartData.datasets[0].backgroundColor = gradient;
 
       const config = {
         type: 'line',
@@ -61,6 +70,13 @@ export class AreaChartComponent implements OnInit {
           tooltips: {
             mode: 'index',
             intersect: false,
+          },
+          layout: {
+            padding: {
+              right: 10,
+              left: 10,
+              bottom: 10
+            }
           },
           hover: {
             mode: 'nearest',

@@ -35,33 +35,20 @@
     </div>
   </section>
 
-
-  <!--<mat-card fxFlex="40">-->
-  <!--<mat-card-header>-->
-  <!--<mat-card-title>-->
-  <!--<p class="text18 marginZero">Overall Cluster Health</p>-->
-  <!--</mat-card-title>-->
-  <!--</mat-card-header>-->
-  <!--<mat-card-content>-->
-  <!--<div style="width: 70%;margin: 0 auto">-->
-  <!--<app-health-guage [healthPer]="dashboard_overview?.spec.overallHealthPercentage"></app-health-guage>-->
-  <!--</div>-->
-  <!--</mat-card-content>-->
-  <!--</mat-card>-->
   <section class="koki-data-wrapper">
     <div class="koki-data-container">
       <div class="koki-data-header-container">
-          <p class="koki-data-header" ><i class="material-icons">dns</i>Application ({{applications.length || 0}})</p>
+          <p class="koki-data-header" ><i class="material-icons">dns</i>{{(applications.length > 1)? 'Applications ' : 'Application ' }}({{applications.length || 0}})</p>
       </div>
     </div>
     <div>
       <div class="koki-data" fxLayout="row" fxLayoutAlign="end center">
-      <mat-form-field [class.app-input-no-underline]="!showUnderline">
+      <mat-form-field [class.app-input-no-underline]="!showUnderline" [ngClass]="{'width100': isMobile}">
         <input matInput placeholder="Search Application" name="textSearch" [(ngModel)]="search" />
         <div class="searchIcon"><i class="material-icons">search</i></div>
       </mat-form-field>
       </div>
-      <section class="tableWrapper">
+      <section class="tableWrapper" *ngIf="!isMobile">
         <div class="tableContainer header" fxLayout="row" fxLayoutAlign="space-between center">
           <p class="tableContent" fxFlex="15">App</p>
           <p class="tableContent" fxFlex="15">Namespace</p>
@@ -73,8 +60,8 @@
         <div class="tableBodyWrapper">
           <div class="tableContainer body">
             <ng-container *ngFor="let application of applications | textSearch: 'name': search">
-              <div  fxLayout="row" fxLayoutAlign="space-between" class="tableRow" routerLink="{{'../application/'+application.metadata.name}}">
-                <p class="tableContent capitalize" fxFlex="15">{{application.metadata.name}}</p>
+              <div  fxLayout="row" fxLayoutAlign="space-between" class="pointer tableRow" routerLink="{{'../application/'+application.metadata.name}}">
+                <p class="tableContent boldFont capitalize primaryColorRed" fxFlex="15">{{application.metadata.name}}</p>
                 <p class="tableContent" fxFlex="15">{{application.metadata.namespace}}</p>
                 <p class="tableContent" fxFlex="20">{{application.status.lastUpdate | date: 'EEE, dd MMM yyyy hh:mm a'}}</p>
                 <p class="tableContent" fxFlex="20">{{application.status.lastIncident | date: 'EEE, dd MMM yyyy hh:mm a'}}</p>
@@ -83,6 +70,11 @@
               </div>
             </ng-container>
           </div>
+        </div>
+      </section>
+      <section *ngIf="isMobile">
+        <div class="tokenContainer" *ngFor="let application of applications | textSearch: 'name': search">
+          {{application.metadata.name}}
         </div>
       </section>
     </div>
