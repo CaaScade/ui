@@ -20,6 +20,11 @@ export class ApplicationSummaryComponent implements OnInit {
   mttrChartData: any;
   incidentChartData: any;
 
+  stats = {
+    mttr: 0,
+    mttd: 0
+  }
+
 
   constructor(public activeRouter: ActivatedRoute, private callAPI: ApiCallService, @Inject(LOCALE_ID) private locale: string) {
 
@@ -78,14 +83,17 @@ export class ApplicationSummaryComponent implements OnInit {
         mttrData.labels[i] = mttdData.labels[i] = formatedDate;
 
       }
+      this.stats.mttd = (mttdData.data.reduce((a,b) => a + b, 0 ) / mttdData.data.length)
+      this.stats.mttr = (mttrData.data.reduce((a,b) => a + b, 0 ) / mttdData.data.length)
+
+
       this.incidentChartData = incidentChartData;
       this.incidentChartData['data'] = [incidentChartData.data];
 
       this.mttrChartData = mttrData;
       this.mttrChartData['data'] = [mttrData.data, mttdData.data];
 
-      console.log(this.incidentChartData);
-      console.log('mttr', this.mttrChartData);
+    
 
 
     };
@@ -105,12 +113,12 @@ export class ApplicationSummaryComponent implements OnInit {
 
       this.systemStatsData.memory = {
         labels: objectKey,
-        data: [ data.spec.mem[objectKey].split('M')[0].split('-')[1] ]
+        data: [ data.spec.mem[objectKey].split('M')[0].split('-')[1]/1000000 ]
       };
 
       this.systemStatsData.storage = {
         labels: objectKey,
-        data: [ data.spec.storage[objectKey].split('M')[0].split('-')[1] ]
+        data: [ data.spec.storage[objectKey].split('M')[0].split('-')[1]/1000000 ]
       };
 
     };

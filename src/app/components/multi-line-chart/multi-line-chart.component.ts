@@ -135,20 +135,29 @@ export class MultiLineChartComponent implements OnInit {
             label: '',
             data: [Number(chartData.data[0])],
             lineTension: 0,
-            fill: true,
+            fill: false,
             backgroundColor: 'rgba(28, 186, 188, 0.20)',
-            borderColor: 'green',
+            borderColor: 'white',
             radius: 0,
-            borderWidth: 1,
+            borderWidth: 2,
           }]
         },
         options: {
+          scaleFontColor: 'red',
           legend: false,
           responsive: true,
           tooltips: {
             enabled: true,
             mode: 'index',
             intersect: true,
+          },
+          layout: {
+              padding: {
+                top: 20,
+                left: 20,
+                bottom: 20,
+                right: 20
+              }
           },
           hover: {
             mode: 'nearest',
@@ -158,18 +167,40 @@ export class MultiLineChartComponent implements OnInit {
             xAxes: [{
               display: false,
               gridLines: {
-                display: false
+                color: 'white',
+                display: true,
+                borderDash: [2]
               },
               scaleLabel: {
                 display: true,
                 labelString: ''
-              }
+              },
+              ticks: {
+                beginAtZero: true,
+                fontColor: "#FFF",
+                maxTicksLimit: '3'
+              },
+
+              type: 'time',
+              distribution: 'series',
+                time: {
+                    displayFormats: {
+                      second: 'hh:mm'
+                    }
+                }
             }],
             yAxes: [{
-              display: false,
+              color: 'white',
+              fontColor: 'white',
+              display: true,
               position: 'left',
               gridLines: {
-                display: false
+                color: 'white',
+                display: true,
+                borderDash: [2]
+              },
+              ticks: {
+                fontColor: "#FFF", // this here
               },
               scaleLabel: {
                 display: false,

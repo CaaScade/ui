@@ -49,15 +49,14 @@ pre code {
   text-transform: uppercase;
   display: inline-block;
   padding: 5px 12px;
-  border-radius: 10px;
+  border-radius: 20px;
   font-family: RobotoRegular, sans-serif;
-
+  margin: 0 5px 10px 0;
 }
 
-.datePill.redPill {
-  color: #fff;
-
-  background-color: $koki-color-primary-dark;
+.datePill.primaryPill {
+  color: $koki-color-primary-dark;
+  border: 1px solid $koki-color-primary-dark;
 }
 
 .datePill.greenPill {
@@ -124,7 +123,7 @@ body{-ms-overflow-style: scrollbar !important;}
 
 
 // mapping styles
-#KOKIDataWrapper {
+.KOKIDataWrapper {
   background-color: $koki-grey-background-color;
 
   .koki-data-header {
@@ -139,6 +138,7 @@ body{-ms-overflow-style: scrollbar !important;}
 
     .koki-new-portfolio-header-text {
       line-height: 60px;
+      text-transform: capitalize;
     }
   }
 
@@ -463,3 +463,16 @@ body{-ms-overflow-style: scrollbar !important;}
   }
 
 }
+
+.kokiHeader{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  text-align: left;
+  font-size: 18px;
+  margin: 0;
+  color: #C0BBB7;
+
+}
+

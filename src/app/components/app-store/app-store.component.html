@@ -1,0 +1,23 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+  <ng-container *ngFor="let app of appStoreData">
+    <div class="card" fxFlex="300px">
+      <div class="card-image general-bg" [style.backgroundImage]="'url(' + app.spec.bannerurl+ ')'"></div>
+      <div fxLayout="row" fxLayoutAlign="space-between center" class="padding10">
+        <p class="kokiHeader text20" [innerHTML]="app.metadata.name"></p>
+        <div fxLayout="row" fxLayoutAlign="center center">
+        <p *ngIf="app.spec.discount !== null" class="price kokiHeader text22 marginZero" style="text-decoration: line-through;margin-right: 5px">${{app.spec.price}}</p>
+        <p class="price text30 marginZero">${{(app.spec.discount === null)? app.spec.price : app.spec.price - (app.spec.price*app.spec.discount)/100}}</p>
+        </div>
+      </div>
+      <div class="padding10">
+        <p class="datePill primaryPill text12" *ngFor="let tech of app.spec.appstack">{{tech.name}}</p>
+      </div>
+      <div class="padding10">
+        <p class="text16 capitalize"><i class="material-icons primaryColorGreen">check</i> Up time <span class="text20">{{app.spec.uptime}}%</span></p>
+        <p class="text16 capitalize" *ngFor="let feature of app.spec.features"><i class="material-icons primaryColorGreen">check</i> {{feature}}</p>
+      </div>
+      <button mat-button color="primary" class="width100" (click)="showMoreDetails(app)">More details<i class="material-icons">arrow_forward</i></button>
+      <button mat-raised-button color="primary" class="width100">Launch</button>
+    </div>
+  </ng-container>
+</div>

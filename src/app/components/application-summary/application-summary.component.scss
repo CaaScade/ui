@@ -1,11 +1,17 @@
+.tableWrapper{
+  overflow-x: auto;
 .tableContainer {
-  height: 60px;
   font-size: 14px;
+  min-width: 768px;
 
   &.header{
     font-weight: bold;
     background-color: #fcfdfe;
     padding: 0 10px;
+  }
+
+  .tableRow{
+    height: 60px;
   }
 
 
@@ -14,20 +20,22 @@
     padding: 0 10px;
     background-color: white;
     &:nth-child(even){
-      //background-color: #efefef;
+      background-color: #efefef;
     }
   }
 
 }
+}
 
 .tableBodyWrapper {
-  height: 160px;
-  overflow: auto;
+  //height: 160px;
+  //overflow: auto;
 }
 
 .info{
   p {
     margin: 10px 0;
+    font-size: 14px;
   }
 }
 
@@ -47,11 +55,61 @@
     display: flex;
 
     span:first-of-type {
-      flex: 1 1 30%
+      flex: 1 1 10%
     }
     span:last-of-type{
       flex: 1 1 70%
     }
   }
 
+}
+
+
+.card {
+  border: 0;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  border-radius: 6px;
+  color: #333;
+  background: #fff;
+  width: 100%;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+}
+.card-header {
+  margin: 0 15px;
+  top: -20px;
+  position: relative;
+  border-radius: 6px;
+}
+.icon-header {
+  padding: 20px;
+  box-sizing: border-box;
+}
+.icon-header .material-icons {
+  color: white;
+  font-size: 45px;
+  margin: 0 auto;
+}
+.card-stats{
+  font-size: 35px;
+  color: #666;
+  margin: 0;
+  margin-right: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+  .applicationInformation{
+
+    p {
+  
+
+      span:first-of-type {
+        flex: 1 1 35%
+      }
+      span:last-of-type{
+        flex: 1 1 65%
+      }
+    }
+  
+  }
 }

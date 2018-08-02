@@ -12,4 +12,7 @@ export class ClusterComponent implements OnInit {
   ngOnInit() {
   }
 
+  launchDahboard() {
+    window.open('https://koki:koki@demo.koki.io/ui/', '_blank');
+  }
 }

@@ -1,123 +1,83 @@
-<section>
-  <section fxLayout="column" fxLayoutGap="16px" fxFlexFill>
-    <div fxFlex="60" fxFlexFill>
-      <div fxLayout="row" fxLayoutGap="10px" fxFlexFill>
-        <div fxFlex="60">
-          <div fxLayout="column" fxLayoutGap="10px">
-          <mat-card>
-            <mat-card-header>
-              <mat-card-title><i class="material-icons">favorite</i>Health</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-              <section fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
-                <div  fxFlex="25" *ngIf="healthDashboardData" fxFlexAlign="center" class="align-center">
-                  <app-health-guage [healthPer]="healthDashboardData?.spec?.overallHealthPercentage"></app-health-guage>
-                  <span class="marginZero">Overall Health</span>
-
-                </div>
-                <div fxFlex="25" *ngIf="healthDashboardData" fxFlexAlign="center" class="align-center">
-                  <app-pie-chart [chartDetails] = "healthDashboardData?.spec?.changeFailureTable"></app-pie-chart>
-                  <span class="marginZero">Change Failures</span>
-
-                </div>
-                <div fxFlex="25" *ngIf="incidentChartData" fxFlexAlign="center">
-                  <app-multi-line-chart [chartDetails] = "incidentChartData" label="Incidents,"></app-multi-line-chart>
-                  <span class="marginZero">Incidents</span>
-
-                </div>
-                <div fxFlex="25" *ngIf="mttrChartData" fxFlexAlign="center">
-                  <app-multi-line-chart [chartDetails] = "mttrChartData" label="'MTTR', 'MTTD'"></app-multi-line-chart>
-                  <span class="marginZero">MTTR and MTTD</span>
-                </div>
-              </section>
-            </mat-card-content>
-          </mat-card>
-          <div fxLayout="column">
-              <mat-card fxFlex="100">
-                <mat-card-header>
-                  <mat-card-title><i class="material-icons">settings_system_daydream</i>System Stats</mat-card-title>
-                </mat-card-header>
-                <mat-card-content>
-                  <section fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
-                    <div fxFlex="30" *ngIf="systemStatsData.cpu" >
-                      <app-multi-line-chart [chartDetails] = "systemStatsData.cpu" isSystemStats=true></app-multi-line-chart>
-                      <p class="marginZero">CPU</p>
-                    </div>
-                    <div fxFlex="30" *ngIf="systemStatsData.memory">
-                      <app-multi-line-chart [chartDetails] = "systemStatsData.memory" isSystemStats=true></app-multi-line-chart>
-                      <p class="marginZero">Memory</p>
-
-                    </div>
-                    <div fxFlex="30" *ngIf="systemStatsData.storage">
-                      <app-multi-line-chart [chartDetails] = "systemStatsData.storage" isSystemStats=true></app-multi-line-chart>
-                      <p class="marginZero">Storage</p>
-
-                    </div>
-                  </section>
-                </mat-card-content>
-              </mat-card>
-            <!--<div fxFlex="50">-->
-              <!--<mat-card>-->
-                <!--<mat-card-header>-->
-                  <!--<mat-card-title><i class="material-icons">insert_chart</i>Custom Stats</mat-card-title>-->
-                <!--</mat-card-header>-->
-                <!--<mat-card-content>-->
-                  <!--<section fxLayout="row" fxLayoutAlign="space-between center">-->
-                    <!--<div fxFlex="33" *ngIf="mttrChartData">-->
-                      <!--<app-multi-line-chart [chartDetails] = "mttrChartData"></app-multi-line-chart>-->
-                    <!--</div>-->
-                    <!--<div fxFlex="33" *ngIf="mttrChartData">-->
-                      <!--<app-multi-line-chart [chartDetails] = "mttrChartData"></app-multi-line-chart>-->
-                    <!--</div>-->
-                    <!--<div fxFlex="33" *ngIf="mttrChartData">-->
-                      <!--<app-multi-line-chart [chartDetails] = "mttrChartData"></app-multi-line-chart>-->
-                    <!--</div>-->
-                  <!--</section>-->
-                <!--</mat-card-content>-->
-              <!--</mat-card>-->
-            <!--</div>-->
-          </div>
-          </div>
-        </div>
-        <div fxFlex="40" style="overflow: auto">
-          <mat-card>
-            <mat-card-header>
-              <mat-card-title><i class="material-icons">info</i>Information</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-              <div class="applicationInformation">
-                <form class="info">
-                  <p><span class="boldFont">Name:</span> <span>{{activeApplicationData?.metadata.name}}</span></p>
-                  <p><span class="boldFont">Auto Recovery:</span> <span> <mat-checkbox [checked]="activeApplicationData?.spec.autoRecovery" color="primary"></mat-checkbox></span></p>
-                  <p><span class="boldFont">DNS Name: </span> <span>{{activeApplicationData?.status.dnsName}}</span></p>
-                  <p><span class="boldFont">Load Balancer:</span> <span> {{activeApplicationData?.status.loadBalance}}</span></p>
-                  <p><span class="boldFont">Version: </span> <span>{{activeApplicationData?.spec.version}}</span></p>
-                  <p><span class="boldFont">Name Space: </span> <span>{{activeApplicationData?.metadata.namespace}}</span></p>
-                </form>
-                <hr style="width: 90%; margin: 20px auto; border-bottom-color: #efefef;"/>
-                <section>
-                  <mat-card-title><i class="material-icons">group</i><span class="text14">Team</span></mat-card-title>
-                  <p><span class="boldFont">Team:</span><span> {{activeApplicationData?.spec.team.teamName}}</span></p>
-                  <p><span class="boldFont">Role:</span><span> {{activeApplicationData?.spec.team.role}}</span></p>
-                  <div fxLayout="row" fxLayoutGap="20px">
-                    <p class="marginZero"> Read: <mat-checkbox [checked]="activeApplicationData?.spec.team.readPermission" color="primary"></mat-checkbox></p>
-                    <p class="marginZero">Write: <mat-checkbox [checked]="activeApplicationData?.spec.team.writePermission" color="primary"></mat-checkbox></p>
-                    <p class="marginZero">Change Permission: <mat-checkbox [checked]="activeApplicationData?.spec.team.changePermission" color="primary"></mat-checkbox></p>
-                  </div>
-                </section>
-              </div>
-            </mat-card-content>
-          </mat-card>
-        </div>
+<div class="margin20">
+  <section fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px" fxLayout.lt-md="column">
+    <div fxFlex="33" fxFlex.lt-md="100" class="card">
+      <div class="card-header" style="background: linear-gradient(60deg,#ec407a,#d81b60);">
+        <app-multi-line-chart [chartDetails]="systemStatsData.cpu" isSystemStats=true></app-multi-line-chart>
       </div>
-
+      <p class="text16 padding10 kokiHeader">CPU</p>
     </div>
-    <div fxFlex="40" fxFlexFill>
-      <mat-card style="height: 100%;">
-        <mat-card-header>
-          <mat-card-title><i class="material-icons">event_note</i>Events</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
+
+    <div fxFlex="33" fxFlex.lt-md="100" class="card">
+      <div class="card-header" style="background: linear-gradient(60deg,#66bb6a,#43a047);">
+        <app-multi-line-chart [chartDetails]="systemStatsData.memory" isSystemStats=true></app-multi-line-chart>
+      </div>
+      <p class="text16 padding10 kokiHeader">Memory(MB)</p>
+    </div>
+
+    <div fxFlex="33" fxFlex.lt-md="100" class="card">
+      <div class="card-header" style="background: linear-gradient(60deg,#26c6da,#00acc1);">
+        <app-multi-line-chart [chartDetails]="systemStatsData.storage" isSystemStats=true></app-multi-line-chart>
+      </div>
+      <p class="text16 padding10 kokiHeader">Storage(MB)</p>
+    </div>
+  </section>
+
+  <section fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px" fxLayout.lt-md="column">
+    <div fxFlex="25" fxFlex.md="50" fxFlex.sm="100" class="card">
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="card-header icon-header" style="background: linear-gradient(60deg,#ffa726,#fb8c00);height: 86px;width: 86px;">
+          <i class="material-icons">favorite</i>
+        </div>
+        <p class="card-stats">{{healthDashboardData?.spec?.overallHealthPercentage + '%'}}</p>
+      </div>
+      <p class="text16 padding10 kokiHeader">Overall Health</p>
+    </div>
+    <div fxFlex="25" fxFlex.md="50" fxFlex.sm="100" class="card">
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+
+        <div class="card-header  icon-header" style="background: linear-gradient(60deg,#ec407a,#d81b60);height: 86px;width: 86px;">
+          <i class="material-icons">timeline</i>
+        </div>
+        <p class="card-stats">{{healthDashboardData?.spec?.overallHealthPercentage + '%'}}</p>
+      </div>
+      <p class="text16 padding10 kokiHeader">Change Failures</p>
+    </div>
+
+    <div fxFlex="25" fxFlex.md="50" fxFlex.sm="100" class="card">
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+
+        <div class="card-header icon-header" style="background: linear-gradient(60deg,#66bb6a,#43a047);height: 86px;width: 86px;">
+          <i class="material-icons">restore</i>
+        </div>
+        <p class="card-stats">{{stats.mttr | number : '1.2-2'}}sec</p>
+      </div>
+      <p class="text16 padding10 kokiHeader">MTTR</p>
+    </div>
+
+    <div fxFlex="25" fxFlex.md="50" fxFlex.sm="100" class="card">
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="card-header icon-header" style="background: linear-gradient(60deg,#26c6da,#00acc1);height: 86px;width: 86px;">
+          <i class="material-icons">track_changes</i>
+        </div>
+        <p class="card-stats">{{stats.mttd | number : '1.2-2'}}sec</p>
+      </div>
+      <p class="text16 padding10 kokiHeader">MTTD</p>
+    </div>
+
+
+  </section>
+
+</div>
+
+
+<section class="bgWhite">
+  <section fxLayout="column" fxLayoutGap="16px" fxFlexFill>
+    <div fxFlex="40" class="bgWhite">
+      <mat-tab-group dynamicHeight>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <i class="material-icons">event_note</i>Events
+          </ng-template>
           <section class="tableWrapper">
             <div class="tableContainer header" fxLayout="row" fxLayoutAlign="space-between center">
               <p class="tableContent" fxFlex="15">Name</p>
@@ -130,7 +90,7 @@
             <div class="tableBodyWrapper">
               <div class="tableContainer body">
                 <ng-container *ngFor="let application of activeApplicationData?.status.events">
-                  <div  fxLayout="row" fxLayoutAlign="space-between" class="tableRow">
+                  <div fxLayout="row" fxLayoutAlign="space-between" class="tableRow">
                     <p class="tableContent capitalize" fxFlex="15">{{application.name}}</p>
                     <p class="tableContent" fxFlex="10">{{application.type}}</p>
                     <p class="tableContent" fxFlex="20">{{application.timestamp | date: 'EEE, dd MMM yyyy hh:mm a'}}</p>
@@ -142,8 +102,49 @@
               </div>
             </div>
           </section>
-        </mat-card-content>
-      </mat-card>
+        </mat-tab>
+
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <i class="material-icons">info</i>Information
+          </ng-template>
+
+          <div class="applicationInformation padding10">
+            <form class="info">
+              <p><span class="boldFont">Name:</span> <span>{{activeApplicationData?.metadata.name}}</span></p>
+              <p><span class="boldFont">Auto Recovery:</span> <span> <mat-checkbox [checked]="activeApplicationData?.spec.autoRecovery"
+                    color="primary"></mat-checkbox></span></p>
+              <p><span class="boldFont">DNS Name: </span> <span>{{activeApplicationData?.status.dnsName}}</span></p>
+              <p><span class="boldFont">Load Balancer:</span> <span> {{activeApplicationData?.status.loadBalance}}</span></p>
+              <p><span class="boldFont">Version: </span> <span>{{activeApplicationData?.spec.version}}</span></p>
+              <p><span class="boldFont">Name Space: </span> <span>{{activeApplicationData?.metadata.namespace}}</span></p>
+            </form>
+          </div>
+        </mat-tab>
+
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <i class="material-icons">group</i><span class="text14">Team</span>
+          </ng-template>
+          <div class="padding10">
+          <div class="applicationInformation">
+            <p class=" font14"><span class="boldFont">Team:</span><span> {{activeApplicationData?.spec.team.teamName}}</span></p>
+            <p class=" font14"><span class="boldFont">Role:</span><span> {{activeApplicationData?.spec.team.role}}</span></p>
+          </div>
+          <div fxLayout="row" fxLayoutGap="20px">
+            <p class="marginZero font14"> Read:
+              <mat-checkbox [checked]="activeApplicationData?.spec.team.readPermission" color="primary"></mat-checkbox>
+            </p>
+            <p class="marginZero font14">Write:
+              <mat-checkbox [checked]="activeApplicationData?.spec.team.writePermission" color="primary"></mat-checkbox>
+            </p>
+            <p class="marginZero font14">Change Permission:
+              <mat-checkbox [checked]="activeApplicationData?.spec.team.changePermission" color="primary"></mat-checkbox>
+            </p>
+          </div>
+        </div>
+        </mat-tab>
+      </mat-tab-group>
     </div>
   </section>
 </section>

@@ -1,0 +1,12 @@
+<div class="koki-data-wrapper">
+  <div class="koki-data-header-container">
+    <p class="koki-data-header">Appplication Architecture diagram</p>
+    <div class="koki-data margin20">
+      <div class="appArchitectureImage generalBG" [style.backgroundImage]="'url('+appData.spec.architectureurl+')'"></div>
+      <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px" class="marginTop20">
+        <button mat-button (click)="dialogRef.close(false)">Close</button>
+        <button mat-raised-button color="primary" (click)="dialogRef.close(true)">Launch</button>
+      </div>
+    </div>
+  </div>
+</div>

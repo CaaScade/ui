@@ -22,9 +22,9 @@ export class SidebaarComponent implements OnInit {
     link: 'home'
   }, {
     id: 2,
-    name: 'Incidents',
-    icon: 'error',
-    link: 'incidents'
+    name: 'App Store',
+    icon: 'store',
+    link: 'appstore'
 
   }, {
     id: 3,

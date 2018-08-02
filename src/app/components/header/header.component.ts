@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
     id: 2,
     name: 'Incidents',
     icon: 'error',
-    link: 'incidents'
+    link: 'app-store'
 
   }, {
     id: 3,

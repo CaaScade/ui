@@ -1,0 +1,9 @@
+.appArchitectureImage{
+  background: center center/contain no-repeat;
+  height: 375px;
+  width: 500px;
+}
+
+/deep/ .mat-dialog-container{
+   padding: 0;
+ }

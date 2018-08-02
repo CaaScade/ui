@@ -14,3 +14,7 @@
 .mat-input-container.app-input-no-underline .mat-input-underline {
   display: none;
 }
+
+ .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
+  color: white;
+}
