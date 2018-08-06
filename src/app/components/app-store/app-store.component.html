@@ -21,7 +21,7 @@
             <p *ngIf="app.spec.discount !== null" class="price kokiHeader text16 marginZero" style="text-decoration: line-through;margin-right: 5px">${{app.spec.price}}</p>
             <p class="text18 thinFont marginZero">${{(app.spec.discount === null)? app.spec.price : app.spec.price - (app.spec.price*app.spec.discount)/100}}/Month</p>
           </div>
-          <p class="marginZero text14 colorLightGrey thinFont pointer" matTooltip="Up time">{{app.spec.uptime}}%</p>
+          <p class="marginZero text14 colorLightGrey thinFont pointer" matTooltip="Uptime">{{app.spec.uptime}}%</p>
         </div>
       </div>
     </ng-container>
