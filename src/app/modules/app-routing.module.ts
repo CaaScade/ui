@@ -11,12 +11,25 @@ import {ApplicationSummaryComponent} from '../components/application-summary/app
 const routes: Routes = [
   { path: '', redirectTo: '/incident-management/home', pathMatch: 'full' },
   { path: 'incident-management', component: HomeComponent,
+    data: {
+      breadcrumb: ''
+    },
     children: [
-      {path: 'home', component: DashboardComponent},
-      {path: 'appstore', component: AppStoreComponent},
-      {path: 'cluster', component: ClusterComponent},
-      {path: 'settings', component: SettingComponent},
-      {path: 'application/:application_name', component: ApplicationSummaryComponent}
+      {path: 'home', component: DashboardComponent, data: {
+          breadcrumb: 'Home'
+        }},
+      {path: 'appstore', component: AppStoreComponent, data: {
+          breadcrumb: 'App Store'
+        }},
+      {path: 'cluster', component: ClusterComponent, data: {
+          breadcrumb: 'Cluster'
+        }},
+      {path: 'settings', component: SettingComponent, data: {
+          breadcrumb: 'Setting'
+        }},
+      {path: 'application/:application_name', component: ApplicationSummaryComponent, data: {
+          breadcrumb: 'Application'
+        }}
     ]
   }
 ];

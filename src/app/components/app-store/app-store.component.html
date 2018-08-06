@@ -1,23 +1,29 @@
-<div fxLayout="row" fxLayoutAlign="center center">
-  <ng-container *ngFor="let app of appStoreData">
-    <div class="card" fxFlex="300px">
-      <div class="card-image general-bg" [style.backgroundImage]="'url(' + app.spec.bannerurl+ ')'"></div>
-      <div fxLayout="row" fxLayoutAlign="space-between center" class="padding10">
-        <p class="kokiHeader text20" [innerHTML]="app.metadata.name"></p>
-        <div fxLayout="row" fxLayoutAlign="center center">
-        <p *ngIf="app.spec.discount !== null" class="price kokiHeader text22 marginZero" style="text-decoration: line-through;margin-right: 5px">${{app.spec.price}}</p>
-        <p class="price text30 marginZero">${{(app.spec.discount === null)? app.spec.price : app.spec.price - (app.spec.price*app.spec.discount)/100}}</p>
+<div>
+  <div class="koki-data" fxLayout="row" fxLayoutAlign="end center">
+    <mat-form-field [class.app-input-no-underline]="!showUnderline" [ngClass]="{'width100': isMobile}">
+      <input matInput placeholder="Search Application" name="textSearch" [(ngModel)]="search" />
+      <div class="searchIcon"><i class="material-icons">search</i></div>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row wrap" fxLayoutAlign="center top" fxLayoutGap="20px" fxLayoutWrap="wrap">
+    <ng-container *ngFor="let app of appStoreData | textSearch:'name' : search">
+      <div class="card" fxFlex="1 1 300px" [style.marginBottom]="0">
+        <div class="card-header animated-card-header" style="background: linear-gradient(60deg,#26c6da,#00acc1);" (click)="showMoreDetails(app)">
+          <div class="card-image general-bg" [style.backgroundImage]="'url(' + app.spec.bannerurl+ ')'"></div>
+        </div>
+        <div class="padding10">
+          <p class="text18 thinFont marginZero align-center">{{app.metadata.name}} &nbsp; <i (click)="showMoreDetails(app)" class="material-icons pointer text16 colorLightGrey alignVerticalMiddle">help_outline</i></p>
+          <p class="colorLightGrey align-center text14 thinFont capitalize" [innerHTML]="app.metadata.description"></p>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="padding10">
+          <div fxLayout="row" fxLayoutAlign="center center">
+            <p *ngIf="app.spec.discount !== null" class="price kokiHeader text16 marginZero" style="text-decoration: line-through;margin-right: 5px">${{app.spec.price}}</p>
+            <p class="text18 thinFont marginZero">${{(app.spec.discount === null)? app.spec.price : app.spec.price - (app.spec.price*app.spec.discount)/100}}/Month</p>
+          </div>
+          <p class="marginZero text14 colorLightGrey thinFont pointer" matTooltip="Up time">{{app.spec.uptime}}%</p>
         </div>
       </div>
-      <div class="padding10">
-        <p class="datePill primaryPill text12" *ngFor="let tech of app.spec.appstack">{{tech.name}}</p>
-      </div>
-      <div class="padding10">
-        <p class="text16 capitalize"><i class="material-icons primaryColorGreen">check</i> Up time <span class="text20">{{app.spec.uptime}}%</span></p>
-        <p class="text16 capitalize" *ngFor="let feature of app.spec.features"><i class="material-icons primaryColorGreen">check</i> {{feature}}</p>
-      </div>
-      <button mat-button color="primary" class="width100" (click)="showMoreDetails(app)">More details<i class="material-icons">arrow_forward</i></button>
-      <button mat-raised-button color="primary" class="width100">Launch</button>
-    </div>
-  </ng-container>
+    </ng-container>
+  </div>
 </div>

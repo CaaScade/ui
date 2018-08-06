@@ -111,13 +111,13 @@
 
           <div class="applicationInformation padding10">
             <form class="info">
-              <p><span class="boldFont">Name:</span> <span>{{activeApplicationData?.metadata.name}}</span></p>
-              <p><span class="boldFont">Auto Recovery:</span> <span> <mat-checkbox [checked]="activeApplicationData?.spec.autoRecovery"
-                    color="primary"></mat-checkbox></span></p>
-              <p><span class="boldFont">DNS Name: </span> <span>{{activeApplicationData?.status.dnsName}}</span></p>
-              <p><span class="boldFont">Load Balancer:</span> <span> {{activeApplicationData?.status.loadBalance}}</span></p>
-              <p><span class="boldFont">Version: </span> <span>{{activeApplicationData?.spec.version}}</span></p>
-              <p><span class="boldFont">Name Space: </span> <span>{{activeApplicationData?.metadata.namespace}}</span></p>
+              <p class="infoTitle"><span class="boldFont">Name:</span> <span>{{activeApplicationData?.metadata.name}}</span></p>
+              <p class="infoTitle"><span class="boldFont">Auto Recovery:</span> <span> <mat-checkbox [checked]="activeApplicationData?.spec.autoRecovery"
+                                                                                                     color="primary"></mat-checkbox></span></p>
+              <p class="infoTitle"><span class="boldFont">DNS Name: </span> <span>{{activeApplicationData?.status.dnsName}}</span></p>
+              <p class="infoTitle"><span class="boldFont">Load Balancer:</span> <span> {{activeApplicationData?.status.loadBalance}}</span></p>
+              <p class="infoTitle"><span class="boldFont">Version: </span> <span>{{activeApplicationData?.spec.version}}</span></p>
+              <p class="infoTitle"><span class="boldFont">Name Space: </span> <span>{{activeApplicationData?.metadata.namespace}}</span></p>
             </form>
           </div>
         </mat-tab>
@@ -127,22 +127,23 @@
             <i class="material-icons">group</i><span class="text14">Team</span>
           </ng-template>
           <div class="padding10">
-          <div class="applicationInformation">
-            <p class=" font14"><span class="boldFont">Team:</span><span> {{activeApplicationData?.spec.team.teamName}}</span></p>
-            <p class=" font14"><span class="boldFont">Role:</span><span> {{activeApplicationData?.spec.team.role}}</span></p>
+            <div class="applicationInformation">
+              <p class="infoTitle font14"><span class="boldFont">Team:</span><span> {{activeApplicationData?.spec.team.teamName}}</span></p>
+              <p class="infoTitle font14"><span class="boldFont">Role:</span><span> {{activeApplicationData?.spec.team.role}}</span></p>
+              <div class="infoTitle font14"><span class="boldFont">Access:</span>
+                <span fxLayout="row wrap" fxLayoutGap="20px">
+                  <p class="marginZero font14">
+                    <mat-checkbox [checked]="activeApplicationData?.spec.team.readPermission" color="primary">Read</mat-checkbox>
+                  </p>
+                  <p class="marginZero font14"><mat-checkbox [checked]="activeApplicationData?.spec.team.writePermission" color="primary">Write</mat-checkbox>
+                  </p>
+                  <p class="marginZero font14">
+                    <mat-checkbox [checked]="activeApplicationData?.spec.team.changePermission" color="primary">Change Permission</mat-checkbox>
+                  </p>
+                </span>
+              </div>
+            </div>
           </div>
-          <div fxLayout="row" fxLayoutGap="20px">
-            <p class="marginZero font14"> Read:
-              <mat-checkbox [checked]="activeApplicationData?.spec.team.readPermission" color="primary"></mat-checkbox>
-            </p>
-            <p class="marginZero font14">Write:
-              <mat-checkbox [checked]="activeApplicationData?.spec.team.writePermission" color="primary"></mat-checkbox>
-            </p>
-            <p class="marginZero font14">Change Permission:
-              <mat-checkbox [checked]="activeApplicationData?.spec.team.changePermission" color="primary"></mat-checkbox>
-            </p>
-          </div>
-        </div>
         </mat-tab>
       </mat-tab-group>
     </div>

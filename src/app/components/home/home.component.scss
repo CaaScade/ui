@@ -26,3 +26,14 @@
     color: $koki-color-primary-dark;
   }
 }
+
+ul.breadcrumb {
+  list-style: none;
+  font-size: 14px;
+  color: #f8f8f8;
+  padding: 0;
+
+  li {
+    display: inline-block;
+  }
+}

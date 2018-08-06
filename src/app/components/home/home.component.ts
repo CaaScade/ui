@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {BreadCrumb} from '../../models/breadcrumbType';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import {distinctUntilChanged, filter, map} from 'rxjs/operators';
 
 
 @Component({
@@ -12,7 +15,19 @@ export class HomeComponent implements OnInit {
   isMobile = false;
   isHide = true;
 
-  constructor() {}
+  breadcrumbs: any = [];
+
+  constructor(public router: Router, public activatedRoute: ActivatedRoute) {
+    this.router.events.pipe
+    (
+      filter(event => event instanceof NavigationEnd),
+      distinctUntilChanged(),
+      map(event =>  this.buildBreadCrumb(this.activatedRoute.root))
+    ).subscribe(res => {
+      this.breadcrumbs = res;
+      console.log(res);
+    });
+  }
 
   ngOnInit() {
     if (window.outerWidth < 768) {
@@ -44,5 +59,23 @@ export class HomeComponent implements OnInit {
       }
     }
   }
+
+  buildBreadCrumb(route: ActivatedRoute, url: string = '',
+                  breadcrumbs: Array<BreadCrumb> = []): Array<BreadCrumb> {
+    const label = route.routeConfig ? route.routeConfig.data[ 'breadcrumb' ] : 'Home';
+    const path = route.routeConfig ? route.routeConfig.path : '';
+
+    const nextUrl = `${url}${path}/`;
+    const breadcrumb = {
+      label: label,
+      url: nextUrl
+    };
+    const newBreadcrumbs = [ ...breadcrumbs, breadcrumb ];
+    if (route.firstChild) {
+      return this.buildBreadCrumb(route.firstChild, nextUrl, newBreadcrumbs);
+    }
+    return newBreadcrumbs;
+  }
+
 
 }

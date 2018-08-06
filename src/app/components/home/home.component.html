@@ -1,14 +1,18 @@
 <section style="height: 100vh;">
   <section fxLayout="row" fxLayoutAlign="center center" fxFlexFill>
     <section id="sidebarWrapper" class="positionRelative" [fxFlex]="menuWidth" fxFlexFill>
-      <button mat-mini-fab color="primary" class="menuHamburger" (click)="toggleMenu()" [ngClass]="{'hideSideMenu': isHide}">
+      <button mat-mini-fab color="primary" class="menuHamburger" (click)="toggleMenu()"  *ngIf="isMobile && !isHide" [ngClass]="{'hideSideMenu': isHide}">
         <i class="material-icons" style="margin:0">arrow_back</i>
       </button>
       <app-sidebaar [isMobile]="isMobile" [isHide]="isHide"></app-sidebaar>
-
     </section>
     <section fxFlex fxFlexFill style="padding: 10px;overflow: auto">
-      <p style="margin-left: 55px;" (click)="toggleMenu()" *ngIf="isMobile"><i class="material-icons">menu</i></p>
+      <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
+        <button mat-mini-fab color="primary" (click)="toggleMenu()" style="margin-bottom: 20px">
+          <i class="material-icons">menu</i>
+        </button>
+        <p>{{breadcrumbs[2].label}}</p>
+      </div>
       <router-outlet></router-outlet>
     </section>
   </section>

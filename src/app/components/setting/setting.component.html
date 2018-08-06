@@ -1,3 +1,152 @@
-<p>
-  setting works!
-</p>
+<div id="settingComponent">
+  <div fxLayout="row" fxLayoutGap="10px" fxLayout.lt-md="column">
+    <section fxFlex="50" fxFLex.lt-md="100">
+      <div fxLayout="column" fxLayoutGap="10px">
+        <div class="koki-data-wrapper">
+          <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px" fxLayoutAlign="center center" class="koki-data">
+            <div fxFlex="70" fxFlex.lt-md="100" class="width100">
+              <div fxLayout="row" fxLayoutAlign="space-between center">
+                <p class="capitalize text14 boldFont" fxFlex="50">authentication:</p>
+                <mat-checkbox color="primary" checked="checked" fxFlex="50"></mat-checkbox>
+              </div>
+              <div fxLayout="row" fxLayoutAlign="center center">
+                <p class="capitalize text14 boldFont" fxFlex="50">username:</p>
+                <p class="capitalize text14" fxFlex="50">Neel</p>
+              </div>
+            </div>
+            <div fxFlex="30"  fxFlex.lt-md="100">
+              <button mat-raised-button color="primary">Change Password</button>
+            </div>
+          </div>
+        </div>
+        <div class="koki-data-wrapper">
+
+          <div>
+            <div class="koki-data-header-container">
+              <div class="koki-data-header">
+                Access
+              </div>
+            </div>
+            <div class="koki-data">
+              <p class="thinFont colorLightGrey">Users</p>
+              <section class="tableWrapper">
+                <div class="tableContainer header" fxLayout="row" fxLayoutAlign="space-between center">
+                  <p class="tableContent" fxFlex="15">Name</p>
+                  <p class="tableContent" fxFlex="15">Team</p>
+                  <p class="tableContent" fxFlex="20">Role</p>
+                </div>
+                <div class="tableBodyWrapper">
+                  <div class="tableContainer body">
+                    <ng-container *ngFor="let user of users">
+                      <div  fxLayout="row" fxLayoutAlign="space-between" class="pointer tableRow">
+                        <p class="tableContent boldFont capitalize" fxFlex="15">{{user.name}}</p>
+                        <p class="tableContent" fxFlex="15">{{user.team}}</p>
+                        <p class="tableContent" fxFlex="20">{{user.role}}</p>
+                      </div>
+                    </ng-container>
+                  </div>
+                </div>
+              </section>
+              <div fxLayout="row" fxLayoutGap="30px" fxLayoutAlign="space-between center" class="marginTop30">
+                <div fxFlex="30">
+                  <p class="thinFont colorLightGrey">Teams</p>
+                  <section class="tableWrapper">
+                    <div class="tableContainer header" fxLayout="row" fxLayoutAlign="space-between center">
+                      <p class="tableContent" fxFlex="15">Name</p>
+                    </div>
+                    <div class="tableBodyWrapper">
+                      <div class="tableContainer body">
+                        <ng-container *ngFor="let user of users">
+                          <div  fxLayout="row" fxLayoutAlign="space-between" class="pointer tableRow">
+                            <p class="tableContent boldFont capitalize" fxFlex="15">{{user.name}}</p>
+                          </div>
+                        </ng-container>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+                <div fxFlex="70">
+                  <p class="thinFont colorLightGrey">Roles</p>
+                  <section class="tableWrapper">
+                    <div class="tableContainer header" fxLayout="row" fxLayoutAlign="space-between center">
+                      <p class="tableContent" fxFlex="25">Name</p>
+                      <p class="tableContent" fxFlex="20">Read</p>
+                      <p class="tableContent" fxFlex="20">Write</p>
+                      <p class="tableContent" fxFlex="25">Cluster Admin</p>
+                    </div>
+                    <div class="tableBodyWrapper">
+                      <div class="tableContainer body">
+                        <ng-container *ngFor="let user of users">
+                          <div  fxLayout="row" fxLayoutAlign="space-between" class="pointer tableRow">
+                            <p class="tableContent boldFont capitalize" fxFlex="25">{{user.name}}</p>
+                            <p class="tableContent boldFont capitalize" fxFlex="20"><mat-checkbox color="primary" checked="checked"></mat-checkbox></p>
+                            <p class="tableContent boldFont capitalize" fxFlex="20"><mat-checkbox color="primary" checked="checked"></mat-checkbox></p>
+                            <p class="tableContent boldFont capitalize" fxFlex="25"><mat-checkbox color="primary" checked="checked"></mat-checkbox></p>
+                          </div>
+                        </ng-container>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section fxFlex="50"  fxFLex.lt-md="100">
+      <div fxLayout="column" fxLayoutGap="10px">
+        <div class="koki-data-wrapper" >
+          <div class="koki-data-header-container">
+            <p class="koki-data-header">Alerts</p>
+          </div>
+          <div class="koki-data">
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+              <div fxFlex="30" fxFlex.lt-md="50">
+                <p class="capitalize text14 boldFont">authentication:</p>
+                <p class="capitalize text14 boldFont">slack team:</p>
+                <p class="capitalize text14 boldFont">API Key:</p>
+                <p class="capitalize text14 boldFont">API Secret:</p>
+              </div>
+              <div fxFlex="70" fxFlex.lt-md="50">
+                <mat-checkbox color="primary" checked="checked"></mat-checkbox>
+                <p class="capitalize text14" ><a href="">slackteamname</a></p>
+                <p class="capitalize text14" ><a href="">slackteamname</a></p>
+                <p class="capitalize text14" ><a href="">slackteamname</a></p>
+              </div>
+            </div>
+            <div fxLayout="row wrap" class="marginTop30">
+              <mat-checkbox color="primary" checked="checked" fxFlex="33">Change</mat-checkbox>
+              <mat-checkbox color="primary" checked="checked" fxFlex="33">App Failures</mat-checkbox>
+              <mat-checkbox color="primary" checked="checked" fxFlex="33">Recovery</mat-checkbox>
+              <mat-checkbox color="primary" checked="checked" fxFlex="33">Installations</mat-checkbox>
+              <mat-checkbox color="primary" checked="checked" fxFlex="33">Node Failures</mat-checkbox>
+              <mat-checkbox color="primary" checked="checked" fxFlex="33">Login</mat-checkbox>
+            </div>
+          </div>
+        </div>
+        <div class="koki-data-wrapper">
+          <div>
+            <div class="koki-data-header-container">
+              <p class="koki-data-header">Cluster</p>
+            </div>
+            <div class="koki-data">
+              <div fxLayout="row " fxLayoutAlign="space-between center">
+                <div fxFlex="30"  fxFlex.lt-md="50">
+                  <p class="capitalize text14 boldFont">Kubernetes URL:</p>
+                  <p class="capitalize text14 boldFont">Kuber Config:</p>
+                  <p class="capitalize text14 boldFont">Kubernetes dashboard:</p>
+                </div>
+                <div fxFlex="70"  fxFlex.lt-md="50">
+                  <p class="capitalize text14" ><a href="">https://URL</a></p>
+                  <p class="capitalize text14" ><a href=""> &lt;fielddata&gt; </a></p>
+                  <p class="capitalize text14" ><a href="">https://URL</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

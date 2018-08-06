@@ -19,11 +19,12 @@ export class ApplicationSummaryComponent implements OnInit {
   systemStatsData: any = {};
   mttrChartData: any;
   incidentChartData: any;
+  applicationSummarySocket: any;
 
   stats = {
     mttr: 0,
     mttd: 0
-  }
+  };
 
 
   constructor(public activeRouter: ActivatedRoute, private callAPI: ApiCallService, @Inject(LOCALE_ID) private locale: string) {
@@ -52,9 +53,9 @@ export class ApplicationSummaryComponent implements OnInit {
 
 
   get_health_dashboard_data(application_name) {
-    const socket = new WebSocket(`ws://${environment.host}/stats/${application_name.toLowerCase()}/health-dashboard`);
+    this.applicationSummarySocket = new WebSocket(`ws://${environment.host}/stats/${application_name.toLowerCase()}/health-dashboard`);
 
-    socket.onmessage = (res) => {
+    this.applicationSummarySocket.onmessage = (res) => {
       this.healthDashboardData = JSON.parse(res.data);
       const mttrData = {
         labels: this.healthDashboardData.spec.incidentTable.reverse(),
@@ -83,8 +84,8 @@ export class ApplicationSummaryComponent implements OnInit {
         mttrData.labels[i] = mttdData.labels[i] = formatedDate;
 
       }
-      this.stats.mttd = (mttdData.data.reduce((a,b) => a + b, 0 ) / mttdData.data.length)
-      this.stats.mttr = (mttrData.data.reduce((a,b) => a + b, 0 ) / mttdData.data.length)
+      this.stats.mttd = (mttdData.data.reduce((a,b) => a + b, 0 ) / mttdData.data.length);
+      this.stats.mttr = (mttrData.data.reduce((a,b) => a + b, 0 ) / mttdData.data.length);
 
 
       this.incidentChartData = incidentChartData;
@@ -93,7 +94,7 @@ export class ApplicationSummaryComponent implements OnInit {
       this.mttrChartData = mttrData;
       this.mttrChartData['data'] = [mttrData.data, mttdData.data];
 
-    
+
 
 
     };
@@ -113,12 +114,12 @@ export class ApplicationSummaryComponent implements OnInit {
 
       this.systemStatsData.memory = {
         labels: objectKey,
-        data: [ data.spec.mem[objectKey].split('M')[0].split('-')[1]/1000000 ]
+        data: [ data.spec.mem[objectKey].split('M')[0].split('-')[1] / 1000000 ]
       };
 
       this.systemStatsData.storage = {
         labels: objectKey,
-        data: [ data.spec.storage[objectKey].split('M')[0].split('-')[1]/1000000 ]
+        data: [ data.spec.storage[objectKey].split('M')[0].split('-')[1] / 1000000 ]
       };
 
     };

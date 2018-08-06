@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {ApiCallService} from '../../utils/http.service';
 import {Urls} from '../../utils/urls';
 import { environment } from '../../../environments/environment';
@@ -12,12 +12,13 @@ import { environment } from '../../../environments/environment';
   providers: [ApiCallService]
 
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
   search = '';
   isMobile = false;
   applications: any = [];
   dashboard_overview: any = {};
   showUnderline = false;
+  socket: any;
   constructor(private callAPI: ApiCallService) {}
 
   ngOnInit() {
@@ -28,12 +29,16 @@ export class DashboardComponent implements OnInit {
       this.applications = data;
     });
 
-    const socket = new WebSocket(`ws://${environment.host}/stats`);
+    this.socket = new WebSocket(`ws://${environment.host}/stats`);
 
-    socket.onmessage = (res) => {
+    this.socket.onmessage = (res) => {
       this.dashboard_overview = JSON.parse(res.data);
     };
 
+  }
+
+  ngOnDestroy() {
+    this.socket.close();
   }
 
 
