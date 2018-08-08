@@ -1,0 +1,11 @@
+#!/bin/sh
+
+src=$(dirname $0)
+cd $src/..
+if [ -z ${NO_BUILD+x} ]; then
+  go get github.com/wlan0/serve
+  go install github.com/wlan0/serve
+fi
+
+cd dist/koki-dashboard
+serve $@
