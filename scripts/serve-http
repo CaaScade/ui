@@ -1,0 +1,10 @@
+#!/bin/bash
+
+src=$(dirname $0)
+cd $src/..
+if [ ! -v $NO_BUILD ]; then
+  ng build --base-href ui
+fi
+
+cd dist/koki-dashboard
+http-server --cors $@
