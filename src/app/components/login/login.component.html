@@ -1,0 +1,31 @@
+<div fxLayout="row" fxLayoutAlign="start center" fxFlexFill class="bgWhite">
+  <section fxFlex="50" fxFlexFill>
+    <div class="bgPrimary" fxLayoutAlign="center center" fxFlexFill fxLayout="column">
+      <img src="./assets/images/koki.png" width="300"/>
+      <p class="text62 marginTop20 boldFont" style="color: white">Koki</p>
+    </div>
+  </section>
+  <section fxFlex="50">
+    <div>
+      <h1 class="primaryColor align-center thinFont text50">Secure {{ (isSignedup)? 'Sign Up': 'Login'}}</h1>
+      <form fxLayout="column" class="login-form">
+        <mat-form-field>
+          <input matInput placeholder="User Name" name="username" [(ngModel)]="user.username" />
+        </mat-form-field>
+        <mat-form-field  *ngIf="isSignedup" >
+          <input matInput placeholder="Email" name="email" [(ngModel)]="user.email" />
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Password" type="password" name="password" [(ngModel)]="user.password" />
+        </mat-form-field>
+        <div class="marginTop30">
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+          <button mat-raised-button color="primary" (click)="login()"  *ngIf="!isSignedup">Login</button>
+          <button mat-raised-button color="primary" (click)="signup()" *ngIf="isSignedup">Signup</button>
+          <p class="primaryColor pointer" (click)="toggleAuth()">{{(!isSignedup)?'New to koki? sign up' : 'Alreay a member? Log in'}}</p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+</div>

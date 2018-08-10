@@ -27,6 +27,7 @@ import { MultiLineChartComponent } from './components/multi-line-chart/multi-lin
 import { DashboardChartComponent } from './components/dashboard-chart/dashboard-chart.component';
 import { AppLaunchDialogComponent } from './components/common_components/app-launch-dialog/app-launch-dialog.component';
 import {DialogsService} from './services/dialog-service.service';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import {DialogsService} from './services/dialog-service.service';
     PieChartComponent,
     MultiLineChartComponent,
     DashboardChartComponent,
-    AppLaunchDialogComponent
+    AppLaunchDialogComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

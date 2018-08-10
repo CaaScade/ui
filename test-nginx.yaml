@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: 2018-08-08T15:58:23Z
+  labels:
+    run: test-nginx
+  name: test-nginx
+  namespace: neel
+  resourceVersion: "31350390"
+  selfLink: /api/v1/namespaces/neel/services/test-nginx
+  uid: e0bc7a36-9b23-11e8-8c56-028d8664d75e
+spec:
+  clusterIP: 100.70.95.138
+  externalTrafficPolicy: Cluster
+  ports:
+  - nodePort: 32620
+    port: 25000
+    protocol: TCP
+    targetPort: 80
+  selector:
+    run: test-nginx
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+    - hostname: ae0bc7a369b2311e88c56028d8664d75-522761340.us-east-1.elb.amazonaws.com

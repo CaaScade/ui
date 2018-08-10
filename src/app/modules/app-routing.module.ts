@@ -6,10 +6,12 @@ import {AppStoreComponent} from '../components/app-store/app-store.component';
 import {ClusterComponent} from '../components/cluster/cluster.component';
 import {SettingComponent} from '../components/setting/setting.component';
 import {ApplicationSummaryComponent} from '../components/application-summary/application-summary.component';
+import {LoginComponent} from '../components/login/login.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/incident-management/home', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent},
   { path: 'incident-management', component: HomeComponent,
     data: {
       breadcrumb: ''

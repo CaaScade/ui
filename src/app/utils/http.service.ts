@@ -29,4 +29,8 @@ export class ApiCallService {
     return this.http.get(apiurl);
   }
 
+  callPOSTAPI(apiurl: string, data?: any) {
+    return this.http.post(apiurl, data);
+  }
+
 }

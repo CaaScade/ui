@@ -12,7 +12,7 @@
         <div class="overviewContainer">
           <p class="kokiHeader">Avg. Recovery Time(Min)</p>
           <p class="content">
-            {{dashboard_overview?.spec.averageRecoveryTime}}
+            {{dashboard_overview?.spec?.averageRecoveryTime}}
             <i class="material-icons primaryColorGreen" *ngIf="dashboard_overview?.spec?.averageRecoveryTimeDelta > 0">arrow_upward</i>
             <i class="material-icons colorLightRed" *ngIf="dashboard_overview?.spec?.averageRecoveryTimeDelta < 0">arrow_downward</i>
           </p>
@@ -20,7 +20,7 @@
         <div class="overviewContainer">
           <p class="kokiHeader">Avg. Changes/Week</p>
           <p class="content">
-            {{dashboard_overview?.spec.averageChangesPerWeek}}
+            {{dashboard_overview?.spec?.averageChangesPerWeek}}
             <i class="material-icons primaryColorGreen" *ngIf="dashboard_overview?.spec?.averageChangesPerWeekDelta > 0">arrow_upward</i>
             <i class="material-icons colorLightRed" *ngIf="dashboard_overview?.spec?.averageChangesPerWeekDelta < 0">arrow_downward</i>
           </p>
@@ -61,7 +61,7 @@
           <div class="tableContainer body">
             <ng-container *ngFor="let application of applications | textSearch: 'name': search">
               <div  fxLayout="row" fxLayoutAlign="space-between" class="pointer tableRow" routerLink="{{'../application/'+application.metadata.name}}">
-                <p class="tableContent boldFont capitalize primaryColorRed" fxFlex="15">{{application.metadata.name}}</p>
+                <p class="tableContent boldFont capitalize primaryColor" fxFlex="15">{{application.metadata.name}}</p>
                 <p class="tableContent" fxFlex="15">{{application.metadata.namespace}}</p>
                 <p class="tableContent" fxFlex="20">{{application.status.lastUpdate | date: 'EEE, dd MMM yyyy hh:mm a'}}</p>
                 <p class="tableContent" fxFlex="20">{{application.status.lastIncident | date: 'EEE, dd MMM yyyy hh:mm a'}}</p>

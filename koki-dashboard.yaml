@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: 2018-08-08T17:48:10Z
+  labels:
+    run: koki-dashboard
+  name: koki-dashboard
+  namespace: neel
+  resourceVersion: "31354708"
+  selfLink: /api/v1/namespaces/neel/services/koki-dashboard
+  uid: 37089c91-9b33-11e8-8c56-028d8664d75e
+spec:
+  clusterIP: 100.66.102.213
+  externalTrafficPolicy: Cluster
+  ports:
+  - nodePort: 30392
+    port: 25000
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    run: koki-dashboard
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+    - hostname: a37089c919b3311e88c56028d8664d75-1228622488.us-east-1.elb.amazonaws.com

@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   protocol: 'http',
-  host: 'demo.koki.io/aruba',
+  host: 'localhost:9000',
   application: 'application',
   stats: 'stats',
   get_application: 'application/{app_name}'
