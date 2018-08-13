@@ -7,13 +7,52 @@
       <app-sidebaar [isMobile]="isMobile" [isHide]="isHide"></app-sidebaar>
     </section>
     <section fxFlex fxFlexFill style="padding: 10px;overflow: auto">
-      <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
-        <button mat-mini-fab color="primary" (click)="toggleMenu()" style="margin-bottom: 20px">
-          <i class="material-icons">menu</i>
-        </button>
-        <p>{{breadcrumbs[2].label}}</p>
-      </div>
-      <router-outlet></router-outlet>
+      <mat-sidenav-container hasBackdrop="true">
+        <mat-sidenav-content>
+          <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-between center">
+            <div fxFlex="50" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
+              <button mat-mini-fab color="primary" (click)="toggleMenu()" style="margin-bottom: 20px">
+                <i class="material-icons" >menu</i>
+              </button>
+              <p>{{breadcrumbs[2].label}}</p>
+            </div>
+            <div>
+              <i class="material-icons pointer text30" style="margin-right: 15px" (click)="snav.toggle()">notifications</i>
+              <i class="material-icons pointer text30" [matMenuTriggerFor]="menu">account_circle</i>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item routerLink="/login">
+                  <mat-icon>power_settings_new</mat-icon>
+                  <span >Logout</span>
+                </button>
+              </mat-menu>
+            </div>
+          </div>
+        </mat-sidenav-content>
+        <mat-sidenav #snav position="end" [mode]="'over'">
+          <div fxLayout="row" fxLayoutAlign="space-between center" class="bgPrimary" style="height: 50px; line-height: 50px; color: white; padding: 0 24px">
+            <p class="marginZero">Notification (4)</p>
+            <i class="material-icons pointer" (click)="snav.toggle()">close</i>
+          </div>
+          <div fxLayout="column" fxLayoutGap="10px">
+            <mat-card>
+              notification 1
+            </mat-card>
+
+            <mat-card>
+              notification 2
+            </mat-card>
+            <mat-card>
+              notification 3
+            </mat-card><mat-card>
+            notification 4
+          </mat-card>
+          </div>
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+          <router-outlet></router-outlet>
+        </mat-sidenav-content>
+      </mat-sidenav-container>
     </section>
   </section>
 </section>

@@ -37,3 +37,11 @@ ul.breadcrumb {
     display: inline-block;
   }
 }
+
+/deep/ .mat-drawer {
+  width: 300px
+}
+
+/deep/ .mat-drawer-container{
+  background-color: transparent;
+}

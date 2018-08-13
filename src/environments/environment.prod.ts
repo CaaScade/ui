@@ -5,5 +5,10 @@ export const environment = {
 
   application: 'application',
   stats: 'stats',
-  get_application: 'application/{app_name}'
+  get_application: 'application/{app_name}',
+
+  auth: 'auth',
+  login: 'login',
+  register: 'register',
+  logout: 'logout',
 };

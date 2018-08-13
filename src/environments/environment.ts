@@ -8,6 +8,10 @@ export const environment = {
   host: 'localhost:9000',
   application: 'application',
   stats: 'stats',
+  auth: 'auth',
+  login: 'login',
+  register: 'register',
+  logout: 'logout',
   get_application: 'application/{app_name}'
 };
 
