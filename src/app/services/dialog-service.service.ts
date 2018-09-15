@@ -3,6 +3,7 @@ import { MatDialogRef, MatDialog, MatDialogConfig, MatDialogActions } from '@ang
 import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs';
 import {AppLaunchDialogComponent} from '../components/common_components/app-launch-dialog/app-launch-dialog.component';
+import {UpdatePasswordDialogComponent} from '../components/common_components/update-password-dialog/update-password-dialog.component';
 
 @Injectable()
 export class DialogsService {
@@ -15,6 +16,13 @@ export class DialogsService {
 
     dialogRef = this.dialog.open(AppLaunchDialogComponent);
     dialogRef.componentInstance.appData = data;
+    return dialogRef.afterClosed();
+  }
+
+  public updatePasswordDialog(): Observable<any> {
+    let dialogRef: MatDialogRef<UpdatePasswordDialogComponent>;
+
+    dialogRef = this.dialog.open(UpdatePasswordDialogComponent);
     return dialogRef.afterClosed();
   }
 }

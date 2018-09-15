@@ -20,7 +20,7 @@
               <i class="material-icons pointer text30" style="margin-right: 15px" (click)="snav.toggle()">notifications</i>
               <i class="material-icons pointer text30" [matMenuTriggerFor]="menu">account_circle</i>
               <mat-menu #menu="matMenu">
-                <button mat-menu-item routerLink="/login">
+                <button mat-menu-item (click)="logout()">
                   <mat-icon>power_settings_new</mat-icon>
                   <span >Logout</span>
                 </button>

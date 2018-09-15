@@ -32,7 +32,9 @@
               "src/styles/material.scss",
               "src/styles/background.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/secure-ls/dist/secure-ls.min.js"
+            ]
           },
           "configurations": {
             "production": {

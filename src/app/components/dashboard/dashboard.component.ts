@@ -2,7 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import {ApiCallService} from '../../utils/http.service';
 import {Urls} from '../../utils/urls';
 import { environment } from '../../../environments/environment';
-
+import ioMetrics from 'socket.io-prometheus';
+// import {promRegister} from 'prom-client'.register
 
 
 @Component({

@@ -28,6 +28,9 @@ import { DashboardChartComponent } from './components/dashboard-chart/dashboard-
 import { AppLaunchDialogComponent } from './components/common_components/app-launch-dialog/app-launch-dialog.component';
 import {DialogsService} from './services/dialog-service.service';
 import { LoginComponent } from './components/login/login.component';
+import {LocalStorageService} from './utils/localStorage.service';
+import {ApiCallService} from './utils/http.service';
+import { UpdatePasswordDialogComponent } from './components/common_components/update-password-dialog/update-password-dialog.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,8 @@ import { LoginComponent } from './components/login/login.component';
     MultiLineChartComponent,
     DashboardChartComponent,
     AppLaunchDialogComponent,
-    LoginComponent
+    LoginComponent,
+    UpdatePasswordDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -59,8 +63,8 @@ import { LoginComponent } from './components/login/login.component';
     HttpClientModule,
     FormsModule
   ],
-  entryComponents: [AppLaunchDialogComponent],
-  providers: [DialogsService],
+  entryComponents: [AppLaunchDialogComponent, UpdatePasswordDialogComponent],
+  providers: [DialogsService, LocalStorageService, ApiCallService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

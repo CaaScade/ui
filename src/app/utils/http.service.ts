@@ -1,18 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import {LocalStorageService} from './localStorage.service';
 
 @Injectable()
 export class ApiCallService {
 
-  constructor(public router: Router, private http: HttpClient){}
+  constructor(
+    public router: Router,
+    private http: HttpClient,
+    private localstorage: LocalStorageService) {
 
-  createAuthorizationHeader(headers: Headers) {
-    // headers.append('authorization', OUR AUTH TOKN);
+  }
+
+  createAuthorizationHeader(headers: HttpHeaders) {
+     headers.append('authorization', this.localstorage.getData('_t') );
   }
 
   handleResponse(response) {
@@ -26,11 +32,28 @@ export class ApiCallService {
   }
 
   callGetAPI(apiurl: string, params?: URLSearchParams) {
-    return this.http.get(apiurl);
+    const req_headers = new HttpHeaders({
+      'Authorization': this.localstorage.getData('_t')
+    });
+
+    // this.createAuthorizationHeader(req_headers);
+    console.log(req_headers);
+
+    return this.http.get(apiurl, {headers: req_headers});
   }
 
   callPOSTAPI(apiurl: string, data?: any) {
-    return this.http.post(apiurl, data);
+    const req_headers = new HttpHeaders({
+      'Authorization': this.localstorage.getData('_t')
+    });
+    return this.http.post(apiurl, data, {observe: 'response', headers: req_headers});
+  }
+
+  callPUTAPI(apiurl: string, data?: any) {
+    const req_headers = new HttpHeaders({
+      'Authorization': this.localstorage.getData('_t')
+    });
+    return this.http.put(apiurl, data, {observe: 'response', headers: req_headers});
   }
 
 }

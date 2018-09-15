@@ -15,7 +15,7 @@
               </div>
             </div>
             <div fxFlex="30"  fxFlex.lt-md="100">
-              <button mat-raised-button color="primary">Change Password</button>
+              <button mat-raised-button color="primary" (click)="updatePassword()">Change Password</button>
             </div>
           </div>
         </div>
@@ -39,33 +39,33 @@
                   <div class="tableContainer body">
                     <ng-container *ngFor="let user of users">
                       <div  fxLayout="row" fxLayoutAlign="space-between" class="pointer tableRow">
-                        <p class="tableContent boldFont capitalize" fxFlex="15">{{user.name}}</p>
-                        <p class="tableContent" fxFlex="15">{{user.team}}</p>
-                        <p class="tableContent" fxFlex="20">{{user.role}}</p>
+                        <p class="tableContent boldFont capitalize" fxFlex="15">{{user.Username}}</p>
+                        <p class="tableContent" fxFlex="15">{{user.team || '-'}}</p>
+                        <p class="tableContent" fxFlex="20">{{user.Permissions}}</p>
                       </div>
                     </ng-container>
                   </div>
                 </div>
               </section>
               <div fxLayout="row" fxLayoutGap="30px" fxLayoutAlign="space-between center" class="marginTop30">
-                <div fxFlex="30">
-                  <p class="thinFont colorLightGrey">Teams</p>
-                  <section class="tableWrapper">
-                    <div class="tableContainer header" fxLayout="row" fxLayoutAlign="space-between center">
-                      <p class="tableContent" fxFlex="15">Name</p>
-                    </div>
-                    <div class="tableBodyWrapper">
-                      <div class="tableContainer body">
-                        <ng-container *ngFor="let user of users">
-                          <div  fxLayout="row" fxLayoutAlign="space-between" class="pointer tableRow">
-                            <p class="tableContent boldFont capitalize" fxFlex="15">{{user.name}}</p>
-                          </div>
-                        </ng-container>
-                      </div>
-                    </div>
-                  </section>
-                </div>
-                <div fxFlex="70">
+                <!--<div fxFlex="30">-->
+                  <!--<p class="thinFont colorLightGrey">Teams</p>-->
+                  <!--<section class="tableWrapper">-->
+                    <!--<div class="tableContainer header" fxLayout="row" fxLayoutAlign="space-between center">-->
+                      <!--<p class="tableContent" fxFlex="15">Name</p>-->
+                    <!--</div>-->
+                    <!--<div class="tableBodyWrapper">-->
+                      <!--<div class="tableContainer body">-->
+                        <!--<ng-container *ngFor="let user of users">-->
+                          <!--<div  fxLayout="row" fxLayoutAlign="space-between" class="pointer tableRow">-->
+                            <!--<p class="tableContent boldFont capitalize" fxFlex="15">{{user.name}}</p>-->
+                          <!--</div>-->
+                        <!--</ng-container>-->
+                      <!--</div>-->
+                    <!--</div>-->
+                  <!--</section>-->
+                <!--</div>-->
+                <div fxFlex="100">
                   <p class="thinFont colorLightGrey">Roles</p>
                   <section class="tableWrapper">
                     <div class="tableContainer header" fxLayout="row" fxLayoutAlign="space-between center">
@@ -76,12 +76,12 @@
                     </div>
                     <div class="tableBodyWrapper">
                       <div class="tableContainer body">
-                        <ng-container *ngFor="let user of users">
+                        <ng-container *ngFor="let role of roles">
                           <div  fxLayout="row" fxLayoutAlign="space-between" class="pointer tableRow">
-                            <p class="tableContent boldFont capitalize" fxFlex="25">{{user.name}}</p>
-                            <p class="tableContent boldFont capitalize" fxFlex="20"><mat-checkbox color="primary" checked="checked"></mat-checkbox></p>
-                            <p class="tableContent boldFont capitalize" fxFlex="20"><mat-checkbox color="primary" checked="checked"></mat-checkbox></p>
-                            <p class="tableContent boldFont capitalize" fxFlex="25"><mat-checkbox color="primary" checked="checked"></mat-checkbox></p>
+                            <p class="tableContent boldFont capitalize" fxFlex="25">{{role.Name}}</p>
+                            <p class="tableContent boldFont capitalize" fxFlex="20"><mat-checkbox color="primary" [checked]="role?.Permissions?.Read"></mat-checkbox></p>
+                            <p class="tableContent boldFont capitalize" fxFlex="20"><mat-checkbox color="primary" [checked]="role?.Permissions?.Create"></mat-checkbox></p>
+                            <p class="tableContent boldFont capitalize" fxFlex="25"><mat-checkbox color="primary" [checked]="role?.Permissions?.Create && role?.Permissions?.Read && role?.Permissions?.Update && role?.Permissions?.Delete"></mat-checkbox></p>
                           </div>
                         </ng-container>
                       </div>
@@ -101,28 +101,45 @@
             <p class="koki-data-header">Alerts</p>
           </div>
           <div class="koki-data">
-            <div fxLayout="row" fxLayoutAlign="space-between center">
-              <div fxFlex="30" fxFlex.lt-md="50">
-                <p class="capitalize text14 boldFont">authentication:</p>
-                <p class="capitalize text14 boldFont">slack team:</p>
-                <p class="capitalize text14 boldFont">API Key:</p>
-                <p class="capitalize text14 boldFont">API Secret:</p>
+            <form fxLayout="row wrap" fxLayoutAlign="space-between center">
+              <!--<div fxFlex="30" fxFlex.lt-md="50">-->
+                <!--<p class="capitalize text14 boldFont">Url:</p>-->
+                <!--<p class="capitalize text14 boldFont">Recipient:</p>-->
+                <!--<p class="capitalize text14 boldFont">Mention:</p>-->
+                <!--<p class="capitalize text14 boldFont">Token:</p>-->
+              <!--</div>-->
+                <div fxFlex="100">
+                  <mat-form-field class="width100">
+                    <input matInput placeholder="Slack App webhook url"  name="webhook_url" [(ngModel)]="alert_data.Url"/>
+                  </mat-form-field>
+                </div>
+              <div fxFlex="100">
+                <mat-form-field class="width100">
+                  <input matInput placeholder="Token" name="token"  [(ngModel)]="alert_data.Token"/>
+                </mat-form-field>
               </div>
-              <div fxFlex="70" fxFlex.lt-md="50">
-                <mat-checkbox color="primary" checked="checked"></mat-checkbox>
-                <p class="capitalize text14" ><a href="">slackteamname</a></p>
-                <p class="capitalize text14" ><a href="">slackteamname</a></p>
-                <p class="capitalize text14" ><a href="">slackteamname</a></p>
-              </div>
-            </div>
-            <div fxLayout="row wrap" class="marginTop30">
-              <mat-checkbox color="primary" checked="checked" fxFlex="33">Change</mat-checkbox>
-              <mat-checkbox color="primary" checked="checked" fxFlex="33">App Failures</mat-checkbox>
-              <mat-checkbox color="primary" checked="checked" fxFlex="33">Recovery</mat-checkbox>
-              <mat-checkbox color="primary" checked="checked" fxFlex="33">Installations</mat-checkbox>
-              <mat-checkbox color="primary" checked="checked" fxFlex="33">Node Failures</mat-checkbox>
-              <mat-checkbox color="primary" checked="checked" fxFlex="33">Login</mat-checkbox>
-            </div>
+                <div fxFlex="48">
+                  <mat-form-field class="width100">
+                    <input matInput placeholder="Recipient" name="recipient"  [(ngModel)]="alert_data.Recipient" />
+                  </mat-form-field>
+                </div>
+                <div fxFlex="48">
+                  <mat-form-field class="width100">
+                    <input matInput placeholder="Mention" name="mention"  [(ngModel)]="alert_data.Mention" />
+                  </mat-form-field>
+                </div>
+
+            </form>
+            <button mat-raised-button color="primary" (click)="(isFirstTime)?setAlert():updateAlert()">Submit</button>
+            <!--<div fxLayout="row wrap" class="marginTop30">-->
+
+              <!--<mat-checkbox color="primary" checked="checked" fxFlex="33">Change</mat-checkbox>-->
+              <!--<mat-checkbox color="primary" checked="checked" fxFlex="33">App Failures</mat-checkbox>-->
+              <!--<mat-checkbox color="primary" checked="checked" fxFlex="33">Recovery</mat-checkbox>-->
+              <!--<mat-checkbox color="primary" checked="checked" fxFlex="33">Installations</mat-checkbox>-->
+              <!--<mat-checkbox color="primary" checked="checked" fxFlex="33">Node Failures</mat-checkbox>-->
+              <!--<mat-checkbox color="primary" checked="checked" fxFlex="33">Login</mat-checkbox>-->
+            <!--</div>-->
           </div>
         </div>
         <div class="koki-data-wrapper">

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {BreadCrumb} from '../../models/breadcrumbType';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {distinctUntilChanged, filter, map} from 'rxjs/operators';
+import {Urls} from '../../utils/urls';
+import {ApiCallService} from '../../utils/http.service';
 
 
 @Component({
@@ -17,7 +19,7 @@ export class HomeComponent implements OnInit {
 
   breadcrumbs: any = [];
 
-  constructor(public router: Router, public activatedRoute: ActivatedRoute) {
+  constructor(public router: Router, public activatedRoute: ActivatedRoute, private callAPI: ApiCallService) {
     this.router.events.pipe
     (
       filter(event => event instanceof NavigationEnd),
@@ -25,7 +27,6 @@ export class HomeComponent implements OnInit {
       map(event =>  this.buildBreadCrumb(this.activatedRoute.root))
     ).subscribe(res => {
       this.breadcrumbs = res;
-      console.log(res);
     });
   }
 
@@ -75,6 +76,15 @@ export class HomeComponent implements OnInit {
       return this.buildBreadCrumb(route.firstChild, nextUrl, newBreadcrumbs);
     }
     return newBreadcrumbs;
+  }
+
+  logout() {
+    this.callAPI.callGetAPI(Urls.BASE_URL + '/' + Urls.LOGOUT_URL).subscribe(( data: any) => {
+      this.router.navigateByUrl('/login');
+
+    }, error => {
+      this.router.navigateByUrl('/login');
+    });
   }
 
 

@@ -26,12 +26,14 @@ export class SidebaarComponent implements OnInit {
     icon: 'store',
     link: 'appstore'
 
-  }, {
-    id: 3,
-    name: 'Cluster',
-    icon: 'dns',
-    link: 'cluster'
-  }, {
+  },
+  //   {
+  //   id: 3,
+  //   name: 'Cluster',
+  //   icon: 'dns',
+  //   link: 'cluster'
+  // },
+    {
     id: 4,
     name: 'Settings',
     icon: 'settings',
