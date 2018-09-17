@@ -46,14 +46,14 @@ export class ApplicationSummaryComponent implements OnInit {
   }
 
   get_application_data(application_name) {
-    this.callAPI.callGetAPI(Urls.BASE_URL + '/' + Urls.APPLICATION_BASE + `/${application_name.toLowerCase()}`).subscribe(data => {
+    this.callAPI.callGetAPI('http://localhost:8080' + '/' + Urls.APPLICATION_BASE + `/${application_name.toLowerCase()}`).subscribe(data => {
       this.activeApplicationData = data;
     });
   }
 
 
   get_health_dashboard_data(application_name) {
-    this.applicationSummarySocket = new WebSocket(`ws://${environment.host}/stats/${application_name.toLowerCase()}/health-dashboard`);
+    this.applicationSummarySocket = new WebSocket(`ws://localhost:8080/stats/${application_name.toLowerCase()}/health-dashboard`);
 
     this.applicationSummarySocket.onmessage = (res) => {
       this.healthDashboardData = JSON.parse(res.data);
