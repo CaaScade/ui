@@ -26,11 +26,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
     if (window.outerWidth < 768) {
       this.isMobile = true;
     }
-    this.callAPI.callGetAPI(Urls.BASE_URL + '/' + Urls.APPLICATION_BASE).subscribe(data => {
+    // this.callAPI.callGetAPI(Urls.BASE_URL + '/' + Urls.APPLICATION_BASE).subscribe(data => {
+    this.callAPI.callGetAPI('http://localhost:8080' + '/' + Urls.APPLICATION_BASE).subscribe(data => {
       this.applications = data;
     });
 
-    this.socket = new WebSocket(`ws://${environment.host}/stats`);
+    this.socket = new WebSocket(`ws://localhost:8080/stats`);
 
     this.socket.onmessage = (res) => {
       this.dashboard_overview = JSON.parse(res.data);

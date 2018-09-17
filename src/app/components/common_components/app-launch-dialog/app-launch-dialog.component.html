@@ -5,7 +5,7 @@
       <div class="appArchitectureImage generalBG" [style.backgroundImage]="'url('+appData.spec.architectureurl+')'"></div>
       <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px" class="marginTop20">
         <button mat-button (click)="dialogRef.close(false)">Close</button>
-        <button mat-raised-button color="primary" (click)="dialogRef.close(true)">Launch</button>
+        <button mat-raised-button color="primary" (click)="dialogRef.close(appData)">Launch</button>
       </div>
     </div>
   </div>
