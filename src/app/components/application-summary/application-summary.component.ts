@@ -46,7 +46,7 @@ export class ApplicationSummaryComponent implements OnInit {
   }
 
   get_application_data(application_name) {
-    this.callAPI.callGetAPI('http://localhost:8080' + '/' + Urls.APPLICATION_BASE + `/${application_name.toLowerCase()}`).subscribe(data => {
+    this.callAPI.callGetAPI('http://localhost:8080' + '/' + Urls.APPLICATION_BASE + `/${application_name.toLowerCase()}`, null, false).subscribe(data => {
       this.activeApplicationData = data;
     });
   }
@@ -101,7 +101,7 @@ export class ApplicationSummaryComponent implements OnInit {
   }
 
   get_system_stash_data(application_name) {
-    const socket = new WebSocket(`ws://${environment.host}/stats/${application_name.toLowerCase()}/system-stats`);
+    const socket = new WebSocket(`ws://localhost:8080/stats/${application_name.toLowerCase()}/system-stats`);
 
     socket.onmessage = (res) => {
       const data = JSON.parse(res.data);

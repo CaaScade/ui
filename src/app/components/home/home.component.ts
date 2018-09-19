@@ -4,6 +4,7 @@ import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {distinctUntilChanged, filter, map} from 'rxjs/operators';
 import {Urls} from '../../utils/urls';
 import {ApiCallService} from '../../utils/http.service';
+import {LocalStorageService} from '../../utils/localStorage.service';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class HomeComponent implements OnInit {
 
   breadcrumbs: any = [];
 
-  constructor(public router: Router, public activatedRoute: ActivatedRoute, private callAPI: ApiCallService) {
+  constructor(public router: Router, public activatedRoute: ActivatedRoute, private callAPI: ApiCallService, private localstorage: LocalStorageService) {
     this.router.events.pipe
     (
       filter(event => event instanceof NavigationEnd),
@@ -80,9 +81,11 @@ export class HomeComponent implements OnInit {
 
   logout() {
     this.callAPI.callGetAPI(Urls.BASE_URL + '/' + Urls.LOGOUT_URL).subscribe(( data: any) => {
+      this.localstorage.clearAll();
       this.router.navigateByUrl('/login');
 
     }, error => {
+      this.localstorage.clearAll();
       this.router.navigateByUrl('/login');
     });
   }

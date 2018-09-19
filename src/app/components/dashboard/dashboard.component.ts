@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.isMobile = true;
     }
     // this.callAPI.callGetAPI(Urls.BASE_URL + '/' + Urls.APPLICATION_BASE).subscribe(data => {
-    this.callAPI.callGetAPI('http://localhost:8080' + '/' + Urls.APPLICATION_BASE).subscribe(data => {
+    this.callAPI.callGetAPI('http://localhost:8080' + '/' + Urls.APPLICATION_BASE, null, false).subscribe(data => {
       this.applications = data;
     });
 

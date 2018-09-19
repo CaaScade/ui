@@ -5,7 +5,7 @@
       <div class="searchIcon"><i class="material-icons">search</i></div>
     </mat-form-field>
   </div>
-  <div fxLayout="row wrap" fxLayoutAlign="center top" fxLayoutGap="20px" fxLayoutWrap="wrap">
+  <div fxLayout="row wrap" fxLayoutAlign="center top" fxLayoutGap="20px" fxLayoutWrap="wrap" style="padding-bottom: 30px">
     <ng-container *ngFor="let app of appStoreData | textSearch:'name' : search">
       <div class="card" fxFlex="1 1 300px" [style.marginBottom]="0">
         <div class="card-header animated-card-header" [style.background]="app.bg" (click)="showMoreDetails(app)">

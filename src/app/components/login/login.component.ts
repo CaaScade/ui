@@ -3,8 +3,6 @@ import {Router} from '@angular/router';
 import {ApiCallService} from '../../utils/http.service';
 import {Urls} from '../../utils/urls';
 import {LocalStorageService} from '../../utils/localStorage.service';
-import {HttpResponse} from '@angular/common/http';
-import {serialize} from '@angular/compiler/src/i18n/serializers/xml_helper';
 
 @Component({
   selector: 'app-login',
@@ -35,11 +33,11 @@ export class LoginComponent implements OnInit {
     userform_data.append('username', this.user.username);
     userform_data.append('password', this.user.password);
 
-    this.apiCall.callPOSTAPI(Urls.BASE_URL + '/' + Urls.LOGIN_URL, userform_data).subscribe(res => {
+    this.apiCall.callPOSTAPI(Urls.BASE_URL + '/' + Urls.LOGIN_URL, userform_data, false).subscribe(res => {
       this.localstorage.setData('_t', res.headers.get('authorization'));
       this.router.navigateByUrl('/incident-management/home');
 
-    }, (error: HttpResponse<any>) => {
+    }, (error) => {
       console.log(error);
     });
   }

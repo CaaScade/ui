@@ -108,7 +108,7 @@ export class DashboardChartComponent implements OnInit {
   }
 
   initializeSocket() {
-    const socket = new WebSocket(`ws://${environment.host}/stats/redis`);
+    const socket = new WebSocket(`ws://localhost:8080/stats/redis`);
     this.chartData.datasets[0].label = 'Overall Health';
 
     socket.onmessage = (res) => {

@@ -31,22 +31,34 @@ export class ApiCallService {
     }
   }
 
-  callGetAPI(apiurl: string, params?: URLSearchParams) {
-    const req_headers = new HttpHeaders({
-      'Authorization': this.localstorage.getData('_t')
-    });
+  callGetAPI(apiurl: string, params?: URLSearchParams, auth?: boolean) {
+    let req_headers = new HttpHeaders({});
 
-    // this.createAuthorizationHeader(req_headers);
-    console.log(req_headers);
+    if (auth !== false) {
+      req_headers = new HttpHeaders({
+        'Authorization': this.localstorage.getData('_t')
+      });
+      return this.http.get(apiurl, {headers: req_headers});
+    } else {
+      return this.http.get(apiurl);
+    }
 
-    return this.http.get(apiurl, {headers: req_headers});
+
   }
 
-  callPOSTAPI(apiurl: string, data?: any) {
-    const req_headers = new HttpHeaders({
-      'Authorization': this.localstorage.getData('_t')
-    });
-    return this.http.post(apiurl, data, {observe: 'response', headers: req_headers});
+  callPOSTAPI(apiurl: string, data?: any, auth?: boolean) {
+    let req_headers = new HttpHeaders({});
+
+    if (auth !== false) {
+      req_headers = new HttpHeaders({
+        'Authorization': this.localstorage.getData('_t')
+      });
+      return this.http.post(apiurl, data, {observe: 'response', headers: req_headers});
+
+    } else {
+      return this.http.post(apiurl, data, {observe: 'response'});
+
+    }
   }
 
   callPUTAPI(apiurl: string, data?: any) {

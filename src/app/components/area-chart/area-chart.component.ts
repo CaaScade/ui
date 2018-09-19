@@ -117,7 +117,7 @@ export class AreaChartComponent implements OnInit {
   }
 
   initializeSocket() {
-    const socket = new WebSocket(`ws://${environment.host}/stats/${this.applicationname.toLowerCase()}`);
+    const socket = new WebSocket(`ws://localhost:8080/stats/${this.applicationname.toLowerCase()}`);
     this.chartData.datasets[0].label = this.applicationname;
 
     socket.onmessage = (res) => {

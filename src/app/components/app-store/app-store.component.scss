@@ -27,3 +27,7 @@
     transition: all .3s ease;
   }
 }
+
+/deep/ .mat-form-field-infix {
+  overflow: hidden;
+}

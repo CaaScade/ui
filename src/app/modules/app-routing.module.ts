@@ -7,6 +7,9 @@ import {ClusterComponent} from '../components/cluster/cluster.component';
 import {SettingComponent} from '../components/setting/setting.component';
 import {ApplicationSummaryComponent} from '../components/application-summary/application-summary.component';
 import {LoginComponent} from '../components/login/login.component';
+import {MatSnackBar} from '@angular/material';
+import {Local} from 'protractor/built/driverProviders';
+import {LocalStorageService} from '../utils/localStorage.service';
 
 
 const routes: Routes = [
@@ -42,10 +45,18 @@ const routes: Routes = [
 })
 export class AppRoutingModule {
 
-  constructor(public router: Router) {
+  constructor(public router: Router, private snackBar: MatSnackBar, private localstorage: LocalStorageService) {
 
     router.events.forEach((event: NavigationEvent) => {
       if (event instanceof NavigationStart) {
+        if ( localstorage.getData('_t') === null && event.url !== '/' && event.url.indexOf('login') === -1) {
+          this.snackBar.open('Please Login again', '', {
+            duration: 2000,
+          });
+          this.localstorage.clearAll();
+          this.router.navigateByUrl('/login');
+
+        }
       }
       if (event instanceof NavigationEnd) {
       }

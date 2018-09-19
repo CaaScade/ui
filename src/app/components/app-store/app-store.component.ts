@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DialogsService} from '../../services/dialog-service.service';
 import {ApiCallService} from '../../utils/http.service';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-store',
@@ -77,7 +78,7 @@ export class AppStoreComponent implements OnInit {
       }
     }];
 
-  constructor(private dialogService: DialogsService, private apiCallService: ApiCallService) {
+  constructor(private dialogService: DialogsService, private apiCallService: ApiCallService, private snackBar: MatSnackBar) {
     if (window.outerWidth < 768) {
       this.isMobile = true;
     }
@@ -88,12 +89,18 @@ export class AppStoreComponent implements OnInit {
 
   showMoreDetails(data: any) {
    this.dialogService.appLaunchDialog(data).subscribe(res => {
-     console.log(res);
+     this.openSnackBar(`Successfully launch the ${res.metadata.name.toLowerCase()}`, 'ok');
      this.apiCallService.callPOSTAPI('url', data).subscribe( rdata => {
        // our response
        // toast
      });
    });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
 }
