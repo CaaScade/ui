@@ -37,6 +37,14 @@ export class Urls {
   public static readonly ADD_USER_TO_PERMISSION = (`${environment.api_version_1}/${environment.add_roles_to_permission}`);
   public static readonly EDIT_PERMISSION_PERMISSION = (`${environment.api_version_1}/${environment.edit_roles_to_permission}`);
 
+
+  // application urls
+  public static readonly GET_ALL_APPLICATIONS = (`${environment.api_version_1}/${environment.get_all_application}`);
+  public static readonly GET_APPLICATIONS_OF_USER = (`${environment.api_version_1}/${environment.get_application}`);
+  public static readonly LAUNCH_APPLICATION = (`${environment.api_version_1}/${environment.launch_application}`);
+  public static readonly UPDATE_APPLICATION = (`${environment.api_version_1}/${environment.update_application}`);
+  public static readonly DELETE_APPLICATION = (`${environment.api_version_1}/${environment.delete_application}`);
+
   // alerts urls
   public static readonly GET_USER_ALERT = (`${environment.api_version_1}/${environment.get_user_alerts}`);
 }

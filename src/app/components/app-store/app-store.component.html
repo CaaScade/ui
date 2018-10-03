@@ -1,29 +1,73 @@
-<div>
-  <div class="koki-data" fxLayout="row" fxLayoutAlign="end center">
-    <mat-form-field [class.app-input-no-underline]="!showUnderline" [ngClass]="{'width100': isMobile}">
-      <input matInput placeholder="Search Application" name="textSearch" [(ngModel)]="search" />
-      <div class="searchIcon"><i class="material-icons">search</i></div>
-    </mat-form-field>
-  </div>
-  <div fxLayout="row wrap" fxLayoutAlign="center top" fxLayoutGap="20px" fxLayoutWrap="wrap" style="padding-bottom: 30px">
-    <ng-container *ngFor="let app of appStoreData | textSearch:'name' : search">
-      <div class="card" fxFlex="1 1 300px" [style.marginBottom]="0">
-        <div class="card-header animated-card-header" [style.background]="app.bg" (click)="showMoreDetails(app)">
-          <div class="card-image general-bg" [style.backgroundImage]="'url(' + app.spec.bannerurl+ ')'"></div>
+<div class="bgWhite">
+  <mat-tab-group dynamicHeight>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <i class="material-icons">store</i>Store
+      </ng-template>
+      <div class="padding10">
+        <div class="koki-data" fxLayout="row" fxLayoutAlign="end center">
+          <mat-form-field [ngClass]="{'width100': isMobile}">
+            <input matInput placeholder="Search Application" name="textSearch" [(ngModel)]="search" />
+            <div class="searchIcon"><i class="material-icons">search</i></div>
+          </mat-form-field>
         </div>
-        <div class="padding10">
-          <p class="text18 thinFont marginZero align-center">{{app.metadata.name}} &nbsp; <i (click)="showMoreDetails(app)" class="material-icons pointer text16 colorLightGrey alignVerticalMiddle">help_outline</i></p>
-          <p class="colorLightGrey align-center text14 thinFont capitalize" [innerHTML]="app.metadata.description"></p>
-        </div>
+        <div fxLayout="row wrap" fxLayoutAlign="center top" fxLayoutGap="20px" fxLayoutWrap="wrap" style="padding-bottom: 30px">
+          <ng-container *ngFor="let app of all_applications | textSearch:'Name' : search">
+            <div class="card" fxFlex="1 1 300px" [style.marginBottom]="0">
+              <div class="card-header animated-card-header" [style.background]="app.bg" (click)="showMoreDetails(app, false)">
+                <div class="card-image general-bg" [ngStyle]="{'background-image':'url(' + ((app.URL !== '' )? app.URL : ('./assets/images/' + app.PodName + '.png')) + ')'}"></div>
+              </div>
+              <div class="padding10">
+                <p class="text18 thinFont marginZero align-center">{{app.Name}}  <i (click)="showMoreDetails(app, false)" class="material-icons pointer text16 colorLightGrey alignVerticalMiddle">help_outline</i></p>
+                <p class="colorLightGrey align-center text14 thinFont capitalize" [innerHTML]="app.Description"></p>
+              </div>
 
-        <div fxLayout="row" fxLayoutAlign="space-between center" class="padding10">
-          <div fxLayout="row" fxLayoutAlign="center center">
-            <p *ngIf="app.spec.discount !== null" class="price kokiHeader text16 marginZero" style="text-decoration: line-through;margin-right: 5px">${{app.spec.price}}</p>
-            <p class="text18 thinFont marginZero">${{(app.spec.discount === null)? app.spec.price : app.spec.price - (app.spec.price*app.spec.discount)/100}}/Month</p>
-          </div>
-          <p class="marginZero text14 colorLightGrey thinFont pointer" matTooltip="Uptime">{{app.spec.uptime}}%</p>
+              <div fxLayout="row" fxLayoutAlign="space-between center" class="padding10">
+                <div fxLayout="row" fxLayoutAlign="center center">
+                  <p *ngIf="app.Discount" class="price kokiHeader text16 marginZero" style="text-decoration: line-through;margin-right: 5px">${{app.Price}}</p>
+                  <p class="text18 thinFont marginZero">${{(app.Discount)? app.Price : app.Price - (app.Price * app.Discount)/100}}/Month</p>
+                </div>
+                <p class="marginZero text14 colorLightGrey thinFont pointer" matTooltip="Uptime">{{app.UpTime}}%</p>
+              </div>
+            </div>
+          </ng-container>
         </div>
       </div>
-    </ng-container>
-  </div>
+
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <i class="material-icons">cloud_download</i>My Apps
+      </ng-template>
+      <div class="padding10">
+        <div class="koki-data" fxLayout="row" fxLayoutAlign="end center">
+          <mat-form-field [ngClass]="{'width100': isMobile}">
+            <input matInput placeholder="Search Application" name="textSearch" [(ngModel)]="search" />
+            <div class="searchIcon"><i class="material-icons">search</i></div>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row wrap" fxLayoutAlign="center top" fxLayoutGap="20px" fxLayoutWrap="wrap" style="padding-bottom: 30px">
+          <ng-container *ngFor="let app of user_applications | textSearch:'Name' : search">
+            <div class="card" fxFlex="1 1 300px" [style.marginBottom]="0">
+              <div class="card-header animated-card-header" [style.background]="app.bg" (click)="showMoreDetails(app, true)">
+                <div class="card-image general-bg" [ngStyle]="{'background-image':'url(' + ((app.URL !== '' )? app.URL : ('./assets/images/' + app.PodName + '.png')) + ')'}"></div>
+              </div>
+              <div class="padding10">
+                <p class="text18 thinFont marginZero align-center">{{app.Name}}  <i (click)="showMoreDetails(app, true)" class="material-icons pointer text16 colorLightGrey alignVerticalMiddle">help_outline</i></p>
+                <p class="colorLightGrey align-center text14 thinFont capitalize" [innerHTML]="app.Description"></p>
+              </div>
+
+              <div fxLayout="row" fxLayoutAlign="space-between center" class="padding10">
+                <div fxLayout="row" fxLayoutAlign="center center">
+                  <p *ngIf="app.Discount" class="price kokiHeader text16 marginZero" style="text-decoration: line-through;margin-right: 5px">${{app.Price}}</p>
+                  <p class="text18 thinFont marginZero">${{(app.Discount)? app.Price : app.Price - (app.Price * app.Discount)/100}}/Month</p>
+                </div>
+                <p class="marginZero text14 colorLightGrey thinFont pointer" matTooltip="Uptime">{{app.UpTime}}%</p>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
 </div>

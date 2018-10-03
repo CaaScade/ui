@@ -13,7 +13,6 @@ export const environment = {
   login: 'login',
   register: 'register',
   logout: 'logout',
-  get_application: 'application/{app_name}',
 
   // user relates endpoints
   get_all_users: 'users',
@@ -52,6 +51,13 @@ export const environment = {
 
   // alert related endpoints
   get_user_alerts: 'slack/{user_name}/alert',
+
+  // application APIs
+  get_all_application: 'applications',
+  get_application: 'application/{user_name}',
+  launch_application: 'application/{user_name}',
+  update_application: 'application/{user_name}',
+  delete_application: 'application/{user_name}',
 };
 
 /*

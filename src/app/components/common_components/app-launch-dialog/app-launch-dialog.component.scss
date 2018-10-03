@@ -7,3 +7,26 @@
 /deep/ .mat-dialog-container{
    padding: 0;
  }
+ .addonTable {
+  width: 500px;
+  max-height: 375px;
+  overflow: auto;
+}
+
+table {
+  height: 100%;
+  width: 100%;
+}
+.dataAggrigation{
+  background-color: #efefef;
+  padding: 10px;
+  color: #666;
+
+  p {
+    margin: 0
+  }
+}
+
+.material-icons {
+  margin-right: 10px;
+}

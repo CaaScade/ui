@@ -4,6 +4,7 @@ import {ApiCallService} from '../../utils/http.service';
 import {DialogsService} from '../../services/dialog-service.service';
 import {MatSnackBar} from '@angular/material';
 import {Router} from '@angular/router';
+import {LocalStorageService} from '../../utils/localStorage.service';
 
 @Component({
   selector: 'app-setting',
@@ -14,6 +15,8 @@ export class SettingComponent implements OnInit {
   users = [];
   roles = [];
   permission = [];
+  username = '';
+
   alert_data: any = {
     Url : '',
     Mention: '',
@@ -26,7 +29,10 @@ export class SettingComponent implements OnInit {
   constructor(private callAPI: ApiCallService,
               private dialogService: DialogsService,
               private snackBar: MatSnackBar,
-              private router: Router) { }
+              private router: Router,
+              private localstorage: LocalStorageService) {
+    this.username = this.localstorage.getData('_u');
+  }
 
   ngOnInit() {
     this.getAllUsers();
@@ -38,7 +44,7 @@ export class SettingComponent implements OnInit {
     this.callAPI.callGetAPI(Urls.BASE_URL + '/' + Urls.GET_ALL_USERS).subscribe(( data: any) => {
 
       for (let i = 0 ; i < data.Result.length; i++) {
-        this.callAPI.callGetAPI(Urls.BASE_URL + '/' + Urls.GET_USER_ROLES.replace('{user_name}', data.Result[i].Username)).subscribe((roles: any) => {
+        this.callAPI.callGetAPI(Urls.BASE_URL + '/' + Urls.GET_USER_ROLES.replace('{user_name}', this.localstorage.getData('_u'))).subscribe((roles: any) => {
           data.Result[i].Permissions = roles.Result[0].Name;
         });
       }
@@ -65,7 +71,7 @@ export class SettingComponent implements OnInit {
 
   updatePassword() {
     this.dialogService.updatePasswordDialog().subscribe( data => {
-      this.callAPI.callPUTAPI(Urls.BASE_URL + '/' + Urls.UPDATE_USER.replace('{user_name}', 'admin'), { Password: data }).subscribe(( res: any) => {
+      this.callAPI.callPUTAPI(Urls.BASE_URL + '/' + Urls.UPDATE_USER.replace('{user_name}', this.localstorage.getData('_u')), { Password: data }).subscribe(( res: any) => {
         this.openSnackBar('Successfully Updated the Password, Please login again', 'ok');
 
         setTimeout( () => {
@@ -77,7 +83,7 @@ export class SettingComponent implements OnInit {
   }
 
   getAlert() {
-    this.callAPI.callGetAPI(Urls.BASE_URL + '/' + Urls.GET_USER_ALERT.replace('{user_name}', 'admin')).subscribe(( data: any) => {
+    this.callAPI.callGetAPI(Urls.BASE_URL + '/' + Urls.GET_USER_ALERT.replace('{user_name}', this.localstorage.getData('_u'))).subscribe(( data: any) => {
 
       if (data.Result) {
         const d = data.Result[data.Result.length - 1];
@@ -97,7 +103,7 @@ export class SettingComponent implements OnInit {
   }
 
   setAlert() {
-    this.callAPI.callPOSTAPI(Urls.BASE_URL + '/' + Urls.GET_USER_ALERT.replace('{user_name}', 'admin'), this.alert_data).subscribe(( data: any) => {
+    this.callAPI.callPOSTAPI(Urls.BASE_URL + '/' + Urls.GET_USER_ALERT.replace('{user_name}', this.localstorage.getData('_u')), this.alert_data).subscribe(( data: any) => {
       this.alert_data = data.Result[data.Result.length - 1];
       this.openSnackBar('Successfully set the alert', 'ok');
     });
@@ -105,7 +111,7 @@ export class SettingComponent implements OnInit {
   }
 
   updateAlert() {
-    this.callAPI.callPUTAPI(Urls.BASE_URL + '/' + Urls.GET_USER_ALERT.replace('{user_name}', 'admin'), this.alert_data).subscribe(( data: any) => {
+    this.callAPI.callPUTAPI(Urls.BASE_URL + '/' + Urls.GET_USER_ALERT.replace('{user_name}', this.localstorage.getData('_u')), this.alert_data).subscribe(( data: any) => {
       // this.alert_data = data.Result;
       this.openSnackBar('Successfully updated alert', 'ok');
     });

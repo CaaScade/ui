@@ -1,169 +1,200 @@
-<div id="settingComponent">
-  <div fxLayout="row" fxLayoutGap="10px" fxLayout.lt-md="column">
-    <section fxFlex="50" fxFLex.lt-md="100">
-      <div fxLayout="column" fxLayoutGap="10px">
-        <div class="koki-data-wrapper">
-          <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px" fxLayoutAlign="center center" class="koki-data">
-            <div fxFlex="70" fxFlex.lt-md="100" class="width100">
-              <div fxLayout="row" fxLayoutAlign="space-between center">
-                <p class="capitalize text14 boldFont" fxFlex="50">authentication:</p>
-                <mat-checkbox color="primary" checked="checked" fxFlex="50"></mat-checkbox>
-              </div>
-              <div fxLayout="row" fxLayoutAlign="center center">
-                <p class="capitalize text14 boldFont" fxFlex="50">username:</p>
-                <p class="capitalize text14" fxFlex="50">Neel</p>
-              </div>
-            </div>
-            <div fxFlex="30"  fxFlex.lt-md="100">
-              <button mat-raised-button color="primary" (click)="updatePassword()">Change Password</button>
-            </div>
+<div class="bgWhite">
+<mat-tab-group dynamicHeight>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <i class="material-icons">lock</i>Authentication
+    </ng-template>
+    <div class="koki-data-wrapper padding10">
+      <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px" fxLayoutAlign="center center" class="koki-data">
+        <div fxFlex="70" fxFlex.lt-md="100" class="width100">
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <p class="capitalize text14 boldFont" fxFlex="50">authentication:</p>
+            <mat-checkbox color="primary" checked="checked" fxFlex="50"></mat-checkbox>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="center center">
+            <p class="capitalize text14 boldFont" fxFlex="50">username:</p>
+            <p class="capitalize text14" fxFlex="50">{{username}}</p>
           </div>
         </div>
-        <div class="koki-data-wrapper">
+        <div fxFlex="30"  fxFlex.lt-md="100">
+          <button mat-raised-button color="primary" (click)="updatePassword()">Change Password</button>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
 
-          <div>
-            <div class="koki-data-header-container">
-              <div class="koki-data-header">
-                Access
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <i class="material-icons">group</i>Access
+    </ng-template>
+    <div class="koki-data padding10">
+      <p class="thinFont colorLightGrey">Users</p>
+      <section class="tableWrapper">
+        <div class="tableContainer header" fxLayout="row" fxLayoutAlign="space-between center">
+          <p class="tableContent" fxFlex="15">Name</p>
+          <p class="tableContent" fxFlex="15">Team</p>
+          <p class="tableContent" fxFlex="20">Role</p>
+        </div>
+        <div class="tableBodyWrapper">
+          <div class="tableContainer body">
+            <ng-container *ngFor="let user of users">
+              <div  fxLayout="row" fxLayoutAlign="space-between" class="pointer tableRow">
+                <p class="tableContent boldFont capitalize" fxFlex="15">{{user.Username}}</p>
+                <p class="tableContent" fxFlex="15">{{user.team || '-'}}</p>
+                <p class="tableContent" fxFlex="20">{{user.Permissions}}</p>
               </div>
+            </ng-container>
+          </div>
+        </div>
+      </section>
+      <div fxLayout="row" fxLayoutGap="30px" fxLayoutAlign="space-between center" class="marginTop30">
+        <!--<div fxFlex="30">-->
+        <!--<p class="thinFont colorLightGrey">Teams</p>-->
+        <!--<section class="tableWrapper">-->
+        <!--<div class="tableContainer header" fxLayout="row" fxLayoutAlign="space-between center">-->
+        <!--<p class="tableContent" fxFlex="15">Name</p>-->
+        <!--</div>-->
+        <!--<div class="tableBodyWrapper">-->
+        <!--<div class="tableContainer body">-->
+        <!--<ng-container *ngFor="let user of users">-->
+        <!--<div  fxLayout="row" fxLayoutAlign="space-between" class="pointer tableRow">-->
+        <!--<p class="tableContent boldFont capitalize" fxFlex="15">{{user.name}}</p>-->
+        <!--</div>-->
+        <!--</ng-container>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</section>-->
+        <!--</div>-->
+        <div fxFlex="100">
+          <p class="thinFont colorLightGrey">Roles</p>
+          <section class="tableWrapper">
+            <div class="tableContainer header" fxLayout="row" fxLayoutAlign="space-between center">
+              <p class="tableContent" fxFlex="25">Name</p>
+              <p class="tableContent" fxFlex="20">Read</p>
+              <p class="tableContent" fxFlex="20">Write</p>
+              <p class="tableContent" fxFlex="25">Cluster Admin</p>
             </div>
-            <div class="koki-data">
-              <p class="thinFont colorLightGrey">Users</p>
-              <section class="tableWrapper">
-                <div class="tableContainer header" fxLayout="row" fxLayoutAlign="space-between center">
-                  <p class="tableContent" fxFlex="15">Name</p>
-                  <p class="tableContent" fxFlex="15">Team</p>
-                  <p class="tableContent" fxFlex="20">Role</p>
-                </div>
-                <div class="tableBodyWrapper">
-                  <div class="tableContainer body">
-                    <ng-container *ngFor="let user of users">
-                      <div  fxLayout="row" fxLayoutAlign="space-between" class="pointer tableRow">
-                        <p class="tableContent boldFont capitalize" fxFlex="15">{{user.Username}}</p>
-                        <p class="tableContent" fxFlex="15">{{user.team || '-'}}</p>
-                        <p class="tableContent" fxFlex="20">{{user.Permissions}}</p>
-                      </div>
-                    </ng-container>
+            <div class="tableBodyWrapper">
+              <div class="tableContainer body">
+                <ng-container *ngFor="let role of roles">
+                  <div  fxLayout="row" fxLayoutAlign="space-between" class="pointer tableRow">
+                    <p class="tableContent boldFont capitalize" fxFlex="25">{{role.Name}}</p>
+                    <p class="tableContent boldFont capitalize" fxFlex="20"><mat-checkbox color="primary" [checked]="role?.Permissions?.Read"></mat-checkbox></p>
+                    <p class="tableContent boldFont capitalize" fxFlex="20"><mat-checkbox color="primary" [checked]="role?.Permissions?.Create"></mat-checkbox></p>
+                    <p class="tableContent boldFont capitalize" fxFlex="25"><mat-checkbox color="primary" [checked]="role?.Permissions?.Create && role?.Permissions?.Read && role?.Permissions?.Update && role?.Permissions?.Delete"></mat-checkbox></p>
                   </div>
-                </div>
-              </section>
-              <div fxLayout="row" fxLayoutGap="30px" fxLayoutAlign="space-between center" class="marginTop30">
-                <!--<div fxFlex="30">-->
-                  <!--<p class="thinFont colorLightGrey">Teams</p>-->
-                  <!--<section class="tableWrapper">-->
-                    <!--<div class="tableContainer header" fxLayout="row" fxLayoutAlign="space-between center">-->
-                      <!--<p class="tableContent" fxFlex="15">Name</p>-->
-                    <!--</div>-->
-                    <!--<div class="tableBodyWrapper">-->
-                      <!--<div class="tableContainer body">-->
-                        <!--<ng-container *ngFor="let user of users">-->
-                          <!--<div  fxLayout="row" fxLayoutAlign="space-between" class="pointer tableRow">-->
-                            <!--<p class="tableContent boldFont capitalize" fxFlex="15">{{user.name}}</p>-->
-                          <!--</div>-->
-                        <!--</ng-container>-->
-                      <!--</div>-->
-                    <!--</div>-->
-                  <!--</section>-->
-                <!--</div>-->
-                <div fxFlex="100">
-                  <p class="thinFont colorLightGrey">Roles</p>
-                  <section class="tableWrapper">
-                    <div class="tableContainer header" fxLayout="row" fxLayoutAlign="space-between center">
-                      <p class="tableContent" fxFlex="25">Name</p>
-                      <p class="tableContent" fxFlex="20">Read</p>
-                      <p class="tableContent" fxFlex="20">Write</p>
-                      <p class="tableContent" fxFlex="25">Cluster Admin</p>
-                    </div>
-                    <div class="tableBodyWrapper">
-                      <div class="tableContainer body">
-                        <ng-container *ngFor="let role of roles">
-                          <div  fxLayout="row" fxLayoutAlign="space-between" class="pointer tableRow">
-                            <p class="tableContent boldFont capitalize" fxFlex="25">{{role.Name}}</p>
-                            <p class="tableContent boldFont capitalize" fxFlex="20"><mat-checkbox color="primary" [checked]="role?.Permissions?.Read"></mat-checkbox></p>
-                            <p class="tableContent boldFont capitalize" fxFlex="20"><mat-checkbox color="primary" [checked]="role?.Permissions?.Create"></mat-checkbox></p>
-                            <p class="tableContent boldFont capitalize" fxFlex="25"><mat-checkbox color="primary" [checked]="role?.Permissions?.Create && role?.Permissions?.Read && role?.Permissions?.Update && role?.Permissions?.Delete"></mat-checkbox></p>
-                          </div>
-                        </ng-container>
-                      </div>
-                    </div>
-                  </section>
-                </div>
+                </ng-container>
               </div>
             </div>
-          </div>
+          </section>
         </div>
       </div>
-    </section>
-    <section fxFlex="50"  fxFLex.lt-md="100">
-      <div fxLayout="column" fxLayoutGap="10px">
-        <div class="koki-data-wrapper" >
-          <div class="koki-data-header-container">
-            <p class="koki-data-header">Alerts</p>
-          </div>
-          <div class="koki-data">
-            <form fxLayout="row wrap" fxLayoutAlign="space-between center">
-              <!--<div fxFlex="30" fxFlex.lt-md="50">-->
-                <!--<p class="capitalize text14 boldFont">Url:</p>-->
-                <!--<p class="capitalize text14 boldFont">Recipient:</p>-->
-                <!--<p class="capitalize text14 boldFont">Mention:</p>-->
-                <!--<p class="capitalize text14 boldFont">Token:</p>-->
-              <!--</div>-->
-                <div fxFlex="100">
-                  <mat-form-field class="width100">
-                    <input matInput placeholder="Slack App webhook url"  name="webhook_url" [(ngModel)]="alert_data.Url"/>
-                  </mat-form-field>
-                </div>
-              <div fxFlex="100">
-                <mat-form-field class="width100">
-                  <input matInput placeholder="Token" name="token"  [(ngModel)]="alert_data.Token"/>
-                </mat-form-field>
-              </div>
-                <div fxFlex="48">
-                  <mat-form-field class="width100">
-                    <input matInput placeholder="Recipient" name="recipient"  [(ngModel)]="alert_data.Recipient" />
-                  </mat-form-field>
-                </div>
-                <div fxFlex="48">
-                  <mat-form-field class="width100">
-                    <input matInput placeholder="Mention" name="mention"  [(ngModel)]="alert_data.Mention" />
-                  </mat-form-field>
-                </div>
+    </div>
+  </mat-tab>
 
-            </form>
-            <button mat-raised-button color="primary" (click)="(isFirstTime)?setAlert():updateAlert()">Submit</button>
-            <!--<div fxLayout="row wrap" class="marginTop30">-->
-
-              <!--<mat-checkbox color="primary" checked="checked" fxFlex="33">Change</mat-checkbox>-->
-              <!--<mat-checkbox color="primary" checked="checked" fxFlex="33">App Failures</mat-checkbox>-->
-              <!--<mat-checkbox color="primary" checked="checked" fxFlex="33">Recovery</mat-checkbox>-->
-              <!--<mat-checkbox color="primary" checked="checked" fxFlex="33">Installations</mat-checkbox>-->
-              <!--<mat-checkbox color="primary" checked="checked" fxFlex="33">Node Failures</mat-checkbox>-->
-              <!--<mat-checkbox color="primary" checked="checked" fxFlex="33">Login</mat-checkbox>-->
-            <!--</div>-->
-          </div>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <i class="material-icons">error_outline</i>Alerts
+    </ng-template>
+    <div class="koki-data padding10">
+      <form fxLayout="row wrap" fxLayoutAlign="space-between center">
+        <!--<div fxFlex="30" fxFlex.lt-md="50">-->
+        <!--<p class="capitalize text14 boldFont">Url:</p>-->
+        <!--<p class="capitalize text14 boldFont">Recipient:</p>-->
+        <!--<p class="capitalize text14 boldFont">Mention:</p>-->
+        <!--<p class="capitalize text14 boldFont">Token:</p>-->
+        <!--</div>-->
+        <div fxFlex="100">
+          <mat-form-field class="width100">
+            <input matInput placeholder="Slack App webhook url"  name="webhook_url" [(ngModel)]="alert_data.Url"/>
+          </mat-form-field>
         </div>
-        <div class="koki-data-wrapper">
-          <div>
-            <div class="koki-data-header-container">
-              <p class="koki-data-header">Cluster</p>
-            </div>
-            <div class="koki-data">
-              <div fxLayout="row " fxLayoutAlign="space-between center">
-                <div fxFlex="30"  fxFlex.lt-md="50">
-                  <p class="capitalize text14 boldFont">Kubernetes URL:</p>
-                  <p class="capitalize text14 boldFont">Kuber Config:</p>
-                  <p class="capitalize text14 boldFont">Kubernetes dashboard:</p>
-                </div>
-                <div fxFlex="70"  fxFlex.lt-md="50">
-                  <p class="capitalize text14" ><a href="">https://URL</a></p>
-                  <p class="capitalize text14" ><a href=""> &lt;fielddata&gt; </a></p>
-                  <p class="capitalize text14" ><a href="">https://URL</a></p>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div fxFlex="100">
+          <mat-form-field class="width100">
+            <input matInput placeholder="Token" name="token"  [(ngModel)]="alert_data.Token"/>
+          </mat-form-field>
+        </div>
+        <div fxFlex="48">
+          <mat-form-field class="width100">
+            <input matInput placeholder="Recipient" name="recipient"  [(ngModel)]="alert_data.Recipient" />
+          </mat-form-field>
+        </div>
+        <div fxFlex="48">
+          <mat-form-field class="width100">
+            <input matInput placeholder="Mention" name="mention"  [(ngModel)]="alert_data.Mention" />
+          </mat-form-field>
+        </div>
+
+      </form>
+      <button mat-raised-button color="primary" (click)="(isFirstTime)?setAlert():updateAlert()">Submit</button>
+      <!--<div fxLayout="row wrap" class="marginTop30">-->
+
+      <!--<mat-checkbox color="primary" checked="checked" fxFlex="33">Change</mat-checkbox>-->
+      <!--<mat-checkbox color="primary" checked="checked" fxFlex="33">App Failures</mat-checkbox>-->
+      <!--<mat-checkbox color="primary" checked="checked" fxFlex="33">Recovery</mat-checkbox>-->
+      <!--<mat-checkbox color="primary" checked="checked" fxFlex="33">Installations</mat-checkbox>-->
+      <!--<mat-checkbox color="primary" checked="checked" fxFlex="33">Node Failures</mat-checkbox>-->
+      <!--<mat-checkbox color="primary" checked="checked" fxFlex="33">Login</mat-checkbox>-->
+      <!--</div>-->
+    </div>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <i class="material-icons">layers</i>Cluster
+    </ng-template>
+    <div class="koki-data padding10">
+      <div fxLayout="row " fxLayoutAlign="space-between center">
+        <div fxFlex="30"  fxFlex.lt-md="50">
+          <p class="capitalize text14 boldFont">Kubernetes URL:</p>
+          <p class="capitalize text14 boldFont">Kuber Config:</p>
+          <p class="capitalize text14 boldFont">Kubernetes dashboard:</p>
+        </div>
+        <div fxFlex="70"  fxFlex.lt-md="50">
+          <p class="capitalize text14" ><a href="">https://URL</a></p>
+          <p class="capitalize text14" ><a href=""> &lt;fielddata&gt; </a></p>
+          <p class="capitalize text14" ><a href="">https://URL</a></p>
         </div>
       </div>
-    </section>
-  </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>
 </div>
+<!--<div id="settingComponent">-->
+  <!--<div fxLayout="row" fxLayoutGap="10px" fxLayout.lt-md="column">-->
+    <!--<section fxFlex="50" fxFLex.lt-md="100">-->
+      <!--<div fxLayout="column" fxLayoutGap="10px">-->
+
+        <!--<div class="koki-data-wrapper">-->
+
+          <!--<div>-->
+            <!--<div class="koki-data-header-container">-->
+              <!--<div class="koki-data-header">-->
+                <!--Access-->
+              <!--</div>-->
+            <!--</div>-->
+
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</section>-->
+    <!--<section fxFlex="50"  fxFLex.lt-md="100">-->
+      <!--<div fxLayout="column" fxLayoutGap="10px">-->
+        <!--<div class="koki-data-wrapper" >-->
+          <!--<div class="koki-data-header-container">-->
+            <!--<p class="koki-data-header">Alerts</p>-->
+          <!--</div>-->
+
+        <!--</div>-->
+        <!--<div class="koki-data-wrapper">-->
+          <!--<div>-->
+            <!--<div class="koki-data-header-container">-->
+              <!--<p class="koki-data-header">Cluster</p>-->
+            <!--</div>-->
+
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</section>-->
+  <!--</div>-->
+<!--</div>-->

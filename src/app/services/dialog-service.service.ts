@@ -11,11 +11,13 @@ export class DialogsService {
   constructor(private dialog: MatDialog) {
   }
 
-  public appLaunchDialog(data: any): Observable<any> {
+  public appLaunchDialog(data: any, isInstalled: Boolean): Observable<any> {
     let dialogRef: MatDialogRef<AppLaunchDialogComponent>;
 
     dialogRef = this.dialog.open(AppLaunchDialogComponent);
     dialogRef.componentInstance.appData = data;
+    dialogRef.componentInstance.isInstalled = isInstalled;
+
     return dialogRef.afterClosed();
   }
 

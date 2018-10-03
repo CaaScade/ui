@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
 
     this.apiCall.callPOSTAPI(Urls.BASE_URL + '/' + Urls.LOGIN_URL, userform_data, false).subscribe(res => {
       this.localstorage.setData('_t', res.headers.get('authorization'));
+      this.localstorage.setData('_u', this.user.username);
       this.router.navigateByUrl('/incident-management/home');
 
     }, (error) => {
@@ -51,6 +52,7 @@ export class LoginComponent implements OnInit {
 
     this.apiCall.callPOSTAPI(Urls.BASE_URL + '/' + Urls.REGISTER_URL, userform_data).subscribe(res => {
       this.localstorage.setData('_t', res.headers.get('authorization'));
+      this.localstorage.setData('_u', this.user.username);
       this.router.navigateByUrl('/incident-management/home');
 
     }, error => {
