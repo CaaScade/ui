@@ -18,16 +18,16 @@
                 <div class="card-image general-bg" [ngStyle]="{'background-image':'url(' + ((app.URL !== '' )? app.URL : ('./assets/images/' + app.PodName + '.png')) + ')'}"></div>
               </div>
               <div class="padding10">
-                <p class="text18 thinFont marginZero align-center">{{app.Name}}  <i (click)="showMoreDetails(app, false)" class="material-icons pointer text16 colorLightGrey alignVerticalMiddle">help_outline</i></p>
-                <p class="colorLightGrey align-center text14 thinFont capitalize" [innerHTML]="app.Description"></p>
+                <p class="text18 lightFont marginZero align-center">{{app.Name}}  <i (click)="showMoreDetails(app, false)" class="material-icons pointer text16 colorLightGrey alignVerticalMiddle">help_outline</i></p>
+                <p class="colorGrey align-center text15 thinFont capitalize lineClamp" [innerHTML]="app.Description"></p>
               </div>
 
-              <div fxLayout="row" fxLayoutAlign="space-between center" class="padding10">
-                <div fxLayout="row" fxLayoutAlign="center center">
+              <div fxLayout="row" fxLayoutAlign="space-between center" style="margin-bottom: 10px">
+                <div fxLayout="row" fxLayoutAlign="center center" class="ribbon ribbon-top-right">
                   <p *ngIf="app.Discount" class="price kokiHeader text16 marginZero" style="text-decoration: line-through;margin-right: 5px">${{app.Price}}</p>
-                  <p class="text18 thinFont marginZero">${{(app.Discount)? app.Price : app.Price - (app.Price * app.Discount)/100}}/Month</p>
+                  <p class="text16 thinFont marginZero">${{(app.Discount)? app.Price : app.Price - (app.Price * app.Discount)/100}}/Month</p>
                 </div>
-                <p class="marginZero text14 colorLightGrey thinFont pointer" matTooltip="Uptime">{{app.UpTime}}%</p>
+                <p class="marginZero text14 colorLightGrey thinFont pointer" matTooltip="Uptime" style="padding-right: 10px">{{app.UpTime}}%</p>
               </div>
             </div>
           </ng-container>
@@ -56,13 +56,9 @@
                 <p class="text18 thinFont marginZero align-center">{{app.Name}}  <i (click)="showMoreDetails(app, true)" class="material-icons pointer text16 colorLightGrey alignVerticalMiddle">help_outline</i></p>
                 <p class="colorLightGrey align-center text14 thinFont capitalize" [innerHTML]="app.Description"></p>
               </div>
-
-              <div fxLayout="row" fxLayoutAlign="space-between center" class="padding10">
-                <div fxLayout="row" fxLayoutAlign="center center">
-                  <p *ngIf="app.Discount" class="price kokiHeader text16 marginZero" style="text-decoration: line-through;margin-right: 5px">${{app.Price}}</p>
-                  <p class="text18 thinFont marginZero">${{(app.Discount)? app.Price : app.Price - (app.Price * app.Discount)/100}}/Month</p>
-                </div>
-                <p class="marginZero text14 colorLightGrey thinFont pointer" matTooltip="Uptime">{{app.UpTime}}%</p>
+              <div class="padding10 textCenter" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+                <button mat-mini-fab color="primary" matTooltip="Show Dashboard" (click)="showDashboard(app)"><i class="material-icons marginZero">track_changes</i></button>
+                <button mat-mini-fab color="primary" matTooltip="Show Config" (click)="showMoreDetails(app, true)"><i class="material-icons marginZero">settings</i></button>
               </div>
             </div>
           </ng-container>

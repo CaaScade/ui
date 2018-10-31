@@ -1,16 +1,3 @@
-
-
-.ribbon {
-  width: 0;
-  height: 100px;
-  border: 50px solid #1abc9c;
-  border-top: 0 solid;
-  border-bottom: 35px solid rgba(0,0,0,0);
-  font: normal 100%/normal Arial, Helvetica, sans-serif;
-  color: rgba(0,0,0,1);
-  -o-text-overflow: clip;
-  text-overflow: clip;
-}
 .card-image {
   background: center center/95px no-repeat linear-gradient(to bottom,  #2e30af 0%,#8547ea 100%);
   height: 170px;
@@ -29,8 +16,127 @@
 }
 
 /deep/ .mat-form-field-infix {
-  overflow: hidden;
+  //overflow: hidden;
 }
 .material-icons{
   margin-right: 10px;
 }
+.mat-mini-fab .material-icons{
+  margin-right: 0;
+}
+
+//.ribbon {
+//  width: 150px;
+//  height: 150px;
+//  overflow: hidden;
+//  position: absolute;
+//}
+//.ribbon::before,
+//.ribbon::after {
+//  position: absolute;
+//  z-index: -1;
+//  content: '';
+//  display: block;
+//  border: 5px solid #2980b9;
+//}
+//.ribbon p {
+//  position: absolute;
+//  display: block;
+//  width: 225px;
+//  padding: 15px 0;
+//  background-color: #3498db;
+//  box-shadow: 0 5px 10px rgba(0,0,0,.1);
+//  color: #fff;
+//  font: 700 18px/1 'Lato', sans-serif;
+//  text-shadow: 0 1px 1px rgba(0,0,0,.2);
+//  text-transform: uppercase;
+//  text-align: center;
+//}
+//
+///* top left*/
+//.ribbon-top-left {
+//  top: -10px;
+//  left: -10px;
+//}
+//.ribbon-top-left::before,
+//.ribbon-top-left::after {
+//  border-top-color: transparent;
+//  border-left-color: transparent;
+//}
+//.ribbon-top-left::before {
+//  top: 0;
+//  right: 0;
+//}
+//.ribbon-top-left::after {
+//  bottom: 0;
+//  left: 0;
+//}
+//.ribbon-top-left p {
+//  right: -25px;
+//  top: 30px;
+//  transform: rotate(-45deg);
+//}
+//
+///* top right*/
+//.ribbon-top-right {
+//  top: -10px;
+//  right: -10px;
+//}
+//.ribbon-top-right::before,
+//.ribbon-top-right::after {
+//  border-top-color: transparent;
+//  border-right-color: transparent;
+//}
+//.ribbon-top-right::before {
+//  top: 0;
+//  left: 0;
+//}
+//.ribbon-top-right::after {
+//  bottom: 0;
+//  right: 0;
+//}
+//.ribbon-top-right p {
+//  left: -25px;
+//  top: 30px;
+//  transform: rotate(45deg);
+//}
+.ribbon {
+  background: #6758d5;
+  display: inline-block;
+  color: #f4f4f4;
+  padding: 6px;
+  position: relative;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  left: -8px;
+  border-radius: 0 8px 8px 0;
+}
+.ribbon:before {
+  left: -9px;
+  top: -9px;
+  border-color: transparent #2a42ab transparent transparent;
+}
+.ribbon:before {
+  content: "";
+  width: 0;
+  height: 11px;
+  display: block;
+  position: absolute;
+  border-style: solid;
+  border-width: 0.5em;
+  z-index: -1;
+  -webkit-transform: translateZ(-1em);
+  transform: translateZ(-1em);
+}
+
+.textCenter{
+  text-align: center;
+}
+
+.lineClamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: horizontal;
+  overflow: hidden;
+}
+

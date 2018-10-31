@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialogRef, MatTableDataSource} from '@angular/material';
 import {SelectionModel} from '@angular/cdk/collections';
+import {FormControl} from '@angular/forms';
 
 export interface AppAddons {
   name: string;
@@ -29,33 +30,15 @@ export class AppLaunchDialogComponent implements OnInit {
   appData: any;
   isInstalled: Boolean;
   totalPrice = 0;
+  selected = 0;
+
 
   displayedColumns: string[] = ['select', 'name', 'details', 'price'];
   dataSource = new MatTableDataSource<AppAddons>(ELEMENT_DATA);
   selection = new SelectionModel<AppAddons>(true, []);
 
-  configs = [{
-    name: 'username',
-    type: 'text',
-    value: ''
-  }, {
-    name: 'password',
-    type: 'password',
-    value: ''
-  }, {
-    name: 'DNS',
-    type: 'text',
-    value: ''
-  }, {
-    name : 'xx',
-    type: 'checkbox',
-    data: [{
-
-      }]
+  constructor(public dialogRef: MatDialogRef<AppLaunchDialogComponent>) {
   }
-  ];
-
-  constructor(public dialogRef: MatDialogRef<AppLaunchDialogComponent>) { }
 
   ngOnInit() {
   }
@@ -82,6 +65,10 @@ export class AppLaunchDialogComponent implements OnInit {
         this.selection.select(row);
       });
     }
+  }
+
+  showNextTab(index: number) {
+    this.selected = index;
   }
 
   submitConfig(data) {

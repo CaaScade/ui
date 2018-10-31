@@ -1,12 +1,60 @@
 <div class="koki-data-wrapper" *ngIf="!isInstalled">
   <div class="koki-data-header-container">
-    <p class="koki-data-header">{{appData.Name}} Architecture</p>
+    <p class="koki-data-header">{{appData.Name}}</p>
     <div class="koki-data margin20">
-      <div class="appArchitectureImage generalBG" [style.backgroundImage]="'url('+appData.ArchitectureURL+')'"></div>
-      <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px" class="marginTop20">
-        <button mat-button (click)="dialogRef.close(false)">Close</button>
-        <button  mat-raised-button color="primary" (click)="dialogRef.close(appData)">Launch</button>
-      </div>
+      <mat-tab-group [selectedIndex]="selected"
+                     (selectedIndexChange)="showNextTab($event)">
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <i class="material-icons">build</i>Architecture
+          </ng-template>
+          <div class="appArchitectureImage generalBG" [style.backgroundImage]="'url('+appData.ArchitectureURL+')'"></div>
+          <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px" class="marginTop20">
+            <button mat-button (click)="dialogRef.close(false)">Close</button>
+            <button mat-stroked-button (click)="showNextTab(1)" color="primary">Config</button>
+          </div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <i class="material-icons">settings</i>config
+          </ng-template>
+          <form class="addonTable">
+            <div *ngFor="let config of appData.UserConfigs">
+              <form class="marginTop20">
+              <section *ngIf="config.Type === 'password' || config.Type === 'text'">
+                <mat-form-field class="width100">
+                  <input matInput [type]="config.Type" [placeholder]="config.Name" [name]="config.Name" [(ngModel)]="config.Value" />
+                </mat-form-field>
+              </section>
+              <section *ngIf="config.Type === 'radio'">
+                <mat-radio-group class="width100" [(ngModel)]="config.value" fxLayout="row" fxLayoutAlign="space-between center">
+                  <mat-radio-button class="example-radio-button" *ngFor="let op of config.Data"  color="primary" [value]="op">
+                    {{op}}
+                  </mat-radio-button>
+                </mat-radio-group>
+              </section>
+              <section *ngIf="config.Type === 'select'">
+                <mat-form-field>
+                  <mat-select placeholder="Select Replicas"  color="primary">
+                    <mat-option *ngFor="let data of config.Data" [value]="data">
+                      {{data}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </section>
+              <section *ngIf="config.Type === 'checkbox'">
+                <mat-checkbox class="example-margin" color="primary" [name]="config.Name" [(ngModel)]="config.Value">{{config.Name}}</mat-checkbox>
+              </section>
+              </form>
+            </div>
+          </form>
+          <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px" class="marginTop20">
+
+            <button mat-button (click)="dialogRef.close(false)">Close</button>
+            <button mat-raised-button (click)="dialogRef.close(appData)" color="primary">Launch</button>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
     </div>
   </div>
 </div>
@@ -85,15 +133,42 @@
           <ng-template mat-tab-label>
             <i class="material-icons">settings</i>config
           </ng-template>
-          <form>
-            <div *ngFor="let config of configs">
-              <mat-form-field class="width100">
-                <input matInput [type]="config.type" [placeholder]="config.name" [name]="config.name" [(ngModel)]="config.value" />
-              </mat-form-field>
+          <form class="addonTable">
+            <div *ngFor="let config of appData.UserConfigs">
+              <form class="marginTop20">
+                <section *ngIf="config.Type === 'password' || config.Type === 'text'">
+                  <mat-form-field class="width100">
+                    <input matInput [type]="config.Type" [placeholder]="config.Name" [name]="config.Name" [(ngModel)]="config.Value" />
+                  </mat-form-field>
+                </section>
+                <section *ngIf="config.Type === 'radio'">
+                  <mat-radio-group class="width100" [(ngModel)]="config.value" fxLayout="row" fxLayoutAlign="space-between center">
+                    <mat-radio-button class="example-radio-button" *ngFor="let op of config.Data"  color="primary" [value]="op">
+                      {{op}}
+                    </mat-radio-button>
+                  </mat-radio-group>
+                </section>
+                <section *ngIf="config.Type === 'select'">
+                  <mat-form-field>
+                    <mat-select placeholder="Select Replicas"  color="primary">
+                      <mat-option *ngFor="let data of config.Data" [value]="data">
+                        {{data}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </section>
+                <section *ngIf="config.Type === 'checkbox'">
+                  <mat-checkbox class="example-margin" color="primary" [name]="config.Name" [(ngModel)]="config.Value">{{config.Name}}</mat-checkbox>
+                </section>
+              </form>
             </div>
           </form>
-          <button mat-button (click)="dialogRef.close(false)">Close</button>
-          <button mat-raised-button (click)="submitConfig(configs)">Submit</button>
+
+          <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px" class="marginTop20">
+
+            <button mat-button (click)="dialogRef.close(false)">Close</button>
+            <button mat-raised-button (click)="dialogRef.close(appData)" color="primary">Update</button>
+          </div>
         </mat-tab>
       </mat-tab-group>
     </div>
